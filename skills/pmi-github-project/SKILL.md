@@ -12,6 +12,8 @@ skips the PMI areas that add no value at that scale.
 Reference assets ship next to this file in `references/` — copy them into the target repo:
 `references/gate.yml`, `references/charter-template.md`, `references/issue-templates/*`.
 
+Day-to-day filing onto this board is `file-finding`; this skill stands the board up.
+
 ## When to use
 Setting up project management in a new repo, rebuilding this structure, or extending it (new field,
 milestone, risk, epic). Not for day-to-day feature delivery — that is `requirement-workflow` and `development-workflow`.
@@ -43,6 +45,7 @@ OWNER=<login>            # user or org that owns the Project
 REPO=<owner>/<repo>      # the repository
 PN=<project-number>      # filled in after step 1
 PID=<project-node-id>    # filled in after step 1 (PVT_...)
+DEFAULT_BRANCH=$(gh api "repos/$REPO" --jq .default_branch)
 ```
 
 ## Step 1 — Project + link
@@ -87,6 +90,8 @@ lb() { gh label create "$1" --repo "$REPO" --color "$2" --description "$3" --for
 lb type:epic 6f42c1 "WBS level 1"; lb type:slice 8a63d2 "increment (a .feature)"
 lb type:risk b60205 "risk-register item"; lb type:spike fbca04 "time-boxed investigation"
 lb type:refactor 0e8a16 "behaviour-preserving"; lb type:change-request d93f0b "scope/baseline change"
+lb type:bug d73a4a "defect against a requirement"; lb type:chore cfd3d7 "housekeeping"
+lb type:platform 5319e7 "work on the line itself"
 # area:* labels in one colour, one per module
 for a in <module1> <module2> <module3>; do lb "area:$a" 1d76db ""; done
 ```
@@ -129,7 +134,7 @@ Size/Priority. Score each `Exposure = P x I`; write **statement / trigger / resp
 ## Step 5 — Charter + issue forms
 ```bash
 cp references/charter-template.md            "$REPO_DIR/docs/PROJECT_CHARTER.md"   # then fill it in
-cp -r references/issue-templates/.           "$REPO_DIR/.github/ISSUE_TEMPLATE/"    # epic/slice/risk/change-request/spike/config
+cp -r references/issue-templates/.           "$REPO_DIR/.github/ISSUE_TEMPLATE/"    # epic/slice/risk/bug/change-request/spike/config
 ```
 Edit the charter placeholders and the `config.yml` links. **Issue forms only activate once on the
 default branch** — they must be committed and pushed.
@@ -164,7 +169,7 @@ gh api -X PATCH "repos/$REPO" -F allow_squash_merge=true -F allow_merge_commit=f
   -F allow_rebase_merge=false -F delete_branch_on_merge=true -F allow_auto_merge=true
 
 # c) branch protection: require a PR + the gate check (context = the CI job name, here "gate")
-gh api -X PUT "repos/$REPO/branches/master/protection" --input - <<'JSON'
+gh api -X PUT "repos/$REPO/branches/$DEFAULT_BRANCH/protection" --input - <<'JSON'
 { "required_status_checks": { "strict": true, "contexts": ["gate"] },
   "enforce_admins": false,
   "required_pull_request_reviews": { "required_approving_review_count": 1 },

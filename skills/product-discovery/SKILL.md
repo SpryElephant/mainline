@@ -158,7 +158,7 @@ The other three tags do not become cards. They still have destinations:
 |---|---|---|
 | `TERM` | `domain-modeling` | A Tonto class, role, or relation name — and the words used in the Gherkin |
 | `FRIC` | The discovery record | A design decision. Usually **not** a requirement; occasionally it exposes a missing `RULE` |
-| `ASSUM` | The risk register (`pmi-github-project`) | A test to run, or a risk explicitly accepted |
+| `ASSUM` | The risk register, via `file-finding` | A test to run, or a risk explicitly accepted |
 | `CHOICE` | The discovery record | A short decision entry, not a requirement |
 
 ### 6. Pass the discovery gate

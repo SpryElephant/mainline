@@ -13,11 +13,16 @@ A codebase that "cannot be fixed" is almost always a codebase whose requirements
 
 ## 1. Triage — can somebody write the Gherkin?
 
-The only question at Inbox. It has one expensive wrong answer.
+Set `Work Type`, `Area`, `Size`, `Priority` and `Target` on the card. Then the only question at
+Inbox. It has one expensive wrong answer.
 
 - **Yes** → step 2.
 - **No** → open a **Spike** and run `product-discovery`. Nobody can state the acceptance criteria
   because nobody yet knows whether the thing is wanted, usable, or buildable.
+
+**Not everything is a Slice.** A `Bug`, a `Refactor`, or `Platform` work on the line itself goes
+straight to Build, skipping Requirement and Design — still gated, reviewed and released like
+anything else.
 
 **Do not write the scenarios anyway.** Guessing here means the line delivers an invented spec with
 full rigor — the most expensive possible way to be wrong. Sending known work through discovery costs

@@ -123,9 +123,9 @@ its ideas should be transplanted into whichever wins.
 
 ## Delivering
 
-Prototypes live under `docs/prototypes/` or equivalent — in the repository, outside anything the
-quality gate compiles or lints. They are exploration, not product, and holding them to production
-thresholds would only make them cautious.
+Prototypes live under `prototypes/<name>/` — the same quarantine `product-discovery` uses: outside
+the build, invisible to CI and coverage, and no production module may import them. They are
+exploration, not product, and holding them to production thresholds would only make them cautious.
 
 Publish them somewhere clickable and hand over the links with the comparison, not just the files.
 

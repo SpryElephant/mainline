@@ -57,7 +57,7 @@ When you do design:
   `refactor-smells` for structural cleanup — lands as its own gate-green commit, before the feature
   work that depends on the new shape. Never mixed in.
 - **No unrelated changes.** A drive-by fix in the same PR is a fix nobody reviewed.
-- **File what you find, now.** A bug, a risk, or a missing rule you are not fixing becomes a filed,
+- **File what you find, now** (`file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
   assigned, notified ticket from inside your session, before you move on. You spent effort to learn
   it; harvest it. A finding carried in your head to the end of the task is a finding you threw away.
 
@@ -87,3 +87,5 @@ until green → H2
 - **`local-stack`** — what you validate against in step 2.
 - **`refactoring` / `refactor-smells`** — orthogonal, separate commits.
 - **`e2e-suite`** — you are gated on not breaking it. QA grows it.
+- **`review-station`** — receives at H2.
+- **`file-finding`** — how a finding becomes a tracked item without leaving the session.

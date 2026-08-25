@@ -9,7 +9,7 @@ the same class of miss recurs, because nothing about the line changed.
 
 ## The loop
 
-**Owner: the lead.** Run it whenever something escapes.
+**Owner: the lead. Skill:** `improvement-loop`. Run it whenever something escapes.
 
 1. **Name the escape.** What was wrong, and where it surfaced. One sentence.
 2. **Find the earliest handoff that could have caught it.** Not the closest — the earliest. A missing
@@ -36,7 +36,7 @@ the same class of miss recurs, because nothing about the line changed.
 - **The amendment ships with the retro.** A change agreed and not made is a change that did not
   happen. Edit the playbook that day.
 
-## Escape ledger
+## Escape ledger — `docs/escape-ledger.md`
 
 | Date | What escaped | Surfaced at | Should have been caught at | Change made |
 |---|---|---|---|---|

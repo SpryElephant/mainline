@@ -139,5 +139,5 @@ ignoring them.
   security failure is legible as a security failure.
 - **`deployment-pipeline`** — dimensions that bind on the release path live there.
 - **`observability`** — detection at runtime for what the gate cannot see statically.
-- **Review station** — the human reads these findings and either fixes or waives them **with a
+- **`review-station`** — the human reads these findings and either fixes or waives them **with a
   written reason**.

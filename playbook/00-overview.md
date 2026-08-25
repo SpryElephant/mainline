@@ -52,18 +52,21 @@ Every station has a skill behind it, installed into the project from `skills/`:
 | Station | Skill | In one line |
 |---|---|---|
 | Discovery | `product-discovery` | Throwaway prototype, real sessions, live observation log → Gherkin |
+| Discovery | `ui-exploration` | Several genuinely different UI directions, compared as working prototypes |
 | Requirement | `requirement-workflow` | The spec is a `.feature` file. Nothing else counts as a requirement. |
 | Design | `domain-modeling` | Model the domain in Tonto, derive the design from it, get the module contracts |
 | Build | `development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
 | Build | `local-stack` | The whole system on one machine with one command |
-| Gate | `quality-gate` | Seven dimensions behind one command. Done means green. |
-| Review | `security-gate` | SAST, dependencies, secrets, IaC, images — binding, not a dashboard |
+| Gate | `quality-gate` | Six dimensions behind one command. Done means green. |
+| Review | `review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
+| Review | `security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
 | QA | `e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |
 | Release | `deployment-pipeline` | Merge to production, automated and reversible |
 | Operate | `observability` | Instrument before ship; alert on what users feel |
 
-Orthogonal to the line: `refactoring` and `refactor-smells` for behavior-preserving change, and
-`pmi-github-project` to stand the board up once.
+Orthogonal to the line: `file-finding` to harvest what any station turns up, `refactoring` and
+`refactor-smells` for behavior-preserving change, `improvement-loop` for what the line learns when
+something escapes, and `pmi-github-project` to stand the board up once.
 
 ## Three rules that make the rest work
 

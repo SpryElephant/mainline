@@ -41,7 +41,9 @@ an operator's head, the value is disputed, or you are replacing a system nobody 
    per prototype.** Fix the timebox now, in days.
 2. **Choose the medium and the participant** for that risk class. Cheapest thing that can falsify the
    assumption wins: fake door, landing page, concierge, Wizard of Oz, paper, clickable, live-data,
-   spike. For a legacy system: a read-only spike, with the current system's owner.
+   spike. For a legacy system: a read-only spike, with the current system's owner. When the open
+   question is visual direction, the medium is `ui-exploration` — several worlds compared, not one
+   prototype tested.
 3. **Build it quarantined** — `prototypes/<name>/`, outside the build, invisible to CI and coverage,
    and no production module may import it. Real domain content, never placeholder. The whole flow
    works end to end; a dead primary button is a lie about the design.
@@ -89,7 +91,7 @@ state.
       **tenancy**, performance, compliance, data retention.
 - [ ] Out of scope stated explicitly.
 - [ ] Prototype or screenshots attached wherever there is UI.
-- [ ] **Signed** by Product · **assigned** to a developer · **Slacked** with everything attached.
+- [ ] **Signed** by Product · **assigned** to a developer · **notified** with everything attached.
 
 > **Why the NFR line exists.** A feature once shipped without enterprise SSO because enterprise
 > tenancy was assumed by everyone and written down by no one. Nothing downstream could catch it,
@@ -144,8 +146,8 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
   before handing off. An agent's loop closes on validated criteria — not on "the code looks right."
 - **Full stack, one change.** A Slice is one `.feature`; make it one PR. Front-end and back-end are
   not two jobs.
-- **File what you find, now.** A bug, a risk, or a missing rule you are not fixing becomes a filed,
-  assigned, Slacked ticket from inside the session. You spent effort to learn it; harvest it. A
+- **File what you find, now** (`file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
+  assigned, notified ticket from inside the session. You spent effort to learn it; harvest it. A
   finding you meant to mention tomorrow is a finding you threw away.
 
 ---
@@ -154,7 +156,7 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
 
 **Owner:** developer. **Skill:** `quality-gate`.
 
-Five dimensions, one command, exits non-zero on any failure. CI runs the same command. Branch
+Six dimensions, one command, exits non-zero on any failure. CI runs the same command. Branch
 protection requires it. **Local equals CI.**
 
 | # | Dimension | Passes when |
@@ -175,14 +177,15 @@ Not a handoff — this is Build's exit condition, and H2's precondition.
 
 ## Review
 
-**Owner:** a reviewer who is not the author. **Skill:** `security-gate`.
+**Owner:** a reviewer who is not the author. **Skills:** `review-station`, `security-gate`.
 
 Every change is reviewed by another **person**. Keep the person — drop the assumption that they must
 read every line. A human reading a large diff carefully is slower and less thorough than a tool, and
 we have tools.
 
 1. The automated review runs at high effort on the PR.
-2. The security pass runs: SAST, dependency/CVE scan, secrets scan.
+2. The security pass runs on the PR-bound dimensions: SAST, secrets, dependencies, IaC. Images and
+   runtime posture bind on the release path.
 3. **A named person reads the findings** and decides. Their judgment is applied to the findings, not
    to the diff line by line.
 4. Findings are fixed, or waived **with a written reason**. "Looks fine" is not a reason.
@@ -192,7 +195,7 @@ we have tools.
 - [ ] Gate green in CI on the branch.
 - [ ] Every acceptance scenario passing, with validation evidence on the ticket.
 - [ ] No unrelated changes. Behavior-preserving refactors are separate commits, and separate PRs.
-- [ ] **Signed** by the developer · **assigned** to a reviewer · **Slacked**.
+- [ ] **Signed** by the developer · **assigned** to a reviewer · **notified**.
 
 ### H3 — Review → QA *(Reviewer → QA)*
 
@@ -200,7 +203,7 @@ we have tools.
 - [ ] Security pass clean.
 - [ ] Gate green on the merge commit.
 - [ ] **Named human sign-off recorded** where an auditor can find it.
-- [ ] **Signed** by the reviewer · **assigned** to QA · **Slacked**.
+- [ ] **Signed** by the reviewer · **assigned** to QA · **notified**.
 
 ---
 
@@ -220,6 +223,8 @@ written spec there is no such thing as QA, only people clicking around hoping to
    writes the one that passes, and a suite that does not block a merge is documentation.
 4. **File defects against the requirement they violate.** A defect that cites no requirement is
    either a missing requirement — send it back to Product — or a preference.
+5. **Quarantine a flaky test out of the gate the day it flakes**, with a ticket. Never retry until
+   green. A growing quarantine list is an `04-improvement.md` entry: the suite is dying.
 
 **Cadence:** a scheduled run at a fixed time, plus an expedite path when someone asks. Both are
 commands; neither is a person remembering.
@@ -229,7 +234,8 @@ commands; neither is a person remembering.
 - [ ] Suite green on staging.
 - [ ] New coverage merged into the permanent suite, shipping *with* the release rather than after.
 - [ ] Open defects either fixed, or accepted with a named person and a date.
-- [ ] **Signed** by QA · **assigned** to the release approver · **Slacked**.
+- [ ] Nothing newly quarantined without a ticket.
+- [ ] **Signed** by QA · **assigned** to the release approver · **notified**.
 
 ---
 

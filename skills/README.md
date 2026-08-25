@@ -18,11 +18,13 @@ carries a substitution table. Keep the dimension; swap the tool.
 | Build | `development-workflow` | Developer |
 | Build | `local-stack` | Platform (built), everyone (used) |
 | Gate | `quality-gate` | Developer |
-| Review | `security-gate` | Reviewer |
+| Review | `review-station`, `security-gate` | Reviewer |
 | QA | `e2e-suite` | QA |
 | Release | `deployment-pipeline` | Platform |
 | Operate | `observability` | Platform |
 | Any | `refactoring`, `refactor-smells` | Developer |
+| Any | `file-finding` | Everyone |
+| Any | `improvement-loop` | Lead |
 | Setup | `pmi-github-project` | Lead |
 
 ## The skills
@@ -42,10 +44,12 @@ carries a substitution table. Keep the dimension; swap the tool.
 
 **Quality**
 
-- `quality-gate` — the binding gate. Seven dimensions behind one command: behavior, architecture,
+- `quality-gate` — the binding gate. Six dimensions behind one command: behavior, architecture,
   static analysis, test adequacy, optional flow/CPG, and the end-to-end suite.
 - `e2e-suite` — QA's compounding asset. What deserves an E2E test, how to write one that survives a
   redesign, seed data, flake discipline. Enforced as `quality-gate` dimension 6.
+- `review-station` — the Review station. Automated review plus the security pass, human judgment on
+  the findings, waivers with written reasons, the recorded sign-off, the H3 handoff.
 - `refactoring` — large mechanical behavior-preserving rewrites via a rewrite engine.
 - `refactor-smells` — Fowler smell-driven structural cleanup, ranked by complexity and CRAP.
 
@@ -59,16 +63,21 @@ carries a substitution table. Keep the dimension; swap the tool.
 - `observability` — instrument before ship, alert on symptoms with an owner and an action, one
   command from alert to ticket.
 
-**Setup**
+**Setup and improvement**
 
 - `pmi-github-project` — the board, where `Phase` *is* the line. WBS, milestones, risk register,
   charter, issue forms, trunk-based branching with the CI gate.
+- `file-finding` — a bug, risk or missing rule becomes a tracked, assigned, notified item without
+  leaving the session. Day-to-day filing onto that board.
+- `improvement-loop` — what the line learns when something escapes. Amend the earliest check, the
+  escape ledger, the four flow metrics.
 
 ## Installing
 
 See `playbook/01-onboarding.md`, steps 2 and 3. In short: copy the folders, calibrate `quality-gate`
 and `security-gate` behind one command each, point `refactoring` at the language's rewrite engine,
-install `tonto-cli`, add the `prototypes/` quarantine, then run `pmi-github-project`.
+install `tonto-cli`, add the `prototypes/` quarantine, run `pmi-github-project`, then cache the
+board's field IDs for `file-finding`.
 
 ## Provenance
 
@@ -79,9 +88,11 @@ maintained here. Changes made for Mainline:
   the H1 handoff cannot enforce it, and it made each role read two-thirds irrelevant material.
 - `quality-gate` gained dimension 6 — the end-to-end suite against a running stack. QA authors it,
   developers are gated on not breaking it.
-- New: `e2e-suite`, `local-stack`, `security-gate`, `deployment-pipeline`, `observability` — the
-  stations after merge, which Forge did not cover.
+- New: `e2e-suite`, `local-stack`, `review-station`, `security-gate`, `deployment-pipeline`,
+  `observability`, `improvement-loop`, `file-finding` — the stations after merge and the harvesting
+  rule, which Forge did not cover.
 - `pmi-github-project`: `Phase` extended with Review, QA and Release; `Work Type` gained `Platform`;
+  `bug` issue form and the `type:bug` / `type:chore` / `type:platform` labels added;
   review count raised from 0 to 1; `Phase` transitions are commanded and gated rather than pulled by
   hand.
 

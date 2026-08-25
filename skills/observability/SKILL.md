@@ -64,8 +64,9 @@ Rules:
 The Operate station's harvesting rule, and the same principle as filing findings from inside a
 session: **if turning a signal into tracked work is friction, signals get dropped.**
 
-One command takes an alert or an error group and produces a work item with the alert, the trace, the
-affected release, and the impact already attached — assigned and notified. Nobody retypes anything.
+One command (`file-finding`) takes an alert or an error group and produces a work item with the
+alert, the trace, the affected release and the impact already attached — assigned and notified.
+Nobody retypes anything.
 
 ## Dashboards
 
@@ -114,4 +115,5 @@ Do not do this for everything. Three meaningful SLOs beat thirty nobody looks at
 - **`e2e-suite`** — an incident usually produces a test as well as an alert.
 - **`security-gate`** — runtime detection for what static analysis cannot see.
 - **`requirement-workflow`** — new work discovered in production enters at Inbox like anything else.
+- **`file-finding`** — alert to tracked work item.
 - **The improvement loop** — where escapes go, and where alerts that keep firing get re-examined.

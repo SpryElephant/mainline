@@ -67,7 +67,8 @@ The suite is only as reproducible as its data.
 **A flaky test is worse than no test.** It teaches the team to re-run the gate instead of reading it,
 and that one habit destroys the authority of every other dimension.
 
-1. A test that flakes is **quarantined out of the gate the same day**, with a ticket. Not next sprint.
+1. A test that flakes is **quarantined out of the gate the same day**, with a ticket (`file-finding`).
+   Not next sprint.
 2. Fix the cause, which is almost always a race the test exposed and the application owns. Treat a
    flaky test as a bug report about the system before you treat it as a bug in the test.
 3. **Never add a retry to make it green.** A retry is a decision to stop knowing whether the feature
@@ -99,6 +100,16 @@ At the QA station, per round:
 4. File defects against the requirement they violate.
 5. The new tests merge with the release, not after it.
 
+## Pass H4
+
+The handoff into release. All of it, or the work does not move:
+
+- [ ] Suite green on staging.
+- [ ] New coverage merged into the permanent suite, shipping *with* the release rather than after.
+- [ ] Open defects either fixed, or accepted with a named person and a date.
+- [ ] Nothing newly quarantined without a ticket.
+- [ ] **Signed** by you · **assigned** to the release approver · **notified**.
+
 ## Failure modes
 
 - **The suite tests the UI instead of the system.** Symptom: a redesign breaks fifty tests and none of
@@ -118,5 +129,7 @@ At the QA station, per round:
 - **`quality-gate`** — dimension 6 runs this suite. QA owns what is in it.
 - **`local-stack`** — what the suite runs against, locally and in CI.
 - **`requirement-workflow`** — the `.feature` files every test traces back to.
+- **`file-finding`** — quarantines and defects become tracked items.
+- **`review-station`** — hands off at H3. **`deployment-pipeline`** — receives at H4.
 - **`observability`** — a defect that reached production should usually produce both an E2E test and
   an alert. The test stops the recurrence; the alert catches the next thing you did not think of.

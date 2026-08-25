@@ -18,7 +18,8 @@ the screen did. Use the client's words, from the glossary.
 
 **If no** — do not write it anyway. Open a Spike and run `product-discovery`. Name one riskiest
 assumption, fix a timebox in days, pick the cheapest prototype that can falsify it, put it in front
-of a real participant, and record the seven tags live. Come back with a discovery record.
+of a real participant, and record the seven tags live. Come back with a discovery record. When the
+open question is visual direction rather than what to build, the medium is `ui-exploration`.
 
 **Before you hand off (H1),** walk the checklist in `02-stations.md`. The line that catches the most
 is the NFR line: auth and SSO, **tenancy**, performance, compliance, retention — stated or explicitly
@@ -35,7 +36,7 @@ obligations the requirement did not state. Add them.
 ## Developer
 
 **You own:** Design, Build, Gate. **You sign:** H2.
-**Skills:** `development-workflow`, `domain-modeling`, `quality-gate`, `local-stack`.
+**Skills:** `development-workflow`, `domain-modeling`, `quality-gate`, `local-stack`, `file-finding`.
 
 **Your day.** A Slice arrives in Design, assigned to you, with the `.feature` file, the prototype and
 the screenshots attached. You should not have to ask anyone anything to start.
@@ -49,7 +50,7 @@ the screenshots attached. You should not have to ask anyone anything to start.
    a conversation, not an edit.
 
 **When you find something you are not fixing** — a bug, a risk, a missing rule — file it *now*, from
-inside your session: ticket created, fields set, assigned, Slacked. One command. Do not carry it in
+inside your session: ticket created, fields set, assigned, notified. One command. Do not carry it in
 your head to the end of the task; that is where findings go to die.
 
 **One feature is one change.** You are a full-stack developer on Mainline. If the repo layout is
@@ -63,7 +64,7 @@ work that depends on the new shape. Never mixed in.
 
 ## Reviewer
 
-**You own:** Review. **You sign:** H3. **Skill:** `security-gate`.
+**You own:** Review. **You sign:** H3. **Skills:** `review-station`, `security-gate`.
 
 **You are not reading the diff line by line.** The tools do that better than you. You are the
 judgment layer on top of them, and the accountable signature underneath.
@@ -103,7 +104,9 @@ it a fourth time.
    happens to pass.
 4. **File defects against the requirement they violate.** If there is no requirement to cite, you
    have found something more valuable than a bug: a missing requirement. Send it to Product.
-5. Sign, assign to release, Slack.
+5. **Quarantine a flaky test the day it flakes**, with a ticket. Never retry until green; a growing
+   quarantine list goes to the improvement loop.
+6. Sign, assign to release, notify.
 
 **What you need, and should demand if you do not have it:** reproducible seed data, a staging
 environment that resembles production, and the requirements themselves. Without the last one there is
@@ -127,8 +130,8 @@ is annoyed enough, which is the failure mode this whole line exists to remove.
   apart from CI, everything downstream stops being trustworthy.
 - **The local full stack.** One command from a clean clone, no cloud credentials needed. This is what
   makes the developer loop close. LocalStack or equivalent for cloud services.
-- **The handoff commands.** Four of them, plus `/file-finding`. They run checks, block, move `Phase`,
-  assign, and Slack.
+- **The handoff commands.** Four of them. They run checks, block, move `Phase`, assign, and notify.
+  `file-finding` is already a skill; wire it to the board.
 - **CI/CD.** The gate on every PR, the E2E suite where you decided it binds, deploy automated and
   reversible, rollback tested for real.
 - **DevSecOps.** SAST, dependency and CVE scanning, secrets scanning — in the pipeline, failing the
@@ -143,6 +146,7 @@ tool. A checklist item depends on attention; a tool does not.
 ## Lead
 
 **You own:** Inbox triage, the improvement loop, and the line itself.
+**Skills:** `improvement-loop`, `requirement-workflow`, `pmi-github-project`.
 
 **Your day.** Watch the Flow view. Your job is not to move work — the commands do that. It is to
 notice what the board is telling you:
