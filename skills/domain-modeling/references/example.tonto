@@ -1,0 +1,73 @@
+// A validated reference model — passes `tonto-cli validate` at v0.4.12 and v0.4.13.
+// Copy from this when unsure of syntax; several upstream examples do not parse.
+//
+// Each construct is annotated with the section of ufo-to-ddd-derivation.md that
+// says what it becomes in the design.
+
+package example
+
+// --- ultimate sortals -> aggregate-root candidates (derivation §2) ---
+
+kind Person {
+  name: string
+  birthDate: date
+}
+
+kind Organization {
+  legalName: string
+}
+
+// --- phase genset -> state field + state machine, NOT subclasses (§4, §8) ---
+// Each transition below is a Gherkin obligation (§10).
+
+phase ActivePerson specializes Person
+phase DeceasedPerson specializes Person
+
+disjoint complete genset PersonStatus
+  where ActivePerson, DeceasedPerson specializes Person
+
+// --- roles -> not classes; projections through the relator (§4) ---
+
+role Employee specializes Person
+role Employer specializes Organization
+
+// --- relator -> the aggregate root (§3) ---
+// Mediation ends become by-ID references, never containment.
+// End names are BARE identifiers — parentheses are only for meta-attributes.
+
+relator Employment {
+  startDate: date [1]
+  endDate: date [0..1]
+
+  @mediation [1..*] -- employee -- [1] Employee
+  @mediation [1..*] -- employer -- [1] Employer
+}
+
+// --- roleMixin -> polymorphic port: reference needs a kind discriminator (§5) ---
+
+roleMixin Customer of functional-complexes
+
+// --- event -> domain event; @creation marks a lifecycle start (§6) ---
+
+event Hiring {
+  occurredAt: datetime
+  @participation [0..*] -- hired -- [1] Person
+  @creation [0..*] -- [1] Employment
+}
+
+// --- connectors -> aggregate boundaries (§8) ---
+// <o>-- composition: Department lives INSIDE the Company aggregate.
+// <>-- aggregation: Team is a SEPARATE aggregate, referenced by ID.
+
+kind Department {
+  code: string
+}
+
+kind Team {
+  name: string
+}
+
+kind Company {
+  @componentOf [1] <o>-- hasDepartment -- [1..*] Department
+  [1] <>-- hasTeam -- [0..*] Team
+}

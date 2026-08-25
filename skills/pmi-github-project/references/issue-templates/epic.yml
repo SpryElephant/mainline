@@ -1,0 +1,40 @@
+name: "Epic — major deliverable"
+description: "A WBS level-1 deliverable (a capability, module, or feature area)."
+title: "Epic: <name>"
+labels: ["type:epic"]
+body:
+  - type: textarea
+    id: deliverable
+    attributes:
+      label: Deliverable
+      description: What ships when this epic is done.
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale & fit
+      description: Why now, and how it maps onto the existing architecture.
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: Size (ROM estimate)
+      options: ["XS", "S", "M", "L", "XL"]
+    validations:
+      required: true
+  - type: input
+    id: designdoc
+    attributes:
+      label: Design doc
+      description: Path to the design doc / ADR produced in the Design phase (before Build).
+      placeholder: docs/design/NNN_<name>.md
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done
+      options:
+        - label: Design doc written before code
+        - label: Acceptance tests green
+        - label: Quality gate green (tests + architecture + static analysis + coverage)

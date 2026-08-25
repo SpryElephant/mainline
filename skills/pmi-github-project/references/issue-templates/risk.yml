@@ -1,0 +1,40 @@
+name: "Risk — risk-register item"
+description: "A threat to scope, schedule, or quality. Scored Probability x Impact -> Exposure on the board."
+title: "Risk: <short name>"
+labels: ["type:risk"]
+body:
+  - type: textarea
+    id: statement
+    attributes:
+      label: Risk statement
+      description: "If <cause> then <event>, leading to <consequence>."
+    validations:
+      required: true
+  - type: textarea
+    id: trigger
+    attributes:
+      label: Trigger / early warning
+      description: What we would observe as this risk starts to materialize.
+    validations:
+      required: true
+  - type: dropdown
+    id: probability
+    attributes:
+      label: Probability
+      options: ["Low", "Medium", "High"]
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options: ["Low", "Medium", "High"]
+    validations:
+      required: true
+  - type: textarea
+    id: response
+    attributes:
+      label: Response (avoid / mitigate / transfer / accept)
+      description: The planned response, and who acts on the trigger.
+    validations:
+      required: true

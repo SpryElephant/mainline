@@ -1,0 +1,26 @@
+name: "Spike — time-boxed investigation"
+description: "A bounded research task to retire uncertainty before committing scope."
+title: "Spike: <question>"
+labels: ["type:spike"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question to answer
+    validations:
+      required: true
+  - type: input
+    id: timebox
+    attributes:
+      label: Time-box
+      description: Hard limit — a spike ends when the box is spent, not when the work is "finished".
+      placeholder: e.g. 1 day
+    validations:
+      required: true
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: The decision or artifact that closes this spike (often a design-doc recommendation).
+    validations:
+      required: true

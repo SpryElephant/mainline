@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Project board
+    url: <link to the GitHub Project>
+    about: The kanban board, WBS, roadmap, and risk register.
+  - name: Project charter
+    url: <link to docs/PROJECT_CHARTER.md on the default branch>
+    about: Vision, success criteria, scope boundary, and governance.
+  - name: Design-doc log
+    url: <link to docs/design on the default branch>
+    about: Append-only decision records (ADRs).

@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Local agent state
+.claude/settings.local.json
+
+# Tonto output
+domain/generated/
+
+# Node
+node_modules/
+
+# Internal source material — never committed
+documents/
+planning/

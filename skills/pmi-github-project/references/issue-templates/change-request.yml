@@ -1,0 +1,42 @@
+name: "Change request — scope / sequence / decision change"
+description: "Propose a material change to the scope baseline, milestone sequence, or a committed decision."
+title: "CR: <summary>"
+labels: ["type:change-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The scope baseline is <roadmap doc> + the milestones. Use this to change it deliberately.
+        If accepted, the outcome is recorded as a new, higher-numbered design doc that supersedes the old one.
+  - type: textarea
+    id: change
+    attributes:
+      label: What changes
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The driver — new information, demand, a discovered constraint.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Effect on scope, sequence, estimates, risk, and any affected design doc.
+    validations:
+      required: true
+  - type: input
+    id: affected-doc
+    attributes:
+      label: Affected / superseding design doc
+      placeholder: supersedes docs/design/NNN_*.md  ->  new docs/design/MMM_*.md
+  - type: dropdown
+    id: decision
+    attributes:
+      label: Decision
+      options: ["Proposed", "Accepted", "Rejected", "Deferred"]
+    validations:
+      required: true

@@ -1,0 +1,45 @@
+name: Quality gate
+
+# EXAMPLE gate for a Gradle + Node project — ADAPT the toolchain steps and the
+# gate command to your stack. The important parts are reusable:
+#   - triggers on PRs to the default branch (branch protection requires the `gate` job)
+#   - a single command that runs the whole quality gate
+#   - one source of truth per toolchain version (.nvmrc here) so CI == local
+#
+# The job `name:` ("gate") is the status-check context you require in branch protection.
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+concurrency:
+  group: gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    name: gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # --- toolchains (replace with yours) ---
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'   # single source of truth; avoids local<->CI version drift
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # --- the gate (replace with your one command) ---
+      - name: Run the quality gate
+        run: ./gradlew check --no-daemon --stacktrace
