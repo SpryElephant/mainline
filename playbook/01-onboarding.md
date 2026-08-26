@@ -40,8 +40,8 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 **Who:** one engineer.
 
 - [ ] Copy the skill folders from `skills/` into the project's `.claude/skills/` — including
-      `domain-modeling/references/` — and `commands/` into `.claude/commands/`.
-- [ ] **Calibrate `quality-gate`.** Pick one tool per dimension for the language and set the
+      `mainline-domain-modeling/references/` — and `commands/` into `.claude/commands/`.
+- [ ] **Calibrate `mainline-quality-gate`.** Pick one tool per dimension for the language and set the
       thresholds. Use the per-language tables inside the skill.
 
   | # | Dimension | Pick a tool | Threshold |
@@ -56,11 +56,11 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 
 - [ ] **Wire them behind one command** that exits non-zero on any failure — `./gradlew check`,
       `make check`, `npm run check`. One command, no exceptions. Local must equal CI.
-- [ ] **Calibrate `security-gate`** the same way — SAST, dependencies, secrets, IaC, images,
+- [ ] **Calibrate `mainline-security-gate`** the same way — SAST, dependencies, secrets, IaC, images,
       runtime posture — behind its own single command. Baseline today's findings *with dates and
       owners*; the gate blocks anything new from day one, and the baseline is burned down as
       `Platform` items, worst exposure first.
-- [ ] Point `refactoring` at the language's rewrite engine (OpenRewrite / Roslyn / ts-morph / …).
+- [ ] Point `mainline-refactoring` at the language's rewrite engine (OpenRewrite / Roslyn / ts-morph / …).
 - [ ] Install the design toolchain: `npm install -g tonto-cli@0.4.13` (Node ≥ 20 — pin it; verify
       with `npm ls -g tonto-cli`, **not** `--version`). Create `domain/` with a `tonto.json` manifest,
       and a **separate CI job** — outside the gate command — asserting the `.tonto` files still validate.
@@ -80,7 +80,7 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 **Goal:** the board *is* the line. Where a card sits is which station the work is at.
 **Who:** one engineer with `gh` authenticated (`project`, `workflow`, `repo`, `read:org` scopes).
 
-- [ ] Run `pmi-github-project`: project, custom fields, milestones, labels, WBS seed, risk register,
+- [ ] Run `mainline-pmi-github-project`: project, custom fields, milestones, labels, WBS seed, risk register,
       charter, issue forms.
 - [ ] Confirm `Phase` carries `Inbox, Requirement, Design, Build, Gate, Review, QA, Release, Done`.
 - [ ] Confirm `Work Type` carries `Epic, Slice, Risk, Refactor, Spike, Bug, Chore, Platform`. An
@@ -94,7 +94,7 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 - [ ] Trunk-based branching: squash-only, delete on merge, branch protection requiring the `gate`
       status check on the default branch.
 - [ ] Confirm `required_approving_review_count` is **1**. Review is a station.
-- [ ] Write `security-gate`'s triage policy — Critical / High / Medium / Low / false positive — into
+- [ ] Write `mainline-security-gate`'s triage policy — Critical / High / Medium / Low / false positive — into
       the project charter.
 
 **Known traps:** `Type` is reserved by GitHub — the field is `Work Type`, and its JSON key is
@@ -139,7 +139,7 @@ possible, because there is nothing to rewrite *to*.
 
 - [ ] Every Slice in flight has a `.feature` file with Given/When/Then scenarios.
 - [ ] A domain glossary exists, in the client's words, seeding the Tonto model.
-- [ ] **Legacy projects: reconstruct.** Run `product-discovery` with the medium set to a read-only
+- [ ] **Legacy projects: reconstruct.** Run `mainline-product-discovery` with the medium set to a read-only
       spike against the live system, and the current system's owner as participant. Record `RULE`,
       `EX` and `TERM` from what the system actually does. Timebox it. The output is a discovery
       record, not a full specification — start with the highest-traffic flows.
@@ -154,7 +154,7 @@ possible, because there is nothing to rewrite *to*.
 ## Step 6 — Make the full stack run locally
 
 **Goal:** a developer or an agent can validate acceptance criteria without deploying anything.
-**Who:** platform engineer. **Skill:** `local-stack`.
+**Who:** platform engineer. **Skill:** `mainline-local-stack`.
 
 This is what closes the build loop. If validation cannot happen locally, it gets deferred to QA — and
 QA becomes the place defects are discovered rather than the place quality is assured.
@@ -180,17 +180,17 @@ QA becomes the place defects are discovered rather than the place quality is ass
 
 **Goal:** the four stations after merge exist and are staffed.
 **Who:** lead, reviewer, QA, platform.
-**Skills:** `review-station`, `security-gate`, `e2e-suite`, `deployment-pipeline`, `observability`.
+**Skills:** `mainline-review-station`, `mainline-security-gate`, `mainline-e2e-suite`, `mainline-deployment-pipeline`, `mainline-observability`.
 
-- [ ] **Review** (`review-station`) — an automated review runs at high effort on every PR, plus the
+- [ ] **Review** (`mainline-review-station`) — an automated review runs at high effort on every PR, plus the
       PR-bound security dimensions. A named human reads the findings and signs. Findings are
       resolved or waived *with a written reason*. The signature is recorded where an auditor can find
       it.
 - [ ] **QA** — the suite runs against staging on a fixed cadence, with an expedite path. What QA
       finds is added to the permanent suite. Defects are filed **against the requirement they
       violate**, not as free-floating bug reports.
-- [ ] **E2E suite** (`e2e-suite`) — browser tests against a running stack, growing with every Slice.
-      **QA owns the content; `quality-gate` dimension 6 enforces it.** Developers are gated on not
+- [ ] **E2E suite** (`mainline-e2e-suite`) — browser tests against a running stack, growing with every Slice.
+      **QA owns the content; `mainline-quality-gate` dimension 6 enforces it.** Developers are gated on not
       breaking the suite, never on authoring it. Start with the whole suite on every PR; split into a
       smoke set (PR) and full set (release) only when it outgrows the window, and write down which is
       which.
@@ -215,7 +215,7 @@ QA becomes the place defects are discovered rather than the place quality is ass
 - [ ] Carry it Inbox → Done using only the commands and checklists here. When you have to ask a
       person how something works, write down the question — that is a gap in the playbook.
 - [ ] Every handoff leaves a recorded result on the ticket.
-- [ ] Hold a retro with `improvement-loop` (`04-improvement.md`). It must produce **at least one
+- [ ] Hold a retro with `mainline-improvement-loop` (`04-improvement.md`). It must produce **at least one
       amended check**. If it produces none, the retro was not honest.
 
 > **Acceptance test:** it shipped; every handoff has a recorded result; and one check has been
