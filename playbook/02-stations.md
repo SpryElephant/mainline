@@ -4,7 +4,8 @@ Each station: what it is for, who owns it, what it produces, and — where work 
 handoff check that must pass before it moves.
 
 Every handoff check ends the same way: **signed, assigned, notified.** A check that passes but leaves
-nobody holding the work has not finished.
+nobody holding the work has not finished. Each one is a command — `/h1` … `/h4` — that runs the
+checks, refuses to move the card if one fails, and records the result on the ticket.
 
 ---
 
@@ -80,7 +81,7 @@ participant's own words from the glossary.
 Expect to come back here after Design: the domain model entails scenarios the requirement did not
 state.
 
-### H1 — Requirement → Design *(Product → Developer)*
+### H1 — Requirement → Design *(Product → Developer)* — `/h1`
 
 - [ ] A `.feature` file exists. Every scenario is Given/When/Then and is testable.
 - [ ] **Every scenario traces to something observed or to a stated business rule.** No invented
@@ -156,7 +157,7 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
 
 **Owner:** developer. **Skill:** `quality-gate`.
 
-Six dimensions, one command, exits non-zero on any failure. CI runs the same command. Branch
+Seven dimensions, one command, exits non-zero on any failure. CI runs the same command. Branch
 protection requires it. **Local equals CI.**
 
 | # | Dimension | Passes when |
@@ -167,6 +168,7 @@ protection requires it. **Local equals CI.**
 | 4 | Test adequacy | complexity, coverage and CRAP within the project's thresholds |
 | 5 | Flow / CPG *(optional)* | data-flow, reachability and taint gates green |
 | 6 | End-to-end | the existing suite passes against a running stack. **QA owns the suite; you are gated on not breaking it** |
+| 7 | Mutation *(optional)* | surviving mutants under the floor, on the scoped set |
 
 **Done means green.** Never weaken a spec or lower a threshold to pass. The gate is the proof; it is
 not a report someone interprets.
@@ -190,14 +192,14 @@ we have tools.
    to the diff line by line.
 4. Findings are fixed, or waived **with a written reason**. "Looks fine" is not a reason.
 
-### H2 — Gate → Review *(Developer → Reviewer)*
+### H2 — Gate → Review *(Developer → Reviewer)* — `/h2`
 
 - [ ] Gate green in CI on the branch.
 - [ ] Every acceptance scenario passing, with validation evidence on the ticket.
 - [ ] No unrelated changes. Behavior-preserving refactors are separate commits, and separate PRs.
 - [ ] **Signed** by the developer · **assigned** to a reviewer · **notified**.
 
-### H3 — Review → QA *(Reviewer → QA)*
+### H3 — Review → QA *(Reviewer → QA)* — `/h3`
 
 - [ ] Automated review run; findings resolved or waived with a reason.
 - [ ] Security pass clean.
@@ -229,7 +231,7 @@ written spec there is no such thing as QA, only people clicking around hoping to
 **Cadence:** a scheduled run at a fixed time, plus an expedite path when someone asks. Both are
 commands; neither is a person remembering.
 
-### H4 — QA → Release
+### H4 — QA → Release — `/h4`
 
 - [ ] Suite green on staging.
 - [ ] New coverage merged into the permanent suite, shipping *with* the release rather than after.

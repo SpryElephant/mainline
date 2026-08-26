@@ -23,8 +23,7 @@ is slow and trips GitHub's secondary rate limit. Resolve them once and commit th
 gh project field-list "$PN" --owner "$OWNER" --format json > .github/project-fields.json
 ```
 
-Read `$PN`, `$PID`, `$OWNER` and `$REPO` from the project's own config (see `pmi-github-project`
-Parameters). Refresh the cache when a field or option is added — a stale ID fails loudly with
+Read `$PN`, `$PID`, `$OWNER` and `$REPO` from `.github/mainline.json` (see `commands/README.md`). Refresh the cache when a field or option is added — a stale ID fails loudly with
 `Could not resolve to a node`, which is the good failure mode.
 
 ## 1. Classify it

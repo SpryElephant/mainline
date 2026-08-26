@@ -57,7 +57,7 @@ Every station has a skill behind it, installed into the project from `skills/`:
 | Design | `domain-modeling` | Model the domain in Tonto, derive the design from it, get the module contracts |
 | Build | `development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
 | Build | `local-stack` | The whole system on one machine with one command |
-| Gate | `quality-gate` | Six dimensions behind one command. Done means green. |
+| Gate | `quality-gate` | Seven dimensions behind one command. Done means green. |
 | Review | `review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
 | Review | `security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
 | QA | `e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |

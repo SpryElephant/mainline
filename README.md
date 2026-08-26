@@ -3,11 +3,13 @@
 How a project is run end to end — product to production — with humans, agents, and tools, and how any
 project gets onboarded onto it.
 
-Mainline is two things:
+Mainline is three things:
 
 - **`playbook/`** — the process. Stations, handoffs, roles, and an eight-step onboarding checklist.
 - **`skills/`** — the tooling. Agent skills copied into a project and calibrated to its stack, one per
   station.
+- **`commands/`** — the four handoff commands, which move work between people and refuse to move it
+  past a failing check.
 
 ## Start here
 
@@ -16,6 +18,7 @@ Mainline is two things:
 | [`playbook/00-overview.md`](playbook/00-overview.md) | The idea, in one page. |
 | [`playbook/01-onboarding.md`](playbook/01-onboarding.md) | Eight steps to get a project onto Mainline. |
 | [`skills/README.md`](skills/README.md) | The skill library, indexed by station. |
+| [`commands/README.md`](commands/README.md) | The four handoff commands and their config. |
 
 ## The line
 
@@ -48,6 +51,7 @@ signature, an assignment, and a notification.
 |---|---|
 | `playbook/` | The process. Five documents. |
 | `skills/` | The skill library. Copy into a project's `.claude/skills/`. |
+| `commands/` | The four handoff commands. Copy into a project's `.claude/commands/`. |
 
 Nothing in this repo names a client or an individual, and it should stay that way. When a story from
 a real engagement is worth telling, tell it without the account — the lesson survives, the exposure
@@ -62,7 +66,5 @@ full list of changes.
 
 ## Status
 
-Drafted 2026-08-25. Unreviewed by the team.
-
-The one part that describes machinery not yet built is **onboarding step 4**, the four handoff
-commands. Everything else can be run today.
+Drafted 2026-08-25. Unreviewed by the team, and not yet run end to end on a real project —
+onboarding step 8 is the only thing that actually tests any of this.

@@ -34,13 +34,13 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 
 ---
 
-## Step 2 — Install the skills
+## Step 2 — Install the skills and commands
 
 **Goal:** the engineering standard is in the repo and the gate runs.
 **Who:** one engineer.
 
 - [ ] Copy the skill folders from `skills/` into the project's `.claude/skills/` — including
-      `domain-modeling/references/`.
+      `domain-modeling/references/` — and `commands/` into `.claude/commands/`.
 - [ ] **Calibrate `quality-gate`.** Pick one tool per dimension for the language and set the
       thresholds. Use the per-language tables inside the skill.
 
@@ -52,6 +52,7 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
   | 4 | Test adequacy | | complexity ceiling, coverage floor, CRAP ceiling |
   | 5 | Flow / CPG *(optional)* | | only for flow / reachability / taint facts |
   | 6 | End-to-end | | the existing suite passes against a running stack |
+  | 7 | Mutation *(optional)* | | mutation score floor on the scoped set |
 
 - [ ] **Wire them behind one command** that exits non-zero on any failure — `./gradlew check`,
       `make check`, `npm run check`. One command, no exceptions. Local must equal CI.
@@ -111,24 +112,16 @@ limit — verify with `field-list` and retry. Pushing `.github/workflows/*` need
 line instead of a set of habits.**
 **Who:** lead + one engineer.
 
-For each of the four handoffs — H1 Requirement→Design, H2 Gate→Review, H3 Review→QA, H4 QA→Release —
-a command that does five things, in this order, stopping at the first failure:
+`/h1` … `/h4` ship in `commands/`. Each runs its station's checks, blocks and names the failure,
+moves `Phase`, assigns the next owner, notifies them with everything attached, and records the result
+on the ticket. The contract is in `commands/README.md`; what is project-specific is only the config.
 
-1. **Runs the handoff checks** for that station (`02-stations.md`).
-2. **Blocks** if any check fails, and says which one.
-3. **Moves `Phase`** on the board.
-4. **Assigns** the next owner.
-5. **Notifies** the assignee in the project channel, with everything they need
-   attached — the `.feature` file, the prototype, screenshots, the module contracts, the gate output,
-   the validation evidence.
-
-- [ ] Build the four commands.
-- [ ] Wire `file-finding` to the project: cache the board's field IDs and set the default assignee.
+- [ ] Write `.github/mainline.json` — owner, repo, project number and ID, the `notify` command, and
+      the default assignee per station. See `commands/README.md`.
+- [ ] Cache the board's field and option IDs to `.github/project-fields.json`.
+- [ ] Walk `/h1` through `/h4` once each on a real card.
 - [ ] Nobody copy-pastes between tools. If a step requires a human to move text from one window to
       another, it is not done.
-
-`file-finding` covers the filing half. The four handoff commands are the machinery Mainline still
-has to build.
 
 > **Acceptance test:** take a real Slice from Requirement to Design with one command. Then break one
 > check deliberately and confirm the command refuses to move it and names the failing check. The
@@ -235,7 +228,7 @@ QA becomes the place defects are discovered rather than the place quality is ass
 | Step | Done? |
 |---|---|
 | 1. Assess | ☐ |
-| 2. Install the skills | ☐ |
+| 2. Install the skills and commands | ☐ |
 | 3. Stand up the board | ☐ |
 | 4. Wire the handoffs | ☐ |
 | 5. Requirements baseline | ☐ |
@@ -243,4 +236,5 @@ QA becomes the place defects are discovered rather than the place quality is ass
 | 7. Review, QA, Release, Operate | ☐ |
 | 8. One real feature end to end | ☐ |
 
-Steps 2, 3 and 5 are mostly running a skill. Steps 4, 6 and 7 are where the real work is.
+Steps 2, 3, 4 and 5 are mostly copying, calibrating and configuring. Steps 6 and 7 are where the
+real work is.

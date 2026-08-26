@@ -12,5 +12,6 @@
 **Working a ticket?** → your card in `03-roles.md`.
 **Something escaped?** → `04-improvement.md`.
 
-Each station's how-to is a skill in `skills/`, installed into the project. This playbook says who
-runs them, how work moves between people, and what happens after merge.
+Each station's how-to is a skill in `skills/`, and each handoff is a command in `commands/`, both
+installed into the project. This playbook says who runs them, how work moves between people, and
+what happens after merge.

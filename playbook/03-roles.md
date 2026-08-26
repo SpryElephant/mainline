@@ -7,7 +7,7 @@ should be enough to do the job.
 
 ## Product
 
-**You own:** Inbox, Discovery, Requirement. **You sign:** H1.
+**You own:** Inbox, Discovery, Requirement. **You sign:** H1 — `/h1`.
 **Skills:** `requirement-workflow`, `product-discovery`, `ui-exploration`.
 
 **Your day.** Take the top card in Inbox. Ask the only question that matters at triage: *can somebody
@@ -35,7 +35,7 @@ obligations the requirement did not state. Add them.
 
 ## Developer
 
-**You own:** Design, Build, Gate. **You sign:** H2.
+**You own:** Design, Build, Gate. **You sign:** H2 — `/h2`.
 **Skills:** `development-workflow`, `domain-modeling`, `quality-gate`, `local-stack`, `file-finding`.
 
 **Your day.** A Slice arrives in Design, assigned to you, with the `.feature` file, the prototype and
@@ -64,7 +64,7 @@ work that depends on the new shape. Never mixed in.
 
 ## Reviewer
 
-**You own:** Review. **You sign:** H3. **Skills:** `review-station`, `security-gate`.
+**You own:** Review. **You sign:** H3 — `/h3`. **Skills:** `review-station`, `security-gate`.
 
 **You are not reading the diff line by line.** The tools do that better than you. You are the
 judgment layer on top of them, and the accountable signature underneath.
@@ -87,7 +87,7 @@ it a fourth time.
 
 ## QA
 
-**You own:** QA. **You sign:** H4. **Skill:** `e2e-suite`.
+**You own:** QA. **You sign:** H4 — `/h4`. **Skill:** `e2e-suite`.
 
 **Your day.** Changes arrive on staging. The suite runs on the cadence; you can expedite on request.
 
@@ -130,8 +130,8 @@ is annoyed enough, which is the failure mode this whole line exists to remove.
   apart from CI, everything downstream stops being trustworthy.
 - **The local full stack.** One command from a clean clone, no cloud credentials needed. This is what
   makes the developer loop close. LocalStack or equivalent for cloud services.
-- **The handoff commands.** Four of them. They run checks, block, move `Phase`, assign, and notify.
-  `file-finding` is already a skill; wire it to the board.
+- **The handoff commands.** `/h1` … `/h4` in `.claude/commands/`. Keep `.github/mainline.json` and
+  the field-ID cache current, and keep the `notify` command pointing somewhere people read.
 - **CI/CD.** The gate on every PR, the E2E suite where you decided it binds, deploy automated and
   reversible, rollback tested for real.
 - **DevSecOps.** SAST, dependency and CVE scanning, secrets scanning — in the pipeline, failing the

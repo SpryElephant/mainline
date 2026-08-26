@@ -1,6 +1,6 @@
 ---
 name: quality-gate
-description: The project's quality gate — every feature and module must have tests. Behavior via executable specs (BDD/Gherkin), architecture via boundary tests, bad practices caught by a static analyzer, test adequacy judged by cyclomatic complexity and CRAP score plus coverage, optional flow/reachability gates on a code-property graph, and an end-to-end suite run against the running stack. Use to define or verify quality for any feature/module, and as the binding pass/fail gate before work is considered done.
+description: The project's quality gate — every feature and module must have tests. Behavior via executable specs (BDD/Gherkin), architecture via boundary tests, bad practices caught by a static analyzer, test adequacy judged by cyclomatic complexity and CRAP score plus coverage, an end-to-end suite run against the running stack, and optional flow/reachability gates on a code-property graph plus mutation testing. Use to define or verify quality for any feature/module, and as the binding pass/fail gate before work is considered done.
 ---
 
 # Quality gate
@@ -133,14 +133,35 @@ a suite nobody trusts.
 For a headless system with no UI, the same dimension applies at the API boundary against the running
 stack (REST-assured, `supertest`, `httpx`) — the point is the *deployed shape*, not the browser.
 
+### 7. Mutation testing *(optional, high-value where coverage is already high)*
+
+Coverage says a line ran. It does not say an assertion would have noticed if that line were wrong.
+Mutation testing settles the difference: change the code deliberately — flip a conditional, drop a
+statement, alter a boundary — and see whether the suite fails. A surviving mutant is a line the
+tests execute but do not check.
+
+**Reach for it once dimension 4 is green and you want to know whether the coverage is real.** On a
+codebase whose coverage is still climbing it tells you what you already know, slowly.
+
+| Reference (JVM) | Python | C# / .NET | TypeScript / JS | Go |
+|---|---|---|---|---|
+| PIT (`pitest`) | `mutmut`, `cosmic-ray` | Stryker.NET | StrykerJS | `go-mutesting`, `ooze` |
+
+- **Scope it to the code that matters** — the domain and the aggregates, not the whole tree. A full-
+  repo mutation run is the reason most teams switch it off.
+- **Gate on the score for the scoped set**, with a floor calibrated like any other threshold.
+  Equivalent mutants exist; a floor below 100% is correct, not a compromise.
+- **Run it off the PR path** if it is slow — nightly, or on the release path, failing loudly to an
+  owner. It is the one dimension where that is usually the right call.
+
 ## The gate — all applicable dimensions must pass
 1. Behavior specs green
 2. Architecture rules green
 3. Static analysis clean
-4. Complexity within bounds
-5. CRAP / coverage within thresholds
-6. Flow / CPG gates green *(if the project uses dimension 5)*
-7. End-to-end suite green against the running stack
+4. Complexity, coverage and CRAP within thresholds
+5. Flow / CPG gates green *(optional)*
+6. End-to-end suite green against the running stack
+7. Mutation score at or above the floor *(optional)*
 
 Run the project's single gate command. Not done until it is green — never weaken a spec or lower a
 threshold to pass.

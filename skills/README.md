@@ -44,8 +44,8 @@ carries a substitution table. Keep the dimension; swap the tool.
 
 **Quality**
 
-- `quality-gate` — the binding gate. Six dimensions behind one command: behavior, architecture,
-  static analysis, test adequacy, optional flow/CPG, and the end-to-end suite.
+- `quality-gate` — the binding gate. Seven dimensions behind one command: behavior, architecture,
+  static analysis, test adequacy, the end-to-end suite, and — optional — flow/CPG and mutation.
 - `e2e-suite` — QA's compounding asset. What deserves an E2E test, how to write one that survives a
   redesign, seed data, flake discipline. Enforced as `quality-gate` dimension 6.
 - `review-station` — the Review station. Automated review plus the security pass, human judgment on
@@ -76,8 +76,9 @@ carries a substitution table. Keep the dimension; swap the tool.
 
 See `playbook/01-onboarding.md`, steps 2 and 3. In short: copy the folders, calibrate `quality-gate`
 and `security-gate` behind one command each, point `refactoring` at the language's rewrite engine,
-install `tonto-cli`, add the `prototypes/` quarantine, run `pmi-github-project`, then cache the
-board's field IDs for `file-finding`.
+install `tonto-cli`, add the `prototypes/` quarantine, run `pmi-github-project`, then write
+`.github/mainline.json` and cache the board's field IDs — used by `file-finding` and the `/h1` … `/h4`
+commands in `commands/`.
 
 ## Provenance
 
