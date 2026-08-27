@@ -20,6 +20,7 @@ Mainline is three things:
 | [`playbook/01-onboarding.md`](playbook/01-onboarding.md) | Eight steps to get a project onto Mainline. |
 | [`skills/README.md`](skills/README.md) | The skill library, indexed by station. |
 | [`commands/README.md`](commands/README.md) | The four handoff commands and their config. |
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | How Mainline is built: the three layers, where each rule is enforced, and why there are no hooks. |
 
 ## The line
 
