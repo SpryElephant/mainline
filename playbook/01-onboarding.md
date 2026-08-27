@@ -61,7 +61,7 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
       owners*; the gate blocks anything new from day one, and the baseline is burned down as
       `Platform` items, worst exposure first.
 - [ ] Point `mainline-refactoring` at the language's rewrite engine (OpenRewrite / Roslyn / ts-morph / …).
-- [ ] Install the design toolchain: `npm install -g tonto-cli@0.4.13` (Node ≥ 20 — pin it; verify
+- [ ] Install the system design toolchain: `npm install -g tonto-cli@0.4.13` (Node ≥ 20 — pin it; verify
       with `npm ls -g tonto-cli`, **not** `--version`). Create `domain/` with a `tonto.json` manifest,
       and a **separate CI job** — outside the gate command — asserting the `.tonto` files still validate.
 - [ ] Add the prototype quarantine: a `prototypes/` directory excluded from the build, from CI and
@@ -132,7 +132,7 @@ on the ticket. The contract is in `commands/README.md`; what is project-specific
 ## Step 5 — Requirements baseline
 
 **Goal:** there is something to assure quality *against*.
-**Who:** Product, with the client or the system's current owner.
+**Who:** Product, with the client or the system's current owner. Roles are defined in `03-roles.md`.
 
 Without requirements there is no QA, because there is nothing to test against — and no rewrite is
 possible, because there is nothing to rewrite *to*.

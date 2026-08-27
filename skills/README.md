@@ -12,9 +12,9 @@ carries a substitution table. Keep the dimension; swap the tool.
 | Station | Skill | Owner |
 |---|---|---|
 | Inbox → Discovery | `mainline-product-discovery` | Product |
-| — (visual direction) | `mainline-ui-exploration` | Product |
+| Discovery (UI/UX design) | `mainline-ui-exploration` | Product |
 | Requirement | `mainline-requirement-workflow` | Product |
-| Design | `mainline-domain-modeling` | Developer |
+| Design (system design) | `mainline-domain-modeling` | Developer |
 | Build | `mainline-development-workflow` | Developer |
 | Build | `mainline-local-stack` | Platform (built), everyone (used) |
 | Gate | `mainline-quality-gate` | Developer |

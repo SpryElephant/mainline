@@ -45,6 +45,12 @@ Only four transitions change hands. **H1** Product → Developer. **H2** Develop
 that need a check, a signature, an assignment, and a notification. Everything else is one person
 working their own loop.
 
+**"Design" on the line means system design.** The Design station is where the developer models the
+domain and derives the module boundaries and contracts. UI/UX design, meaning what the screens look
+like and how the flow feels, is Product's work and happens before H1, as part of Discovery. By the
+time a Slice reaches Design, its visual direction is already chosen and attached. The Design station
+in `02-stations.md` shows the two side by side.
+
 ## What runs the stations
 
 Every station has a skill behind it, installed into the project from `skills/`:
@@ -52,9 +58,9 @@ Every station has a skill behind it, installed into the project from `skills/`:
 | Station | Skill | In one line |
 |---|---|---|
 | Discovery | `mainline-product-discovery` | Throwaway prototype, real sessions, live observation log → Gherkin |
-| Discovery | `mainline-ui-exploration` | Several genuinely different UI directions, compared as working prototypes |
+| Discovery | `mainline-ui-exploration` | UI/UX design. Several genuinely different UI directions, compared as working prototypes |
 | Requirement | `mainline-requirement-workflow` | The spec is a `.feature` file. Nothing else counts as a requirement. |
-| Design | `mainline-domain-modeling` | Model the domain in Tonto, derive the design from it, get the module contracts |
+| Design | `mainline-domain-modeling` | System design. Model the domain in Tonto, derive the design from it, get the module contracts |
 | Build | `mainline-development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
 | Build | `mainline-local-stack` | The whole system on one machine with one command |
 | Gate | `mainline-quality-gate` | Seven dimensions behind one command. Done means green. |
@@ -89,6 +95,6 @@ something escapes, and `mainline-pmi-github-project` to stand the board up once.
 
 - **Onboarding a project?** → `01-onboarding.md`. Eight steps, each with an acceptance test. When
   step 8 passes, the project is on Mainline.
-- **Working a ticket?** → `03-roles.md`, your role's card.
+- **Working a ticket, or not sure what a role covers?** → `03-roles.md`, your role's card.
 - **Need the detail of one station?** → `02-stations.md`.
 - **Something escaped?** → `04-improvement.md`.

@@ -3,12 +3,38 @@
 One card per role. If you are new to a project on Mainline, read the overview, then your card. That
 should be enough to do the job.
 
+## The roles at a glance
+
+| Role | What the role is | Owns on the line | Signs |
+|---|---|---|---|
+| **Product** | Decides what gets built and why, and speaks for the client inside the team. Owns the requirement, the discovery that precedes it, and the UI/UX design. | Inbox (with Lead), Discovery, Requirement | H1 |
+| **Developer** | Turns a signed requirement into working software that passes the gate. Owns the system design and the implementation, front end and back end alike. | Design, Build, Gate | H2 |
+| **Reviewer** | A second person who judges the automated findings on a change and signs for it. Never the author of the change. | Review | H3 |
+| **QA** | Checks that what reached staging does what the requirements say, and grows the permanent end-to-end suite. | QA | H4 |
+| **Platform / DevOps** | Builds and maintains the machinery under every station: the gate, the local stack, CI/CD, deploy, observability. | Release, Operate | none |
+| **Lead** | Triages the Inbox, watches the flow, and owns the improvement loop and the line itself. | Inbox triage, improvement loop | none |
+
+One person can hold more than one role. The one rule is that the Reviewer of a change is never the
+Developer who wrote it.
+
+Two words in this document are easy to confuse. **UI/UX design** is what the screens look like and
+how the flow feels; it belongs to Product and finishes before H1. **System design** is how the
+software is structured so the scenarios hold: the domain model, the module boundaries and their
+contracts; it belongs to the Developer and is the Design station on the line. The Design station in
+`02-stations.md` shows the two side by side.
+
 ---
 
 ## Product
 
 **You own:** Inbox, Discovery, Requirement. **You sign:** H1 — `/h1`.
 **Skills:** `mainline-requirement-workflow`, `mainline-product-discovery`, `mainline-ui-exploration`.
+
+**What the role is.** Product decides what gets built and why, and speaks for the client inside the
+team. Product owns the requirement (the `.feature` file), the discovery work that finds out what the
+requirement should be when nobody can state it yet, and the **UI/UX design**: what the screens look
+like, how the flow feels, and which visual direction is chosen. Product does not decide how the
+system is structured internally. That is system design, and it belongs to the Developer.
 
 **Your day.** Take the top card in Inbox. Ask the only question that matters at triage: *can somebody
 write the Gherkin?*
@@ -20,6 +46,11 @@ the screen did. Use the client's words, from the glossary.
 assumption, fix a timebox in days, pick the cheapest prototype that can falsify it, put it in front
 of a real participant, and record the seven tags live. Come back with a discovery record. When the
 open question is visual direction rather than what to build, the medium is `mainline-ui-exploration`.
+
+**UI/UX design is yours, and it finishes before H1.** The H1 checklist requires a prototype or
+screenshots wherever there is UI. The developer builds to what you attached; they do not redesign it
+in Build. If the direction is still open, that is a Discovery question, and the medium is
+`mainline-ui-exploration`.
 
 **Before you hand off (H1),** walk the checklist in `02-stations.md`. The line that catches the most
 is the NFR line: auth and SSO, **tenancy**, performance, compliance, retention — stated or explicitly
@@ -38,12 +69,20 @@ obligations the requirement did not state. Add them.
 **You own:** Design, Build, Gate. **You sign:** H2 — `/h2`.
 **Skills:** `mainline-development-workflow`, `mainline-domain-modeling`, `mainline-quality-gate`, `mainline-local-stack`, `mainline-file-finding`.
 
+**What the role is.** The Developer turns a signed requirement into working software that passes the
+gate. The Developer owns the **system design** (the domain model, the module boundaries and their
+contracts, the data model) and the implementation, across the front end and the back end. The
+Developer does not decide what to build or what it should look like; both arrive at H1, decided by
+Product. The Developer's job is to make them true in code.
+
 **Your day.** A Slice arrives in Design, assigned to you, with the `.feature` file, the prototype and
 the screenshots attached. You should not have to ask anyone anything to start.
 
-1. **Design.** Read `domain/` first — does this extend a context or introduce one? Model it in Tonto,
-   validate, derive the aggregates and boundaries, write the module contracts. Send the entailed
-   scenarios back to Product. Skip this only for a bug fix or a change that fits existing contracts.
+1. **Design.** This is system design, not UI/UX design; the screens were decided by Product before
+   H1 and arrived attached. Read `domain/` first — does this extend a context or introduce one? Model
+   it in Tonto, validate, derive the aggregates and boundaries, write the module contracts. Send the
+   entailed scenarios back to Product. Skip this only for a bug fix or a change that fits existing
+   contracts.
 2. **Build.** Implement to the scenarios. Run the full stack locally and validate each acceptance
    criterion against a running system. Run the gate continuously — not once at the end.
 3. **Gate.** Green, or not done. Never lower a threshold to pass; if the threshold is wrong, that is
@@ -88,6 +127,12 @@ it a fourth time.
 ## QA
 
 **You own:** QA. **You sign:** H4 — `/h4`. **Skill:** `mainline-e2e-suite`.
+
+**What the role is.** QA checks that what reached staging does what the requirements say, and turns
+that check into a permanent, binding end-to-end suite that grows with every Slice. QA tests against
+the requirement, not against the code or the developer's description of it. QA does not write the
+requirement (Product does) and does not write the code (the Developer does). QA is the independent
+check that the two agree.
 
 **Your day.** Changes arrive on staging. The suite runs on the cadence; you can expedite on request.
 

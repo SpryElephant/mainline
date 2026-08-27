@@ -105,6 +105,22 @@ state.
 
 **Owner:** the developer who will build it. **Skill:** `mainline-domain-modeling`.
 
+**This station is system design.** It decides how the software is structured: the domain model, the
+module boundaries and their contracts, the data model, and the architecture rules the gate will
+enforce. It is not UI/UX design. What the screens look like and how the flow feels is decided by
+Product before H1, through `mainline-ui-exploration` inside Discovery, and arrives here attached to
+the Slice as a prototype or screenshots. The developer builds to that design. If it cannot be built
+as drawn, that is a conversation with Product, not a redesign in Build.
+
+| | UI/UX design | System design |
+|---|---|---|
+| Question it answers | What does the person see and do, and how does it feel? | How is the software structured so the scenarios hold? |
+| Owner | Product | The developer who will build it |
+| When | Before H1, during Discovery | After H1, at this station |
+| Skill | `mainline-ui-exploration` | `mainline-domain-modeling` |
+| Output | A chosen direction, a prototype or screenshots, the design decisions | A validated `.tonto` model, module contracts, architecture rules |
+| Where it lives | Attached to the Slice | `domain/` in the repo |
+
 Not a document — the artifact the design is *derived* from, and it lives in the repo.
 
 1. **Read `domain/` first.** Does this extend an existing context or introduce one? Import, never
