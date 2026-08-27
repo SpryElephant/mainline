@@ -11,7 +11,7 @@ Your judgment is applied to the *findings*, and your name is the accountable sig
 
 ## 0. Check what arrived
 
-`mainline-quality-gate` green in CI on the branch, acceptance scenarios passing with validation evidence, no
+`/mainline-quality-gate` green in CI on the branch, acceptance scenarios passing with validation evidence, no
 unrelated changes. If the gate is not green it should not have reached you — send it back.
 
 ## 1. Run the automated review
@@ -20,7 +20,7 @@ An automated review at high effort on the PR diff. It reads the code; you read i
 
 ## 2. Run the security pass
 
-`mainline-security-gate`, PR-bound dimensions: SAST, secrets, dependencies, IaC. Images and runtime posture
+`/mainline-security-gate`, PR-bound dimensions: SAST, secrets, dependencies, IaC. Images and runtime posture
 bind on the release path, not here.
 
 ## 3. Decide each finding
@@ -28,12 +28,12 @@ bind on the release path, not here.
 Fix it, or waive it **with a written reason**. "Looks fine" is not a reason — the reason is the
 artefact, because it is what tells the next person why this was acceptable here.
 
-Severity follows `mainline-security-gate`'s triage policy: Critical stops the line, High is fixed before the
+Severity follows `/mainline-security-gate`'s triage policy: Critical stops the line, High is fixed before the
 next release, Medium becomes a dated `Platform` item, Low is batched, a false positive is suppressed
 inline with a reason and never globally.
 
 **A repeated waiver is a miscalibrated rule.** Waiving the same finding a third time is an
-`mainline-improvement-loop` entry filed with `mainline-file-finding`, not a fourth waiver.
+`/mainline-improvement-loop` entry filed with `/mainline-file-finding`, not a fourth waiver.
 
 ## 4. Ask what no tool asks
 
@@ -45,7 +45,7 @@ inline with a reason and never globally.
 
 - [ ] Automated review run; findings resolved or waived with a written reason.
 - [ ] Security pass clean.
-- [ ] `mainline-quality-gate` green on the merge commit.
+- [ ] `/mainline-quality-gate` green on the merge commit.
 - [ ] **Named human sign-off recorded** where an auditor can find it.
 - [ ] **Signed** by you · **assigned** to QA · **notified**.
 
@@ -61,8 +61,8 @@ inline with a reason and never globally.
 
 ## Relationships
 
-- **`mainline-security-gate`** — step 2; the dimensions, tools and triage policy.
-- **`mainline-development-workflow`** — hands off at H2. Send incomplete handoffs back.
-- **`mainline-e2e-suite`** — receives at H3.
-- **`mainline-file-finding`** — how a finding you are not fixing becomes a tracked item.
-- **`mainline-improvement-loop`** — where repeated waivers and escaped defects go.
+- **`/mainline-security-gate`** — step 2; the dimensions, tools and triage policy.
+- **`/mainline-development-workflow`** — hands off at H2. Send incomplete handoffs back.
+- **`/mainline-e2e-suite`** — receives at H3.
+- **`/mainline-file-finding`** — how a finding you are not fixing becomes a tracked item.
+- **`/mainline-improvement-loop`** — where repeated waivers and escaped defects go.

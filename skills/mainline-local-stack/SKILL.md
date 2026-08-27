@@ -25,7 +25,7 @@ One command. Clean clone. No cloud credentials. Everything up.
 git clone … && cd … && <the up command>
 ```
 
-- **One command**, wired the way `mainline-quality-gate` is wired — `make up`, `npm run dev`, `docker compose
+- **One command**, wired the way `/mainline-quality-gate` is wired — `make up`, `npm run dev`, `docker compose
   up`. Not a six-step README.
 - **No cloud credentials required**, and no access to any shared environment. A new laptop, an
   offline flight, and a CI runner all behave the same.
@@ -67,7 +67,7 @@ An emulator is not the service. Treat the gaps as known facts, not surprises:
 
 - **Write the gaps down** in the project's stack README — IAM semantics, eventual consistency,
   throttling, service limits, features the emulator does not implement.
-- **When a defect is traced to emulator drift**, that is a mainline-improvement-loop entry, not a shrug: it
+- **When a defect is traced to emulator drift**, that is a `/mainline-improvement-loop` entry, not a shrug: it
   means something needs a contract test against the real service.
 - **Pin the emulator version** the same way you pin a language version. A silent emulator upgrade
   that changes behavior is indistinguishable from your own regression.
@@ -113,8 +113,8 @@ An emulator is not the service. Treat the gaps as known facts, not surprises:
 
 ## Relationships
 
-- **`mainline-development-workflow`** — step 2 validates against this.
-- **`mainline-quality-gate`** — dimension 6 runs against this, locally and in CI.
-- **`mainline-e2e-suite`** — the suite targets it.
-- **`mainline-deployment-pipeline`** — the same definitions should generate the deployed topology wherever
+- **`/mainline-development-workflow`** — step 2 validates against this.
+- **`/mainline-quality-gate`** — dimension 6 runs against this, locally and in CI.
+- **`/mainline-e2e-suite`** — the suite targets it.
+- **`/mainline-deployment-pipeline`** — the same definitions should generate the deployed topology wherever
   possible. Two independent descriptions of one system drift apart by default.

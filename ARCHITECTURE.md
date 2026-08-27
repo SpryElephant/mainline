@@ -73,9 +73,9 @@ red; it cannot stop the agent by itself. Where a skill's rule must hold no matte
 duplicated as a tool in one of the other two layers (see the enforcement table below).
 
 Some skills carry reference material in a `references/` folder: the Tonto language guide and
-derivation rules for `mainline-domain-modeling`, the charter template, issue forms and example gate
-workflow for `mainline-pmi-github-project`, the observation-log and discovery-record templates for
-`mainline-product-discovery`.
+derivation rules for `/mainline-domain-modeling`, the charter template, issue forms and example gate
+workflow for `/mainline-pmi-github-project`, the observation-log and discovery-record templates for
+`/mainline-product-discovery`.
 
 ### Commands: `commands/h1.md` to `commands/h4.md`
 
@@ -106,7 +106,7 @@ where the checklist is and what evidence satisfies each line; it does not carry 
 
 ### GitHub: the board, the forms, the protection, the workflow
 
-`mainline-pmi-github-project` stands this up once with `gh`:
+`/mainline-pmi-github-project` stands this up once with `gh`:
 
 - **Project board** with custom fields. `Phase` is the station the work is at, and only the handoff
   commands are supposed to change it. `Work Type` is Epic, Slice, Risk, Refactor, Spike, Bug, Chore
@@ -133,7 +133,7 @@ Mainline defines what each check must prove, not which program proves it. Every 
 - **One local stack command** that starts the whole system from a clean clone with no cloud
   credentials, using LocalStack or an equivalent for cloud services.
 - **`tonto-cli`** for the domain model, pinned at 0.4.13 on Node 20 or later.
-- **A rewrite engine** for `mainline-refactoring` (OpenRewrite, Roslyn, ts-morph, and so on).
+- **A rewrite engine** for `/mainline-refactoring` (OpenRewrite, Roslyn, ts-morph, and so on).
 
 ## Where each rule is enforced
 
@@ -150,7 +150,7 @@ knowing which kind you are relying on.
 | A handoff refuses to move work past a failing check | The `/h` command's prompt: check, then block | **Soft.** The agent obeys the prompt; a person can still run `gh project item-edit` directly. |
 | Only handoff commands change `Phase` | Convention | **Soft.** GitHub Projects has no field-level permission. |
 | Reviewer is never the author | `/h2` stops if the only candidate is the author | **Soft** in the command; **hard** at merge, since GitHub does not count the author's own approval. |
-| Findings are filed before the session ends | `mainline-file-finding`, called from other skills | **Soft.** |
+| Findings are filed before the session ends | `/mainline-file-finding`, called from other skills | **Soft.** |
 | Never lower a threshold to pass | Stated in every skill that touches the gate | **Soft** in the session; a lowered threshold is visible in the PR diff, so Review catches it. |
 | The notify message landed | The `notify` command's exit status; the commands say so when it is unset | **Soft.** The command reports, it does not verify delivery. |
 

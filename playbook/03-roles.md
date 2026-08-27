@@ -28,7 +28,7 @@ contracts; it belongs to the Developer and is the Design station on the line. Th
 ## Product
 
 **You own:** Inbox, Discovery, Requirement. **You sign:** H1 — `/h1`.
-**Skills:** `mainline-requirement-workflow`, `mainline-product-discovery`, `mainline-ui-exploration`.
+**Skills:** `/mainline-requirement-workflow`, `/mainline-product-discovery`, `/mainline-ui-exploration`.
 
 **What the role is.** Product decides what gets built and why, and speaks for the client inside the
 team. Product owns the requirement (the `.feature` file), the discovery work that finds out what the
@@ -42,15 +42,15 @@ write the Gherkin?*
 **If yes** — write the `.feature` file. One per Slice. Scenarios say what a person achieved, not what
 the screen did. Use the client's words, from the glossary.
 
-**If no** — do not write it anyway. Open a Spike and run `mainline-product-discovery`. Name one riskiest
+**If no** — do not write it anyway. Open a Spike and run `/mainline-product-discovery`. Name one riskiest
 assumption, fix a timebox in days, pick the cheapest prototype that can falsify it, put it in front
 of a real participant, and record the seven tags live. Come back with a discovery record. When the
-open question is visual direction rather than what to build, the medium is `mainline-ui-exploration`.
+open question is visual direction rather than what to build, the medium is `/mainline-ui-exploration`.
 
 **UI/UX design is yours, and it finishes before H1.** The H1 checklist requires a prototype or
 screenshots wherever there is UI. The developer builds to what you attached; they do not redesign it
 in Build. If the direction is still open, that is a Discovery question, and the medium is
-`mainline-ui-exploration`.
+`/mainline-ui-exploration`.
 
 **Before you hand off (H1),** walk the checklist in `02-stations.md`. The line that catches the most
 is the NFR line: auth and SSO, **tenancy**, performance, compliance, retention — stated or explicitly
@@ -67,7 +67,7 @@ obligations the requirement did not state. Add them.
 ## Developer
 
 **You own:** Design, Build, Gate. **You sign:** H2 — `/h2`.
-**Skills:** `mainline-development-workflow`, `mainline-domain-modeling`, `mainline-quality-gate`, `mainline-local-stack`, `mainline-file-finding`.
+**Skills:** `/mainline-development-workflow`, `/mainline-domain-modeling`, `/mainline-quality-gate`, `/mainline-local-stack`, `/mainline-file-finding`.
 
 **What the role is.** The Developer turns a signed requirement into working software that passes the
 gate. The Developer owns the **system design** (the domain model, the module boundaries and their
@@ -95,15 +95,15 @@ your head to the end of the task; that is where findings go to die.
 **One feature is one change.** You are a full-stack developer on Mainline. If the repo layout is
 fighting that, say so — it is a step-6 problem, not a personal one.
 
-**Refactors are separate.** Behavior-preserving work — `mainline-refactoring` for mechanical moves,
-`mainline-refactor-smells` for structural cleanup — lands as its own gate-green commit, before the feature
+**Refactors are separate.** Behavior-preserving work — `/mainline-refactoring` for mechanical moves,
+`/mainline-refactor-smells` for structural cleanup — lands as its own gate-green commit, before the feature
 work that depends on the new shape. Never mixed in.
 
 ---
 
 ## Reviewer
 
-**You own:** Review. **You sign:** H3 — `/h3`. **Skills:** `mainline-review-station`, `mainline-security-gate`.
+**You own:** Review. **You sign:** H3 — `/h3`. **Skills:** `/mainline-review-station`, `/mainline-security-gate`.
 
 **You are not reading the diff line by line.** The tools do that better than you. You are the
 judgment layer on top of them, and the accountable signature underneath.
@@ -126,7 +126,7 @@ it a fourth time.
 
 ## QA
 
-**You own:** QA. **You sign:** H4 — `/h4`. **Skill:** `mainline-e2e-suite`.
+**You own:** QA. **You sign:** H4 — `/h4`. **Skill:** `/mainline-e2e-suite`.
 
 **What the role is.** QA checks that what reached staging does what the requirements say, and turns
 that check into a permanent, binding end-to-end suite that grows with every Slice. QA tests against
@@ -143,7 +143,7 @@ check that the two agree.
    steps three times, that was a test case you have not written yet. Your work should compound; a QA
    process that starts from zero every release is a treadmill.
 
-   **The suite is yours and it is binding.** You decide what is in it; `mainline-quality-gate` dimension 6
+   **The suite is yours and it is binding.** You decide what is in it; `/mainline-quality-gate` dimension 6
    runs it on every developer's PR and fails the build. Developers are gated on not breaking it,
    never on writing it — so you are not waiting on them, and they are not writing the test that
    happens to pass.
@@ -162,7 +162,7 @@ nothing to assure quality against, and you are just clicking.
 ## Platform / DevOps
 
 **You own:** Release, Operate, and the machinery under every other station.
-**Skills:** `mainline-deployment-pipeline`, `mainline-observability`, `mainline-local-stack`, `mainline-security-gate`.
+**Skills:** `/mainline-deployment-pipeline`, `/mainline-observability`, `/mainline-local-stack`, `/mainline-security-gate`.
 
 **Your work is tracked like everyone else's.** Line maintenance is `Platform` work: it enters at
 Inbox, gets sized and prioritised, and runs Build → Gate → Review → Release. It is not a station on
@@ -191,7 +191,7 @@ tool. A checklist item depends on attention; a tool does not.
 ## Lead
 
 **You own:** Inbox triage, the improvement loop, and the line itself.
-**Skills:** `mainline-improvement-loop`, `mainline-requirement-workflow`, `mainline-pmi-github-project`.
+**Skills:** `/mainline-improvement-loop`, `/mainline-requirement-workflow`, `/mainline-pmi-github-project`.
 
 **Your day.** Watch the Flow view. Your job is not to move work — the commands do that. It is to
 notice what the board is telling you:

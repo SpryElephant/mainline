@@ -1,19 +1,19 @@
 ---
 name: mainline-refactor-smells
-description: Smell-driven, behavior-preserving refactoring in the Fowler sense — rank existing code by cyclomatic complexity, name the actual code smell, and apply a catalog refactoring (Replace Conditional with Polymorphism, Decompose Conditional, Extract Class, Replace Magic Literal, etc.) that lowers complexity while the quality gate proves behavior is unchanged. Use to improve the structure of existing code with no new requirement. NOT for mechanical package/type moves (that is `mainline-refactoring`) and NOT for new behavior (that is `mainline-development-workflow`).
+description: Smell-driven, behavior-preserving refactoring in the Fowler sense — rank existing code by cyclomatic complexity, name the actual code smell, and apply a catalog refactoring (Replace Conditional with Polymorphism, Decompose Conditional, Extract Class, Replace Magic Literal, etc.) that lowers complexity while the quality gate proves behavior is unchanged. Use to improve the structure of existing code with no new requirement. NOT for mechanical package/type moves (that is `/mainline-refactoring`) and NOT for new behavior (that is `/mainline-development-workflow`).
 ---
 
 # Refactor smells (Fowler)
 
-Improving the *structure* of existing code without changing what it does. Driven by metrics (where to look) and the smell catalog (what to fix), proven safe by `mainline-quality-gate`.
+Improving the *structure* of existing code without changing what it does. Driven by metrics (where to look) and the smell catalog (what to fix), proven safe by `/mainline-quality-gate`.
 
-This is **not** the `mainline-refactoring` skill. That one is mechanical reference rewriting (package/type moves) via an automated rewrite engine. This one is judgment-driven structural improvement — replacing conditionals with polymorphism, decomposing fat methods, killing magic literals and type codes, extracting classes. It shares the words "behavior-preserving refactoring" with `mainline-refactoring`, but it is a different craft.
+This is **not** the `/mainline-refactoring` skill. That one is mechanical reference rewriting (package/type moves) via an automated rewrite engine. This one is judgment-driven structural improvement — replacing conditionals with polymorphism, decomposing fat methods, killing magic literals and type codes, extracting classes. It shares the words "behavior-preserving refactoring" with `/mainline-refactoring`, but it is a different craft.
 
-It is also **not** `mainline-development-workflow`: no new requirement, no new behavior, no Gherkin scenario. The existing scenarios *are* the spec — they must stay green before and after, unchanged.
+It is also **not** `/mainline-development-workflow`: no new requirement, no new behavior, no Gherkin scenario. The existing scenarios *are* the spec — they must stay green before and after, unchanged.
 
 ## Why this is safe here
 
-Fowler's method has one precondition: **self-testing code**. This method is only licensed where the `mainline-quality-gate` exists — behavior specs, architecture tests, coverage, complexity/CRAP, and any flow gates. That safety net is the entire license to refactor: every move is validated by the gate command, not by inspection. On a codebase without the gate, this skill would be reckless. With it, it is disciplined.
+Fowler's method has one precondition: **self-testing code**. This method is only licensed where the `/mainline-quality-gate` exists — behavior specs, architecture tests, coverage, complexity/CRAP, and any flow gates. That safety net is the entire license to refactor: every move is validated by the gate command, not by inspection. On a codebase without the gate, this skill would be reckless. With it, it is disciplined.
 
 ## What "better" means — and does not
 
@@ -71,7 +71,7 @@ The task is reporting-only and orthogonal to the gate: it informs target selecti
 
 ## Invariants
 
-- **Zero behavior change.** Scenarios are unchanged and green before *and* after. If a scenario must change, this is not a refactor — it is `mainline-development-workflow`.
+- **Zero behavior change.** Scenarios are unchanged and green before *and* after. If a scenario must change, this is not a refactor — it is `/mainline-development-workflow`.
 - **The gate is the proof, never inspection.** Not done until the gate is green. Never lower a threshold or soften a test to make a refactor "pass."
 - **Tests first when coverage is thin.** Don't refactor code the gate can't see. Characterize, then refactor.
 - **One smell, one refactoring, one commit.** Keep diffs bisectable; never batch unrelated smell-fixes.

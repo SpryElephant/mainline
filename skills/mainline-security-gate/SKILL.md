@@ -5,15 +5,15 @@ description: The DevSecOps gate — static application security testing, depende
 
 # Security gate
 
-Same shape as `mainline-quality-gate`, aimed at a different question: not *is this correct* but *what does
+Same shape as `/mainline-quality-gate`, aimed at a different question: not *is this correct* but *what does
 this let an attacker do*. **Dimensions are invariant; tools are calibrated per stack.**
 
-The distinction from `mainline-quality-gate` dimension 3 is worth being precise about. Static analysis asks
+The distinction from `/mainline-quality-gate` dimension 3 is worth being precise about. Static analysis asks
 whether the code is bad practice. This asks whether it is exploitable. They overlap and neither
 subsumes the other — a perfectly idiomatic function can still concatenate user input into SQL.
 
 **Failures fail the build.** A security tool that writes to a dashboard is a security tool nobody
-reads. The whole reason `mainline-quality-gate` works is that it is binding, and the same applies here.
+reads. The whole reason `/mainline-quality-gate` works is that it is binding, and the same applies here.
 
 ## Dimensions
 
@@ -25,7 +25,7 @@ Taint-style analysis for injection, deserialization, path traversal, SSRF, weak 
 |---|---|---|---|---|---|
 | Semgrep | `bandit`, Semgrep | Roslyn security analyzers | ESLint security plugins, Semgrep | `gosec` | CodeQL, Semgrep |
 
-Where `mainline-quality-gate` dimension 5 (CPG) is already in use, some of this belongs there instead — taint
+Where `/mainline-quality-gate` dimension 5 (CPG) is already in use, some of this belongs there instead — taint
 from an HTTP boundary to a sink is exactly what a code-property graph is for. Do not run two tools to
 prove the same fact.
 
@@ -135,9 +135,9 @@ ignoring them.
 
 ## Relationships
 
-- **`mainline-quality-gate`** — same discipline, same one-command wiring. Keep them separate commands so a
+- **`/mainline-quality-gate`** — same discipline, same one-command wiring. Keep them separate commands so a
   security failure is legible as a security failure.
-- **`mainline-deployment-pipeline`** — dimensions that bind on the release path live there.
-- **`mainline-observability`** — detection at runtime for what the gate cannot see statically.
-- **`mainline-review-station`** — the human reads these findings and either fixes or waives them **with a
+- **`/mainline-deployment-pipeline`** — dimensions that bind on the release path live there.
+- **`/mainline-observability`** — detection at runtime for what the gate cannot see statically.
+- **`/mainline-review-station`** — the human reads these findings and either fixes or waives them **with a
   written reason**.

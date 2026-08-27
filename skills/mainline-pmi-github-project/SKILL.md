@@ -12,11 +12,11 @@ skips the PMI areas that add no value at that scale.
 Reference assets ship next to this file in `references/` — copy them into the target repo:
 `references/gate.yml`, `references/charter-template.md`, `references/issue-templates/*`.
 
-Day-to-day filing onto this board is `mainline-file-finding`; this skill stands the board up.
+Day-to-day filing onto this board is `/mainline-file-finding`; this skill stands the board up.
 
 ## When to use
 Setting up project management in a new repo, rebuilding this structure, or extending it (new field,
-milestone, risk, epic). Not for day-to-day feature delivery — that is `mainline-requirement-workflow` and `mainline-development-workflow`.
+milestone, risk, epic). Not for day-to-day feature delivery — that is `/mainline-requirement-workflow` and `/mainline-development-workflow`.
 
 ## Philosophy — tailor, don't cargo-cult
 Keep a thin slice of five knowledge areas: **Scope, Schedule, Quality, Risk, Integration/Change

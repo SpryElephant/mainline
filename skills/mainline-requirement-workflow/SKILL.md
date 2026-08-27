@@ -17,7 +17,7 @@ Set `Work Type`, `Area`, `Size`, `Priority` and `Target` on the card. Then the o
 Inbox. It has one expensive wrong answer.
 
 - **Yes** → step 2.
-- **No** → open a **Spike** and run `mainline-product-discovery`. Nobody can state the acceptance criteria
+- **No** → open a **Spike** and run `/mainline-product-discovery`. Nobody can state the acceptance criteria
   because nobody yet knows whether the thing is wanted, usable, or buildable.
 
 **Not everything is a Slice.** A `Bug`, a `Refactor`, or `Platform` work on the line itself goes
@@ -99,9 +99,9 @@ estimated, tested, or agreed to.
 
 ## Relationships
 
-- **`mainline-product-discovery`** — run when triage says nobody can write the Gherkin. Returns a discovery
+- **`/mainline-product-discovery`** — run when triage says nobody can write the Gherkin. Returns a discovery
   record whose Gherkin is the first draft of step 2, plus the glossary.
-- **`mainline-development-workflow`** — receives at H1.
-- **`mainline-domain-modeling`** — consumes the glossary; sends entailed scenarios back at step 5.
-- **`mainline-ui-exploration`** — when the open question is visual direction rather than what to build.
-- **`mainline-pmi-github-project`** — the board this work item sits on. One Slice per `.feature` file.
+- **`/mainline-development-workflow`** — receives at H1.
+- **`/mainline-domain-modeling`** — consumes the glossary; sends entailed scenarios back at step 5.
+- **`/mainline-ui-exploration`** — when the open question is visual direction rather than what to build.
+- **`/mainline-pmi-github-project`** — the board this work item sits on. One Slice per `.feature` file.

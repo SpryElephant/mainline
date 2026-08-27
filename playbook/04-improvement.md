@@ -7,7 +7,7 @@ production that nobody caught at all.
 **That is a defect in the process, not only in the code.** Fixing the code and moving on guarantees
 the same class of miss recurs, because nothing about the line changed.
 
-**Owner: the lead. Skill:** `mainline-improvement-loop` — the loop itself, the rules, the ledger format and
+**Owner: the lead. Skill:** `/mainline-improvement-loop` — the loop itself, the rules, the ledger format and
 the four metrics live there. Run it whenever something escapes.
 
 In short: name the escape, find the **earliest** handoff that could have caught it, amend that check

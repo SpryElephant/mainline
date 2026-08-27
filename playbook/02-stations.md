@@ -11,7 +11,7 @@ checks, refuses to move the card if one fails, and records the result on the tic
 
 ## Inbox
 
-**Owner:** lead. **Skill:** `mainline-requirement-workflow` §1
+**Owner:** lead. **Skill:** `/mainline-requirement-workflow` §1
 
 Triage. Set Work Type, Area, Size, Priority, Target. Then one decision:
 
@@ -32,7 +32,7 @@ with full rigor — the most expensive possible way to be wrong.
 
 ## Discovery *(off-pipeline)*
 
-**Owner:** Product. **Skill:** `mainline-product-discovery`. **Work Type:** Spike.
+**Owner:** Product. **Skill:** `/mainline-product-discovery`. **Work Type:** Spike.
 
 Run when nobody can state the acceptance criteria — a client described an outcome, the rules live in
 an operator's head, the value is disputed, or you are replacing a system nobody documented.
@@ -43,7 +43,7 @@ an operator's head, the value is disputed, or you are replacing a system nobody 
 2. **Choose the medium and the participant** for that risk class. Cheapest thing that can falsify the
    assumption wins: fake door, landing page, concierge, Wizard of Oz, paper, clickable, live-data,
    spike. For a legacy system: a read-only spike, with the current system's owner. When the open
-   question is visual direction, the medium is `mainline-ui-exploration` — several worlds compared, not one
+   question is visual direction, the medium is `/mainline-ui-exploration` — several worlds compared, not one
    prototype tested.
 3. **Build it quarantined** — `prototypes/<name>/`, outside the build, invisible to CI and coverage,
    and no production module may import it. Real domain content, never placeholder. The whole flow
@@ -69,7 +69,7 @@ unfinished becomes a risk.
 
 ## Requirement
 
-**Owner:** Product. **Skill:** `mainline-requirement-workflow`.
+**Owner:** Product. **Skill:** `/mainline-requirement-workflow`.
 
 One `.feature` file per Slice, in Gherkin. **This is the spec.** Not the ticket description, not the
 Figma, not the conversation.
@@ -103,12 +103,12 @@ state.
 
 ## Design
 
-**Owner:** the developer who will build it. **Skill:** `mainline-domain-modeling`.
+**Owner:** the developer who will build it. **Skill:** `/mainline-domain-modeling`.
 
 **This station is system design.** It decides how the software is structured: the domain model, the
 module boundaries and their contracts, the data model, and the architecture rules the gate will
 enforce. It is not UI/UX design. What the screens look like and how the flow feels is decided by
-Product before H1, through `mainline-ui-exploration` inside Discovery, and arrives here attached to
+Product before H1, through `/mainline-ui-exploration` inside Discovery, and arrives here attached to
 the Slice as a prototype or screenshots. The developer builds to that design. If it cannot be built
 as drawn, that is a conversation with Product, not a redesign in Build.
 
@@ -117,7 +117,7 @@ as drawn, that is a conversation with Product, not a redesign in Build.
 | Question it answers | What does the person see and do, and how does it feel? | How is the software structured so the scenarios hold? |
 | Owner | Product | The developer who will build it |
 | When | Before H1, during Discovery | After H1, at this station |
-| Skill | `mainline-ui-exploration` | `mainline-domain-modeling` |
+| Skill | `/mainline-ui-exploration` | `/mainline-domain-modeling` |
 | Output | A chosen direction, a prototype or screenshots, the design decisions | A validated `.tonto` model, module contracts, architecture rules |
 | Where it lives | Attached to the Slice | `domain/` in the repo |
 
@@ -155,7 +155,7 @@ coding — still gated, no design pass. Re-enter Design only when the change alt
 
 ## Build
 
-**Owner:** developer. **Skills:** `mainline-development-workflow`, `mainline-local-stack`.
+**Owner:** developer. **Skills:** `/mainline-development-workflow`, `/mainline-local-stack`.
 
 Implement to the scenarios. Respect module public APIs. Run the gate continuously.
 
@@ -163,7 +163,7 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
   before handing off. An agent's loop closes on validated criteria — not on "the code looks right."
 - **Full stack, one change.** A Slice is one `.feature`; make it one PR. Front-end and back-end are
   not two jobs.
-- **File what you find, now** (`mainline-file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
+- **File what you find, now** (`/mainline-file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
   assigned, notified ticket from inside the session. You spent effort to learn it; harvest it. A
   finding you meant to mention tomorrow is a finding you threw away.
 
@@ -171,7 +171,7 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
 
 ## Gate
 
-**Owner:** developer. **Skill:** `mainline-quality-gate`.
+**Owner:** developer. **Skill:** `/mainline-quality-gate`.
 
 Seven dimensions, one command, exits non-zero on any failure. CI runs the same command. Branch
 protection requires it. **Local equals CI.**
@@ -195,7 +195,7 @@ Not a handoff — this is Build's exit condition, and H2's precondition.
 
 ## Review
 
-**Owner:** a reviewer who is not the author. **Skills:** `mainline-review-station`, `mainline-security-gate`.
+**Owner:** a reviewer who is not the author. **Skills:** `/mainline-review-station`, `/mainline-security-gate`.
 
 Every change is reviewed by another **person**. Keep the person — drop the assumption that they must
 read every line. A human reading a large diff carefully is slower and less thorough than a tool, and
@@ -227,7 +227,7 @@ we have tools.
 
 ## QA
 
-**Owner:** QA. **Skill:** `mainline-e2e-suite`.
+**Owner:** QA. **Skill:** `/mainline-e2e-suite`.
 
 QA assures quality **against the requirements**. That is why the requirement is the spine: without a
 written spec there is no such thing as QA, only people clicking around hoping to notice something.
@@ -236,7 +236,7 @@ written spec there is no such thing as QA, only people clicking around hoping to
 2. **Explore what the suite cannot express.** Judgment, not repetition. If you are executing the same
    manual steps a third time, that is a test case, not a QA activity.
 3. **Add what you find to the permanent suite.** QA's work compounds or it is wasted. The suite is
-   yours: you decide what is in it, and `mainline-quality-gate` dimension 6 makes it binding on every
+   yours: you decide what is in it, and `/mainline-quality-gate` dimension 6 makes it binding on every
    developer. That split is deliberate — a developer writing the E2E test for their own feature
    writes the one that passes, and a suite that does not block a merge is documentation.
 4. **File defects against the requirement they violate.** A defect that cites no requirement is
@@ -259,7 +259,7 @@ commands; neither is a person remembering.
 
 ## Release
 
-**Owner:** release approver. **Skill:** `mainline-deployment-pipeline`.
+**Owner:** release approver. **Skill:** `/mainline-deployment-pipeline`.
 
 - Deploy is automated and **reversible**. Rollback is a command that has been run for real, not a
   paragraph in a runbook.
@@ -273,7 +273,7 @@ commands; neither is a person remembering.
 
 ## Operate
 
-**Owner:** on call. **Skill:** `mainline-observability`. Standing station — no card sits here.
+**Owner:** on call. **Skill:** `/mainline-observability`. Standing station — no card sits here.
 
 Monitoring, alerting, logs, traces, error tracking. Alerts fire to a channel a person actually reads,
 and turning an alert into a ticket is one command.

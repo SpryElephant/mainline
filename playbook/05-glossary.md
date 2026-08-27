@@ -33,7 +33,7 @@ their name on it. Assigned: the next owner is set on the card. Notified: that pe
 everything they need attached. A handoff missing any of the three has not finished.
 
 **Board.** The GitHub Project that tracks the work. The board is the line: which column a card sits
-in is which station the work is at. Stood up once by `mainline-pmi-github-project`.
+in is which station the work is at. Stood up once by `/mainline-pmi-github-project`.
 
 **Phase.** The board field that records which station a card is at. Its values are the station
 names. Only the handoff commands should change it.
@@ -113,7 +113,7 @@ release notes.
 
 **Finding.** Anything a session turns up that is not being fixed right now: a bug, a risk, a missing
 rule. A finding is filed as a ticket, with fields set, assigned and notified, before the session
-ends. That is `mainline-file-finding`. A finding not filed is a finding thrown away.
+ends. That is `/mainline-file-finding`. A finding not filed is a finding thrown away.
 
 ---
 
@@ -145,7 +145,7 @@ playbook's own words.
 written in Tonto and kept in `domain/` in the repository. The system design is derived from it.
 
 **Tonto.** The textual language the domain model is written in, based on OntoUML. `tonto-cli
-validate` checks the model, and a CI job asserts it still validates. See `mainline-domain-modeling`.
+validate` checks the model, and a CI job asserts it still validates. See `/mainline-domain-modeling`.
 
 **Module contract.** For one module: what it is responsible for, what it explicitly does not do, its
 public API, its dependencies and their direction, and its invariants. Everything not in the public
@@ -172,7 +172,7 @@ where it should have been caught, and what check was changed. See `04-improvemen
 project has calibrated and exits non-zero if any fails. Green means done; anything else means not
 done. The same command runs locally and in CI, and its result is never overridden by a person
 looking at the code and deciding it is probably fine. Never lower a threshold or weaken a test to
-get it green. See `mainline-quality-gate`.
+get it green. See `/mainline-quality-gate`.
 
 **Gate dimension.** One of the seven kinds of check the gate runs: behavior (the scenarios pass),
 architecture (the module boundaries hold), static analysis (zero findings), test adequacy
@@ -222,7 +222,7 @@ handoff. Recorded on the ticket where an auditor can find it.
 **Local stack.** The whole system, front end, API, database, queues and stubbed third parties,
 started on one machine with one command from a clean clone and no cloud credentials. Cloud
 services run locally through an emulator such as LocalStack. This is what lets a developer or an
-agent validate acceptance criteria without deploying anything. See `mainline-local-stack`.
+agent validate acceptance criteria without deploying anything. See `/mainline-local-stack`.
 
 **Staging.** An environment that resembles production closely enough for QA to run the suite
 against it. The differences from production (scale, data volume, sandbox versus live third
@@ -249,19 +249,19 @@ is a defect in the process, not only in the code.
 **Improvement loop.** What happens after an escape. Name it, find the earliest handoff that could
 have caught it, amend that check (a tool first, a checklist line second), file the amendment as a
 Platform item with an owner and a date, and add a row to the escape ledger. Owned by the Lead.
-See `04-improvement.md` and `mainline-improvement-loop`.
+See `04-improvement.md` and `/mainline-improvement-loop`.
 
 ---
 
 ## Design
 
 **UI/UX design.** What the screens look like and how the flow feels. Product's work, done before H1
-through `mainline-ui-exploration` inside Discovery, and attached to the Slice as a prototype or
+through `/mainline-ui-exploration` inside Discovery, and attached to the Slice as a prototype or
 screenshots.
 
 **System design.** How the software is structured so the scenarios hold: the domain model, the
 module boundaries and their contracts, the data model. The Developer's work, done at the Design
-station through `mainline-domain-modeling`.
+station through `/mainline-domain-modeling`.
 
 **UI exploration.** Building several genuinely different clickable prototypes of the same flow so a
 visual direction is chosen by comparing real artifacts rather than adjectives. Throwaway; only the
