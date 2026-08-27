@@ -10,8 +10,8 @@ learn it; the cost of capturing it is thirty seconds and the cost of losing it i
 again, later, more expensively.
 
 File it **now, from inside the session** — not at the end of the task, not in a note to yourself.
-This is the harvesting rule that `mainline-development-workflow`, `mainline-product-discovery`, `mainline-e2e-suite`,
-`mainline-review-station` and `mainline-observability` all defer to.
+This is the harvesting rule that `/mainline-development-workflow`, `/mainline-product-discovery`, `/mainline-e2e-suite`,
+`/mainline-review-station` and `/mainline-observability` all defer to.
 
 ## 0. Cache the board IDs — once per repo
 
@@ -127,11 +127,11 @@ triage, which is the one decision that is not yours to make from inside a sessio
 
 ## Relationships
 
-- **`mainline-pmi-github-project`** — the board, the fields, the labels and the issue forms this skill writes
+- **`/mainline-pmi-github-project`** — the board, the fields, the labels and the issue forms this skill writes
   into. Stand it up first.
-- **`mainline-development-workflow`** — "file what you find, now" at build time.
-- **`mainline-product-discovery`** — `ASSUM` observations become risks through this skill.
-- **`mainline-e2e-suite`** — a quarantined flaky test files a ticket the same day.
-- **`mainline-review-station`** — a repeated waiver files a `Platform` item against the rule.
-- **`mainline-observability`** — an alert or error group becomes a work item the same way.
-- **`mainline-improvement-loop`** — amendments to a check are `Platform` findings with an owner and a date.
+- **`/mainline-development-workflow`** — "file what you find, now" at build time.
+- **`/mainline-product-discovery`** — `ASSUM` observations become risks through this skill.
+- **`/mainline-e2e-suite`** — a quarantined flaky test files a ticket the same day.
+- **`/mainline-review-station`** — a repeated waiver files a `Platform` item against the rule.
+- **`/mainline-observability`** — an alert or error group becomes a work item the same way.
+- **`/mainline-improvement-loop`** — amendments to a check are `Platform` findings with an owner and a date.

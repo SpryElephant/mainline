@@ -181,7 +181,7 @@ legitimate rather than duplication.
 
 The model *entails* scenario obligations — phase transitions, mediation bounds, lifecycle events,
 non-empty collections, historical-role survival. Read them off the traceback table (§10) and hand
-them to `mainline-requirement-workflow` as required scenarios. A missing scenario here is a coverage gap the
+them to `/mainline-requirement-workflow` as required scenarios. A missing scenario here is a coverage gap the
 model can prove exists.
 
 ## Artefacts
@@ -203,8 +203,8 @@ organisation only.
 2. A module spec per affected module — responsibilities, public API, dependencies, invariants
 3. The list of Gherkin obligations the model entails
 
-(1) and (2) feed the architecture rules in `mainline-quality-gate` (dimension 2); (2) and (3) feed the build
-steps in `mainline-development-workflow`.
+(1) and (2) feed the architecture rules in `/mainline-quality-gate` (dimension 2); (2) and (3) feed the build
+steps in `/mainline-development-workflow`.
 
 ## Scope discipline
 

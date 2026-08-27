@@ -25,7 +25,7 @@ Participants: <roles, not names, and how they were recruited>
 
 <Two or three sentences. What we now know that we did not know before, and what follows from it.>
 
-## 4. Gherkin handed to `mainline-requirement-workflow`
+## 4. Gherkin handed to `/mainline-requirement-workflow`
 
 Each rule with its examples. Every scenario cites the observation behind it.
 
@@ -42,7 +42,7 @@ Feature: <the story>
 
 Rules carried with no scenario yet, and why: <or "none">
 
-## 5. Glossary handed to `mainline-domain-modeling`
+## 5. Glossary handed to `/mainline-domain-modeling`
 
 | Their word | Our old word | What it is | Ontological candidate |
 |---|---|---|---|

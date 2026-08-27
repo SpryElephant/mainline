@@ -14,7 +14,7 @@ habits.
 | `/h3` | Review → QA | Reviewer → QA |
 | `/h4` | QA → Release | QA → Release approver |
 
-Filing a finding is not a handoff — that is the `mainline-file-finding` skill, usable from inside any session.
+Filing a finding is not a handoff — that is the `/mainline-file-finding` skill, usable from inside any session.
 
 ## The contract
 
@@ -30,7 +30,7 @@ Every one of them does the same five things, in this order, **stopping at the fi
 A check that passes but leaves nobody holding the work has not finished. A handoff that moves work
 without recording the result leaves the lead nothing to read.
 
-**Never move a card past a failing check.** If a check is wrong, that is an `mainline-improvement-loop` entry
+**Never move a card past a failing check.** If a check is wrong, that is an `/mainline-improvement-loop` entry
 and a `Platform` item — not a reason to pass the handoff anyway.
 
 ## Configuration
@@ -50,7 +50,7 @@ Two files in the target repo:
   }
   ```
 
-- **`.github/project-fields.json`** — the cached field and option IDs, the same cache `mainline-file-finding`
+- **`.github/project-fields.json`** — the cached field and option IDs, the same cache `/mainline-file-finding`
   uses. Refresh it with `gh project field-list "$PN" --owner "$OWNER" --format json` when a field or
   option is added.
 

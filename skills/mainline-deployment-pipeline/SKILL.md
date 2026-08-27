@@ -17,7 +17,7 @@ Everything else here serves those two.
 
 | Environment | Purpose | Parity requirement |
 |---|---|---|
-| **Local** (`mainline-local-stack`) | The developer loop | Same engines and major versions. Emulated cloud services. |
+| **Local** (`/mainline-local-stack`) | The developer loop | Same engines and major versions. Emulated cloud services. |
 | **Staging** | The QA station | Same topology and configuration shape as production. Realistic data volume, never a production data copy. |
 | **Production** | — | — |
 
@@ -115,9 +115,9 @@ not a safety mechanism at three in the morning.
 
 ## Relationships
 
-- **`mainline-local-stack`** — same service definitions where possible; two descriptions of one system drift.
-- **`mainline-security-gate`** — dimensions that bind on the release path run here.
-- **`mainline-observability`** — dashboards and alerts for the new behavior exist *before* the deploy, not
+- **`/mainline-local-stack`** — same service definitions where possible; two descriptions of one system drift.
+- **`/mainline-security-gate`** — dimensions that bind on the release path run here.
+- **`/mainline-observability`** — dashboards and alerts for the new behavior exist *before* the deploy, not
   after the first incident.
-- **`mainline-e2e-suite`** — the full suite runs on the release path when it has outgrown the PR window.
-- **`mainline-pmi-github-project`** — milestones are the release gates; tags are cut at their completion.
+- **`/mainline-e2e-suite`** — the full suite runs on the release path when it has outgrown the PR window.
+- **`/mainline-pmi-github-project`** — milestones are the release gates; tags are cut at their completion.

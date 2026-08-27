@@ -1,6 +1,6 @@
 ---
 name: mainline-product-discovery
-description: Validate a product or feature by prototyping it before any requirement is committed, and turn what the prototype taught you into high-quality Gherkin. Runs outside the quality gate on quarantined throwaway code, records typed observations during real sessions, and hands mainline-requirement-workflow a discovery record with scenarios, domain vocabulary, and accepted risks. Use when nobody can yet say what should be built, or when the riskiest thing about a feature is whether anyone wants it.
+description: Validate a product or feature by prototyping it before any requirement is committed, and turn what the prototype taught you into high-quality Gherkin. Runs outside the quality gate on quarantined throwaway code, records typed observations during real sessions, and hands /mainline-requirement-workflow a discovery record with scenarios, domain vocabulary, and accepted risks. Use when nobody can yet say what should be built, or when the riskiest thing about a feature is whether anyone wants it.
 ---
 
 # Product discovery
@@ -10,19 +10,19 @@ whether the thing is wanted, usable, or buildable. Writing the scenarios anyway 
 the line then delivers an invented spec with full rigor — the most expensive possible way
 to be wrong.
 
-This skill sits **before** `mainline-requirement-workflow`. It buys the missing knowledge with a throwaway
+This skill sits **before** `/mainline-requirement-workflow`. It buys the missing knowledge with a throwaway
 prototype and returns a **discovery record**: validated scenarios, the participants' own vocabulary,
 and the risks nobody retired.
 
 > **No gate here.** Discovery code is quarantined, untested, and deleted at the end. What crosses
 > into production is what the prototype *taught*, never what it *is*. The rigor moves from the code
-> to the learning — the four checks in step 6 replace `mainline-quality-gate`.
+> to the learning — the four checks in step 6 replace `/mainline-quality-gate`.
 
 ## When to use
 
 | Use it | Do not use it |
 |---|---|
-| Nobody can state the acceptance criteria | The requirement is known — go to `mainline-requirement-workflow` |
+| Nobody can state the acceptance criteria | The requirement is known — go to `/mainline-requirement-workflow` |
 | A client describes an outcome, not a system | A bug fix, or a change inside existing contracts |
 | The rules live in an operator's head, unwritten | The rules are already written down somewhere |
 | Replacing a legacy system nobody documented | The legacy system's spec exists and is trusted |
@@ -41,7 +41,7 @@ The fix is one cheap artefact recorded live, and one synthesis step:
 prototype session  →  observation log  →  Example Mapping  →  discovery record
    (live, raw)         (typed lines)       (synthesis)         (Gherkin + terms + risks)
                                                                       ↓
-                                                  mainline-requirement-workflow
+                                                 /mainline-requirement-workflow
 ```
 
 ## Process
@@ -69,11 +69,11 @@ Fix the **timebox** here, in days, and write it down next to the assumption.
 ### 2. Choose the medium and the participant
 
 The observation vocabulary in step 4 never changes. The medium and the participant do — calibrate
-them to the project, the way `mainline-quality-gate` calibrates tools to a language.
+them to the project, the way `/mainline-quality-gate` calibrates tools to a language.
 
 | Project nature | Riskiest thing, usually | Prototype medium | Participant |
 |---|---|---|---|
-| Consumer / UI-led | Value, then usability | Clickable prototype — use `mainline-ui-exploration` | 5 target users per round |
+| Consumer / UI-led | Value, then usability | Clickable prototype — use `/mainline-ui-exploration` | 5 target users per round |
 | Internal or ops tool | Rules living only in people's heads | Wizard of Oz over the real process | The operator doing the job today |
 | API / platform / SDK | Usability of the contract | Write the client code first; fake the server | A developer who is not you |
 | Data / ML | Feasibility, and what the data really contains | Notebook over a real extract | Whoever must act on the output |
@@ -91,7 +91,7 @@ writes), **spike** (code written to answer one question, then deleted).
 These rules are what make dropping the engineering gate safe rather than reckless:
 
 - It lives in `prototypes/<name>/`, outside the build.
-- CI does not run it. Coverage ignores it. `mainline-quality-gate` never sees it.
+- CI does not run it. Coverage ignores it. `/mainline-quality-gate` never sees it.
 - **No production module may import from it.** Enforce that with one architecture rule in the real
   project — the only place discovery touches the gate.
 - Real domain content, never lorem or placeholder greys. Fake content hides the problems the
@@ -156,9 +156,9 @@ The other three tags do not become cards. They still have destinations:
 
 | Tag | Goes to | Becomes |
 |---|---|---|
-| `TERM` | `mainline-domain-modeling` | A Tonto class, role, or relation name — and the words used in the Gherkin |
+| `TERM` | `/mainline-domain-modeling` | A Tonto class, role, or relation name — and the words used in the Gherkin |
 | `FRIC` | The discovery record | A design decision. Usually **not** a requirement; occasionally it exposes a missing `RULE` |
-| `ASSUM` | The risk register, via `mainline-file-finding` | A test to run, or a risk explicitly accepted |
+| `ASSUM` | The risk register, via `/mainline-file-finding` | A test to run, or a risk explicitly accepted |
 | `CHOICE` | The discovery record | A short decision entry, not a requirement |
 
 ### 6. Pass the discovery gate
@@ -184,8 +184,8 @@ Template: `references/discovery-record-template.md`. It carries:
 1. The riskiest assumption, its risk class, and the timebox.
 2. The medium built, and who participated.
 3. The verdict — **go**, **no-go**, or **pivot** — with the evidence.
-4. The Gherkin handed to `mainline-requirement-workflow` step 2.
-5. The glossary from `TERM`, handed to `mainline-domain-modeling`.
+4. The Gherkin handed to `/mainline-requirement-workflow` step 2.
+5. The glossary from `TERM`, handed to `/mainline-domain-modeling`.
 6. The decisions from `CHOICE`.
 7. Assumptions accepted without evidence, handed to the risk register.
 
@@ -205,10 +205,10 @@ dies with the throwaway code it narrates.
 - Table-shaped examples of one rule collapse into a `Scenario Outline`. Never collapse examples of
   *different* rules — that hides the rule boundary.
 
-These scenarios are the *first draft* of the spec, not the last. `mainline-development-workflow` step 1 entails
+These scenarios are the *first draft* of the spec, not the last. `/mainline-development-workflow` step 1 entails
 more of them from the domain model.
 
-## Handing off to `mainline-domain-modeling`
+## Handing off to `/mainline-domain-modeling`
 
 `TERM` seeds the ontology, so the Tonto model does not start from a blank page:
 
@@ -239,15 +239,15 @@ one word everywhere. Discovery finds these conflicts for free; production finds 
 ## Relationship to the other skills
 
 ```
-mainline-product-discovery  ──►  mainline-requirement-workflow  ──►  mainline-development-workflow  ──►  mainline-quality-gate
-  (no gate,                        (Gherkin)                        (mainline-domain-modeling →       (binding)
-   throwaway code)                                                   implementation)
+/mainline-product-discovery  ──►  /mainline-requirement-workflow  ──►  /mainline-development-workflow  ──►  /mainline-quality-gate
+  (no gate,                         (Gherkin)                         (/mainline-domain-modeling →       (binding)
+   throwaway code)                                                     implementation)
 ```
 
-- **`mainline-ui-exploration`** is one medium inside step 3 — use it when the risk is usability or visual
+- **`/mainline-ui-exploration`** is one medium inside step 3 — use it when the risk is usability or visual
   direction and the answer needs several worlds compared, not one prototype tested.
-- **`mainline-requirement-workflow`** consumes the discovery record at step 2. Discovery never produces code that
+- **`/mainline-requirement-workflow`** consumes the discovery record at step 2. Discovery never produces code that
   ships.
-- **`mainline-domain-modeling`** consumes the glossary.
-- **`mainline-pmi-github-project`** holds a discovery effort as its own work item — a **Spike**, timeboxed,
+- **`/mainline-domain-modeling`** consumes the glossary.
+- **`/mainline-pmi-github-project`** holds a discovery effort as its own work item — a **Spike**, timeboxed,
   outside the `Phase` pipeline — and receives the accepted assumptions into the risk register.

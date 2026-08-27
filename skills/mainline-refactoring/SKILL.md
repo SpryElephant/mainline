@@ -1,6 +1,6 @@
 ---
 name: mainline-refactoring
-description: Large, mechanical, behavior-preserving refactors driven by an automated rewrite engine — package/namespace moves and renames, type/API migrations, structural reshaping across many files. Use whenever a change is broad and rote enough that hand-editing every reference would be error-prone, instead of for a new requirement (that goes through mainline-development-workflow).
+description: Large, mechanical, behavior-preserving refactors driven by an automated rewrite engine — package/namespace moves and renames, type/API migrations, structural reshaping across many files. Use whenever a change is broad and rote enough that hand-editing every reference would be error-prone, instead of for a new requirement (that goes through /mainline-development-workflow).
 ---
 
 # Refactoring (automated rewrite engine)
@@ -9,8 +9,8 @@ For **structural, behavior-preserving** change at scale: moving/renaming package
 migrating a type or API, reshaping module boundaries. An automated rewrite engine rewrites references
 deterministically and relocates files, so the diff is reviewable and the run is repeatable.
 
-This is **not** `mainline-development-workflow`. A refactor introduces no new requirement and no behavior change — it
-has no Gherkin scenario. It lands as its own commit, green through `mainline-quality-gate`, *before* any feature
+This is **not** `/mainline-development-workflow`. A refactor introduces no new requirement and no behavior change — it
+has no Gherkin scenario. It lands as its own commit, green through `/mainline-quality-gate`, *before* any feature
 work that depends on the new shape.
 
 > **Reference tool.** The canonical engine is **OpenRewrite** (JVM), used via the Gradle/Maven rewrite
@@ -61,7 +61,7 @@ part.
    rename a method.
 4. **Run it.** Execute the rewrite. Review the diff — files relocate, imports/FQNs update.
 5. **Fix the manual tail** from step 2 by hand.
-6. **Verify with `mainline-quality-gate`.** Run the project's gate command. The architecture tests are the
+6. **Verify with `/mainline-quality-gate`.** Run the project's gate command. The architecture tests are the
    **safety net**: a missed package string fails a rule and names the exact stale reference. Loop until
    green.
 7. **Clean up.** Remove the temporary engine config. Commit as a standalone, behavior-preserving

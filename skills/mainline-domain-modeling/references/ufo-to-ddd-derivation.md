@@ -335,7 +335,7 @@ design gets a bad name.
 ## 10. Traceback to Gherkin
 
 The ontology is not just a design input — it *generates spec obligations*. Each of these is a
-scenario you owe `mainline-requirement-workflow`, and their absence is a gap in coverage that the model can
+scenario you owe `/mainline-requirement-workflow`, and their absence is a gap in coverage that the model can
 prove:
 
 | Ontological construct | Scenario obligation |

@@ -1,6 +1,6 @@
 ---
 name: mainline-ui-exploration
-description: Produce several genuinely different interface directions for a product and build a clickable prototype of each, so a direction is chosen by comparing real artefacts rather than by arguing about adjectives. Use when starting a product's visual design, reworking an existing one, or whenever "what should this look like" needs more than one answer before committing. Not for building the real UI — that is mainline-development-workflow.
+description: Produce several genuinely different interface directions for a product and build a clickable prototype of each, so a direction is chosen by comparing real artefacts rather than by arguing about adjectives. Use when starting a product's visual design, reworking an existing one, or whenever "what should this look like" needs more than one answer before committing. Not for building the real UI — that is /mainline-development-workflow.
 ---
 
 # UI exploration
@@ -14,10 +14,10 @@ This skill produces **N clickable prototypes of one identical flow**, each a dif
 
 > **Not the real UI.** Prototypes are throwaway artefacts for deciding. They carry no
 > requirement, no test, and no gate. What crosses into production is the design *decisions*,
-> re-implemented through `mainline-development-workflow` — never the prototype code.
+> re-implemented through `/mainline-development-workflow` — never the prototype code.
 
 This skill answers *which direction*. It does not answer *what should be built* — that is
-`mainline-product-discovery`, which treats a UI exploration as one prototype medium among several and turns
+`/mainline-product-discovery`, which treats a UI exploration as one prototype medium among several and turns
 what the sessions taught into Gherkin. Run discovery around this skill when the requirement itself
 is still open.
 
@@ -123,7 +123,7 @@ its ideas should be transplanted into whichever wins.
 
 ## Delivering
 
-Prototypes live under `prototypes/<name>/` — the same quarantine `mainline-product-discovery` uses: outside
+Prototypes live under `prototypes/<name>/` — the same quarantine `/mainline-product-discovery` uses: outside
 the build, invisible to CI and coverage, and no production module may import them. They are
 exploration, not product, and holding them to production thresholds would only make them cautious.
 

@@ -51,22 +51,22 @@ Every station has a skill behind it, installed into the project from `skills/`:
 
 | Station | Skill | In one line |
 |---|---|---|
-| Discovery | `mainline-product-discovery` | Throwaway prototype, real sessions, live observation log → Gherkin |
-| Discovery | `mainline-ui-exploration` | Several genuinely different UI directions, compared as working prototypes |
-| Requirement | `mainline-requirement-workflow` | The spec is a `.feature` file. Nothing else counts as a requirement. |
-| Design | `mainline-domain-modeling` | Model the domain in Tonto, derive the design from it, get the module contracts |
-| Build | `mainline-development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
-| Build | `mainline-local-stack` | The whole system on one machine with one command |
-| Gate | `mainline-quality-gate` | Seven dimensions behind one command. Done means green. |
-| Review | `mainline-review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
-| Review | `mainline-security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
-| QA | `mainline-e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |
-| Release | `mainline-deployment-pipeline` | Merge to production, automated and reversible |
-| Operate | `mainline-observability` | Instrument before ship; alert on what users feel |
+| Discovery | `/mainline-product-discovery` | Throwaway prototype, real sessions, live observation log → Gherkin |
+| Discovery | `/mainline-ui-exploration` | Several genuinely different UI directions, compared as working prototypes |
+| Requirement | `/mainline-requirement-workflow` | The spec is a `.feature` file. Nothing else counts as a requirement. |
+| Design | `/mainline-domain-modeling` | Model the domain in Tonto, derive the design from it, get the module contracts |
+| Build | `/mainline-development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
+| Build | `/mainline-local-stack` | The whole system on one machine with one command |
+| Gate | `/mainline-quality-gate` | Seven dimensions behind one command. Done means green. |
+| Review | `/mainline-review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
+| Review | `/mainline-security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
+| QA | `/mainline-e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |
+| Release | `/mainline-deployment-pipeline` | Merge to production, automated and reversible |
+| Operate | `/mainline-observability` | Instrument before ship; alert on what users feel |
 
-Orthogonal to the line: `mainline-file-finding` to harvest what any station turns up, `mainline-refactoring` and
-`mainline-refactor-smells` for behavior-preserving change, `mainline-improvement-loop` for what the line learns when
-something escapes, and `mainline-pmi-github-project` to stand the board up once.
+Orthogonal to the line: `/mainline-file-finding` to harvest what any station turns up, `/mainline-refactoring` and
+`/mainline-refactor-smells` for behavior-preserving change, `/mainline-improvement-loop` for what the line learns when
+something escapes, and `/mainline-pmi-github-project` to stand the board up once.
 
 ## Three rules that make the rest work
 

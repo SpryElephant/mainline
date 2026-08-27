@@ -24,8 +24,8 @@ reasons:
    module boundaries, or public API. That bridge is `ufo-to-ddd-derivation.md`, and it is ours.
    Its workflow rule — "plan and present to the user for confirmation before executing any
    significant change" — is right for interactive ontology editing and would stall
-   `mainline-development-workflow`.
-2. **Installing it alongside `mainline-domain-modeling` gives two skills that both fire on `.tonto` work**,
+   `/mainline-development-workflow`.
+2. **Installing it alongside `/mainline-domain-modeling` gives two skills that both fire on `.tonto` work**,
    with different processes. Vendoring its reference material keeps one entry point.
 
 Its content, however, is **better maintained than the repo's `examples/Guidances/*.mdc`** — see
