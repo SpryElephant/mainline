@@ -83,8 +83,8 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 - [ ] Run `/mainline-pmi-github-project`: project, custom fields, milestones, labels, WBS seed, risk register,
       charter, issue forms.
 - [ ] Confirm `Phase` carries `Inbox, Requirement, Design, Build, Gate, Review, QA, Release, Done`.
-- [ ] Confirm `Work Type` carries `Epic, Slice, Risk, Refactor, Spike, Bug, Chore, Platform`. An
-      Epic breaks into Slices, **one Slice per `.feature` file**. Discovery is a Spike, off the
+- [ ] Confirm `Work Type` carries `Epic, Feature, Risk, Refactor, Spike, Bug, Chore, Platform`. An
+      Epic breaks into Features, **one Feature per `.feature` file**. Discovery is a Spike, off the
       pipeline. **`Platform` is work on the line itself** — the gate command, the local stack, the
       handoff commands, CI, alerting. It is not a station; it is a work type, and it enters at Inbox
       like anything else, skipping Requirement and Design the way a bug fix does. Tracking it is what
@@ -101,7 +101,7 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 `"work Type"`. `field-create` fails silently under `>/dev/null` when it trips the secondary rate
 limit — verify with `field-list` and retry. Pushing `.github/workflows/*` needs the `workflow` scope.
 
-> **Acceptance test:** a real Slice sits on the Flow view with Phase, Work Type, Area, Size and
+> **Acceptance test:** a real Feature sits on the Flow view with Phase, Work Type, Area, Size and
 > Priority set, and its parent Epic shows sub-issue progress.
 
 ---
@@ -124,7 +124,7 @@ on the ticket. The contract is in `commands/README.md`; what is project-specific
 - [ ] Nobody copy-pastes between tools. If a step requires a human to move text from one window to
       another, it is not done.
 
-> **Acceptance test:** take a real Slice from Requirement to Design with one command. Then break one
+> **Acceptance test:** take a real Feature from Requirement to Design with one command. Then break one
 > check deliberately and confirm the command refuses to move it and names the failing check. The
 > assignee is notified. Nothing was copy-pasted.
 
@@ -138,7 +138,8 @@ on the ticket. The contract is in `commands/README.md`; what is project-specific
 Without requirements there is no QA, because there is nothing to test against — and no rewrite is
 possible, because there is nothing to rewrite *to*.
 
-- [ ] Every Slice in flight has a `.feature` file with Given/When/Then scenarios.
+- [ ] Every issue in flight has a `.feature` file behind it. A Feature has its own, with
+      Given/When/Then scenarios; a Bug cites the scenario it violates.
 - [ ] A domain glossary exists, in the client's words, seeding the Tonto model.
 - [ ] **Legacy projects: reconstruct.** Run `/mainline-product-discovery` with the medium set to a read-only
       spike against the live system, and the current system's owner as participant. Record `RULE`,
@@ -168,7 +169,7 @@ QA becomes the place defects are discovered rather than the place quality is ass
 - [ ] Secrets for local runs are stubbed, never real.
 - [ ] Emulator parity gaps — IAM semantics, consistency, throttling, limits — written down in the
       stack README, and the emulator version pinned.
-- [ ] **One feature is one change.** If the front end and back end are separate repos and a Slice
+- [ ] **One feature is one change.** If the front end and back end are separate repos and a Feature
       cannot be one PR, fix that here — combine the repos, or define the paired-PR process explicitly.
       Half a feature reviewed in isolation is half a review.
 
@@ -190,7 +191,7 @@ QA becomes the place defects are discovered rather than the place quality is ass
 - [ ] **QA** — the suite runs against staging on a fixed cadence, with an expedite path. What QA
       finds is added to the permanent suite. Defects are filed **against the requirement they
       violate**, not as free-floating bug reports.
-- [ ] **E2E suite** (`/mainline-e2e-suite`) — browser tests against a running stack, growing with every Slice.
+- [ ] **E2E suite** (`/mainline-e2e-suite`) — browser tests against a running stack, growing with every Feature.
       **QA owns the content; `/mainline-quality-gate` dimension 6 enforces it.** Developers are gated on not
       breaking the suite, never on authoring it. Start with the whole suite on every PR; split into a
       smoke set (PR) and full set (release) only when it outgrows the window, and write down which is
@@ -212,7 +213,7 @@ QA becomes the place defects are discovered rather than the place quality is ass
 **Goal:** prove the line works with the real team, using only this playbook.
 **Who:** everyone.
 
-- [ ] Pick a real Slice. Not a toy, not a spike.
+- [ ] Pick a real Feature. Not a toy, not a spike.
 - [ ] Carry it Inbox → Done using only the commands and checklists here. When you have to ask a
       person how something works, write down the question — that is a gap in the playbook.
 - [ ] Every handoff leaves a recorded result on the ticket.

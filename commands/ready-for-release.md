@@ -1,5 +1,5 @@
 ---
-description: Hand a Slice from QA to Release — run the `/ready-for-release` checks, move Phase, assign the release approver, notify and record.
+description: Hand a Feature from QA to Release — run the `/ready-for-release` checks, move Phase, assign the release approver, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---

@@ -34,7 +34,7 @@ works:
 
 ## Writing a test
 
-1. **Start from the requirement, not the screen.** Open the `.feature` file for the Slice. The E2E
+1. **Start from the requirement, not the screen.** Open the `.feature` file for the Feature. The E2E
    test asserts what the scenario says a person achieved. If there is no scenario to trace to, stop —
    you have found a missing requirement, which is worth more than the test. Send it to Product.
 2. **Use the domain's words.** The same glossary the Gherkin uses. A test that reads

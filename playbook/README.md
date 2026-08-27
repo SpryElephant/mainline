@@ -7,7 +7,7 @@
 | [`02-stations.md`](02-stations.md) | Every station in detail, and the four handoff checks. |
 | [`03-roles.md`](03-roles.md) | What each role is, then one card per role: Product, Developer, Reviewer, QA, Platform, Lead. |
 | [`04-improvement.md`](04-improvement.md) | What to do when something escapes a check. The escape ledger. |
-| [`05-glossary.md`](05-glossary.md) | Plain definitions of every term the playbook uses: gate, slice, handoff, escape, and the rest. |
+| [`05-glossary.md`](05-glossary.md) | Plain definitions of every term the playbook uses: gate, feature, handoff, escape, and the rest. |
 
 **Not sure what to do next, on a project already on Mainline?** → run `/mainline-help`.
 **Onboarding a project?** → `01-onboarding.md`.

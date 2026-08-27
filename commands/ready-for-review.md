@@ -1,5 +1,5 @@
 ---
-description: Hand a Slice from Gate to Review — run the `/ready-for-review` checks, move Phase, assign the reviewer, notify and record.
+description: Hand a Feature from Gate to Review — run the `/ready-for-review` checks, move Phase, assign the reviewer, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---

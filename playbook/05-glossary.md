@@ -78,15 +78,17 @@ here goes to Inbox; anything that should have been caught upstream goes to the i
 
 ## Work items
 
-**Work Type.** The board field that says what kind of work a card is: Epic, Slice, Risk, Refactor,
+**Work Type.** The board field that says what kind of work a card is: Epic, Feature, Risk, Refactor,
 Spike, Bug, Chore or Platform. (The field is named `Work Type` because `Type` is reserved by
 GitHub.)
 
-**Epic.** A body of work large enough to break into several Slices. Sub-issue progress rolls up to
+**Epic.** A body of work large enough to break into several Features. Sub-issue progress rolls up to
 it.
 
-**Slice.** The unit of delivery. One Slice is one `.feature` file, one PR, and one trip along the
-line. A Slice is full stack: front end and back end together.
+**Feature.** The unit of delivery, and the one kind of work that brings a new requirement. One
+Feature is one `.feature` file, one PR, and one trip along the line, full stack: front end and back
+end together. Capitalised, it is the `Work Type`; in lower case, "feature" keeps its everyday
+meaning.
 
 **Spike.** A timeboxed investigation with a question to answer rather than a feature to ship.
 Discovery is a Spike. A Spike ends on its timebox date, not on a definition of done.
@@ -119,7 +121,7 @@ ends. That is `/mainline-file-finding`. A finding not filed is a finding thrown 
 
 ## Artifacts
 
-**`.feature` file.** A text file in Gherkin holding the scenarios for one Slice. It is the
+**`.feature` file.** A text file in Gherkin holding the scenarios for one Feature. It is the
 requirement. It lives in the repository and runs as a test.
 
 **Gherkin.** The Given / When / Then language the scenarios are written in. Given the starting
@@ -256,7 +258,7 @@ See `04-improvement.md` and `/mainline-improvement-loop`.
 ## Design
 
 **UI/UX design.** What the screens look like and how the flow feels. Product's work, done before `/ready-for-dev`
-through `/mainline-ui-exploration` inside Discovery, and attached to the Slice as a prototype or
+through `/mainline-ui-exploration` inside Discovery, and attached to the Feature as a prototype or
 screenshots.
 
 **System design.** How the software is structured so the scenarios hold: the domain model, the

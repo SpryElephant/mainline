@@ -1,6 +1,6 @@
 ---
 name: mainline-pmi-github-project
-description: Reproducible setup for a PMI-style project-management system on GitHub Projects — a kanban board whose Phase column encodes the delivery workflow, a WBS of epics/slices, milestones as release gates, a scored risk register, a charter + issue forms + change control, and trunk-based branching with a CI-enforced quality gate. Use to stand this structure up in a new repo, rebuild it, or extend it.
+description: Reproducible setup for a PMI-style project-management system on GitHub Projects — a kanban board whose Phase column encodes the delivery workflow, a WBS of epics/features, milestones as release gates, a scored risk register, a charter + issue forms + change control, and trunk-based branching with a CI-enforced quality gate. Use to stand this structure up in a new repo, rebuild it, or extend it.
 ---
 
 # PMI-style project management on GitHub Projects
@@ -61,7 +61,7 @@ PID=$(gh project view "$PN" --owner "$OWNER" --format json --jq .id)
 mk() { gh project field-create "$PN" --owner "$OWNER" --name "$1" --data-type "$2" \
        ${3:+--single-select-options "$3"} >/dev/null && echo "  + $1"; }
 mk Phase       SINGLE_SELECT "Inbox,Requirement,Design,Build,Gate,Review,QA,Release,Done"  # = the line
-mk "Work Type" SINGLE_SELECT "Epic,Slice,Risk,Refactor,Spike,Bug,Chore,Platform"  # NOT "Type" — reserved
+mk "Work Type" SINGLE_SELECT "Epic,Feature,Risk,Refactor,Spike,Bug,Chore,Platform"  # NOT "Type" — reserved
 mk Area        SINGLE_SELECT "<your modules, comma-separated>"
 mk Size        SINGLE_SELECT "XS,S,M,L,XL"                                # ROM estimate
 mk Priority    SINGLE_SELECT "Must,Should,Could,Wont"                     # MoSCoW
@@ -87,7 +87,7 @@ ms "M2 — <gate>" "<contents>"
 ms "Backlog — Demand-driven" "Built on real demand."
 
 lb() { gh label create "$1" --repo "$REPO" --color "$2" --description "$3" --force >/dev/null; }
-lb type:epic 6f42c1 "WBS level 1"; lb type:slice 8a63d2 "increment (a .feature)"
+lb type:epic 6f42c1 "WBS level 1"; lb type:feature 8a63d2 "increment (a .feature)"
 lb type:risk b60205 "risk-register item"; lb type:spike fbca04 "time-boxed investigation"
 lb type:refactor 0e8a16 "behaviour-preserving"; lb type:change-request d93f0b "scope/baseline change"
 lb type:bug d73a4a "defect against a requirement"; lb type:chore cfd3d7 "housekeeping"
@@ -134,7 +134,7 @@ Size/Priority. Score each `Exposure = P x I`; write **statement / trigger / resp
 ## Step 5 — Charter + issue forms
 ```bash
 cp references/charter-template.md            "$REPO_DIR/docs/PROJECT_CHARTER.md"   # then fill it in
-cp -r references/issue-templates/.           "$REPO_DIR/.github/ISSUE_TEMPLATE/"    # epic/slice/risk/bug/change-request/spike/config
+cp -r references/issue-templates/.           "$REPO_DIR/.github/ISSUE_TEMPLATE/"    # epic/feature/risk/bug/change-request/spike/config
 ```
 Edit the charter placeholders and the `config.yml` links. **Issue forms only activate once on the
 default branch** — they must be committed and pushed.
@@ -204,7 +204,7 @@ JSON
 | Field | Type | Options | PMI area |
 |---|---|---|---|
 | Phase | select | Inbox, Requirement, Design, Build, Gate, Review, QA, Release, Done | Integration/process |
-| Work Type | select | Epic, Slice, Risk, Refactor, Spike, Bug, Chore, Platform | Scope |
+| Work Type | select | Epic, Feature, Risk, Refactor, Spike, Bug, Chore, Platform | Scope |
 | Area | select | your modules | Scope |
 | Size | select | XS, S, M, L, XL | Schedule (estimate) |
 | Priority | select | Must, Should, Could, Wont | Scope |

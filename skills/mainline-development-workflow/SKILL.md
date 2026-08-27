@@ -1,6 +1,6 @@
 ---
 name: mainline-development-workflow
-description: The developer side of the delivery loop — receive a requirement at `/ready-for-dev`, design it with /mainline-domain-modeling, implement against the scenarios while validating on a locally running stack, and pass `/ready-for-review` into review with /mainline-quality-gate green. Use whenever picking up a Slice, a bug, or a platform change for implementation.
+description: The developer side of the delivery loop — receive a requirement at `/ready-for-dev`, design it with /mainline-domain-modeling, implement against the scenarios while validating on a locally running stack, and pass `/ready-for-review` into review with /mainline-quality-gate green. Use whenever picking up a Feature, a bug, or a platform change for implementation.
 ---
 
 # Development workflow
@@ -46,7 +46,7 @@ When you do design:
   each acceptance criterion against it. Your loop closes on validated criteria — not on the code
   looking right. If validation cannot happen locally, it gets deferred to QA, and QA becomes where
   defects are discovered rather than where quality is assured.
-- **One feature is one change.** A Slice is one `.feature`; make it one PR, front to back. If the
+- **One feature is one change.** A Feature is one `.feature`; make it one PR, front to back. If the
   repo layout makes that impossible, say so — it is a platform problem, not a personal one.
 - **Run `/mainline-quality-gate` continuously**, not once at the end. The gate is a loop you work inside, not
   an exam you sit at the end.

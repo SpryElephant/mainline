@@ -18,7 +18,7 @@ Triage. Set Work Type, Area, Size, Priority, Target. Then one decision:
 > **Can somebody write the Gherkin?**
 > Yes → Requirement. No → Discovery (a Spike, timeboxed, off the pipeline).
 
-**Not everything is a Slice.** A bug fix, and `Platform` work on the line itself — the gate command,
+**Not everything is a Feature.** A bug fix, and `Platform` work on the line itself — the gate command,
 the local stack, the handoff commands, CI, alerting — enter here too and go straight to Build,
 skipping Requirement and Design. They are still gated, reviewed and released like anything else.
 Platform work is tracked as work precisely so that maintaining the line does not become invisible
@@ -71,7 +71,7 @@ unfinished becomes a risk.
 
 **Owner:** Product. **Skill:** `/mainline-requirement-workflow`.
 
-One `.feature` file per Slice, in Gherkin. **This is the spec.** Not the ticket description, not the
+One `.feature` file per Feature, in Gherkin. **This is the spec.** Not the ticket description, not the
 Figma, not the conversation.
 
 Scenarios state what a person achieved, never what the screen did. *"Ana refunds a R$120 cash order
@@ -109,7 +109,7 @@ state.
 module boundaries and their contracts, the data model, and the architecture rules the gate will
 enforce. It is not UI/UX design. What the screens look like and how the flow feels is decided by
 Product before `/ready-for-dev`, through `/mainline-ui-exploration` inside Discovery, and arrives here attached to
-the Slice as a prototype or screenshots. The developer builds to that design. If it cannot be built
+the Feature as a prototype or screenshots. The developer builds to that design. If it cannot be built
 as drawn, that is a conversation with Product, not a redesign in Build.
 
 | | UI/UX design | System design |
@@ -119,7 +119,7 @@ as drawn, that is a conversation with Product, not a redesign in Build.
 | When | Before `/ready-for-dev`, during Discovery | After `/ready-for-dev`, at this station |
 | Skill | `/mainline-ui-exploration` | `/mainline-domain-modeling` |
 | Output | A chosen direction, a prototype or screenshots, the design decisions | A validated `.tonto` model, module contracts, architecture rules |
-| Where it lives | Attached to the Slice | `domain/` in the repo |
+| Where it lives | Attached to the Feature | `domain/` in the repo |
 
 Not a document — the artifact the design is *derived* from, and it lives in the repo.
 
@@ -161,7 +161,7 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
 
 - **Full stack, locally.** Start the whole system and validate each acceptance criterion against it
   before handing off. An agent's loop closes on validated criteria — not on "the code looks right."
-- **Full stack, one change.** A Slice is one `.feature`; make it one PR. Front-end and back-end are
+- **Full stack, one change.** A Feature is one `.feature`; make it one PR. Front-end and back-end are
   not two jobs.
 - **File what you find, now** (`/mainline-file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
   assigned, notified ticket from inside the session. You spent effort to learn it; harvest it. A

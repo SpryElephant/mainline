@@ -1,5 +1,5 @@
 ---
-description: Hand a Slice from Review to QA — run the `/ready-for-qa` checks, move Phase, assign QA, notify and record.
+description: Hand a Feature from Review to QA — run the `/ready-for-qa` checks, move Phase, assign QA, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---

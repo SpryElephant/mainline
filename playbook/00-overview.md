@@ -48,7 +48,7 @@ working their own loop.
 **"Design" on the line means system design.** The Design station is where the developer models the
 domain and derives the module boundaries and contracts. UI/UX design, meaning what the screens look
 like and how the flow feels, is Product's work and happens before `/ready-for-dev`, as part of Discovery. By the
-time a Slice reaches Design, its visual direction is already chosen and attached. The Design station
+time a Feature reaches Design, its visual direction is already chosen and attached. The Design station
 in `02-stations.md` shows the two side by side.
 
 ## What runs the stations

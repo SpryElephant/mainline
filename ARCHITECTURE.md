@@ -111,7 +111,7 @@ Both files are written by `/wire-handoffs` and verified by `/wire-handoffs --che
 `/mainline-pmi-github-project` stands this up once with `gh`:
 
 - **Project board** with custom fields. `Phase` is the station the work is at, and only the handoff
-  commands are supposed to change it. `Work Type` is Epic, Slice, Risk, Refactor, Spike, Bug, Chore
+  commands are supposed to change it. `Work Type` is Epic, Feature, Risk, Refactor, Spike, Bug, Chore
   or Platform.
 - **Issue forms** (`references/issue-templates/*.yml`) that require the fields the board needs. A
   risk cannot be filed without its statement, trigger and response.
@@ -200,7 +200,7 @@ When one of these is adopted, it is `Platform` work: it enters at Inbox, is file
 a date, and the escape that motivated it is recorded in the ledger. The hook configuration would
 ship in this repository next to `commands/`, so that it is copied into a project the same way.
 
-## The life of one Slice, in tool calls
+## The life of one Feature, in tool calls
 
 ```mermaid
 sequenceDiagram
@@ -220,7 +220,7 @@ sequenceDiagram
   CC->>GH: gh issue comment (signed, assigned, time)
   CC-->>D: notify command
 
-  D->>CC: work the Slice (skills: domain-modeling, development-workflow)
+  D->>CC: work the Feature (skills: domain-modeling, development-workflow)
   CC->>CC: tonto-cli validate, local stack, gate command
   D->>GH: git push, open PR
   GH->>CI: run job "gate", run job "tonto"

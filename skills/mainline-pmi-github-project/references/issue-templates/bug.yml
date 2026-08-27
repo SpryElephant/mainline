@@ -7,7 +7,7 @@ body:
     id: requirement
     attributes:
       label: Requirement violated
-      description: The .feature file and scenario this contradicts. No requirement to cite? File a Slice instead and send it to Product.
+      description: The .feature file and scenario this contradicts. No requirement to cite? File a Feature instead and send it to Product.
       placeholder: "features/refund.feature — 'Refund over R$500 requires a manager PIN'"
     validations:
       required: true

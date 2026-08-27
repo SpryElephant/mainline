@@ -20,7 +20,7 @@ Inbox. It has one expensive wrong answer.
 - **No** → open a **Spike** and run `/mainline-product-discovery`. Nobody can state the acceptance criteria
   because nobody yet knows whether the thing is wanted, usable, or buildable.
 
-**Not everything is a Slice.** A `Bug`, a `Refactor`, or `Platform` work on the line itself goes
+**Not everything is a Feature.** A `Bug`, a `Refactor`, or `Platform` work on the line itself goes
 straight to Build, skipping Requirement and Design — still gated, reviewed and released like
 anything else.
 
@@ -33,7 +33,7 @@ head; the value of the feature is genuinely disputed; you are replacing a system
 
 ## 2. Write the requirement
 
-One `.feature` file per Slice, in Gherkin. **This is the spec** — not the ticket description, not
+One `.feature` file per Feature, in Gherkin. **This is the spec** — not the ticket description, not
 the Figma, not the conversation it came from.
 
 - **State what a person achieved, never what the screen did.** *"Ana refunds a R$120 cash order with
@@ -104,4 +104,4 @@ estimated, tested, or agreed to.
 - **`/mainline-development-workflow`** — receives at `/ready-for-dev`.
 - **`/mainline-domain-modeling`** — consumes the glossary; sends entailed scenarios back at step 5.
 - **`/mainline-ui-exploration`** — when the open question is visual direction rather than what to build.
-- **`/mainline-pmi-github-project`** — the board this work item sits on. One Slice per `.feature` file.
+- **`/mainline-pmi-github-project`** — the board this work item sits on. One Feature per `.feature` file.

@@ -40,7 +40,7 @@ system is structured internally. That is system design, and it belongs to the De
 **Your day.** Take the top card in Inbox. Ask the only question that matters at triage: *can somebody
 write the Gherkin?*
 
-**If yes** — write the `.feature` file. One per Slice. Scenarios say what a person achieved, not what
+**If yes** — write the `.feature` file. One per Feature. Scenarios say what a person achieved, not what
 the screen did. Use the client's words, from the glossary.
 
 **If no** — do not write it anyway. Open a Spike and run `/mainline-product-discovery`. Name one riskiest
@@ -76,7 +76,7 @@ contracts, the data model) and the implementation, across the front end and the 
 Developer does not decide what to build or what it should look like; both arrive at `/ready-for-dev`, decided by
 Product. The Developer's job is to make them true in code.
 
-**Your day.** A Slice arrives in Design, assigned to you, with the `.feature` file, the prototype and
+**Your day.** A Feature arrives in Design, assigned to you, with the `.feature` file, the prototype and
 the screenshots attached. You should not have to ask anyone anything to start.
 
 1. **Design.** This is system design, not UI/UX design; the screens were decided by Product before
@@ -130,7 +130,7 @@ it a fourth time.
 **You own:** QA. **You sign:** `/ready-for-release`. **Skill:** `/mainline-e2e-suite`.
 
 **What the role is.** QA checks that what reached staging does what the requirements say, and turns
-that check into a permanent, binding end-to-end suite that grows with every Slice. QA tests against
+that check into a permanent, binding end-to-end suite that grows with every Feature. QA tests against
 the requirement, not against the code or the developer's description of it. QA does not write the
 requirement (Product does) and does not write the code (the Developer does). QA is the independent
 check that the two agree.

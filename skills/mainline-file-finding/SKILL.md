@@ -35,7 +35,7 @@ downstream is automatic.
 |---|---|---|---|
 | Something is broken against a stated requirement | `Bug` | `type:bug` | `bug.yml` |
 | A threat to scope, schedule or quality that has not happened yet | `Risk` | `type:risk` | `risk.yml` |
-| A rule nobody wrote down — the system does something no scenario covers | `Slice` | `type:slice` | `slice.yml` |
+| A rule nobody wrote down — the system does something no scenario covers | `Feature` | `type:feature` | `feature.yml` |
 | A material change to the scope baseline, sequence, or a committed decision | `Change request` | `type:change-request` | `change-request.yml` |
 | A question that must be answered before scope can be committed | `Spike` | `type:spike` | `spike.yml` |
 | Structure worth improving, no behavior change | `Refactor` | `type:refactor` | blank |
@@ -43,7 +43,7 @@ downstream is automatic.
 | Housekeeping with no user-visible effect | `Chore` | `type:chore` | blank |
 
 **A defect that cites no requirement is not a bug.** It is either a missing requirement — file it as
-a Slice and assign it to Product — or a preference, which is not a finding at all.
+a Feature and assign it to Product — or a preference, which is not a finding at all.
 
 **When two fit, file the cheaper one.** A `Spike` that turns out to be a `Change request` costs an
 hour. A `Change request` that was only ever a question costs a governance cycle.

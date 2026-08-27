@@ -1,5 +1,5 @@
 ---
-description: Hand a Slice from Requirement to Design — run the `/ready-for-dev` checks, move Phase, assign the developer, notify and record.
+description: Hand a Feature from Requirement to Design — run the `/ready-for-dev` checks, move Phase, assign the developer, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---
