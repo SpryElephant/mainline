@@ -233,7 +233,7 @@ sequenceDiagram
   CC->>GH: findings resolved or waived, security pass clean, sign-off recorded
   CC->>GH: Phase=QA, assign Q, comment
   CC-->>Q: notify command
-  Q->>GH: approve; branch protection satisfied (gate + 1 review)
+  Q->>GH: approve — branch protection satisfied (gate and 1 review)
   GH->>GH: squash merge
 
   Q->>CC: /ready-for-release 123
