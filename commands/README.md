@@ -10,7 +10,7 @@ habits.
 | Command | Handoff | From → to |
 |---|---|---|
 | `/ready-for-dev` | Requirement → Design | Product → Developer |
-| `/ready-for-review` | Gate → Review | Developer → Reviewer |
+| `/ready-for-review` | Verify → Review | Developer → Reviewer |
 | `/ready-for-qa` | Review → QA | Reviewer → QA |
 | `/ready-for-release` | QA → Release | QA → Release approver |
 

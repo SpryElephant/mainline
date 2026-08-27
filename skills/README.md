@@ -17,7 +17,7 @@ carries a substitution table. Keep the dimension; swap the tool.
 | Design (system design) | `/mainline-domain-modeling` | Developer |
 | Build | `/mainline-development-workflow` | Developer |
 | Build | `/mainline-local-stack` | Platform (built), everyone (used) |
-| Gate | `/mainline-quality-gate` | Developer |
+| Verify | `/mainline-quality-gate` | Developer |
 | Review | `/mainline-review-station`, `/mainline-security-gate` | Reviewer |
 | QA | `/mainline-e2e-suite` | QA |
 | Release | `/mainline-deployment-pipeline` | Platform |

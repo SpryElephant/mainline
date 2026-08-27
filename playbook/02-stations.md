@@ -169,9 +169,12 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
 
 ---
 
-## Gate
+## Verify
 
 **Owner:** developer. **Skill:** `/mainline-quality-gate`.
+
+The developer proves the work is done by running the gate until it is green. The station is
+called Verify so that "gate" means one thing only: the command.
 
 Seven dimensions, one command, exits non-zero on any failure. CI runs the same command. Branch
 protection requires it. **Local equals CI.**
@@ -208,7 +211,7 @@ we have tools.
    to the diff line by line.
 4. Findings are fixed, or waived **with a written reason**. "Looks fine" is not a reason.
 
-### `/ready-for-review` — Gate → Review *(Developer → Reviewer)*
+### `/ready-for-review` — Verify → Review *(Developer → Reviewer)*
 
 - [ ] Gate green in CI on the branch.
 - [ ] Every acceptance scenario passing, with validation evidence on the ticket.

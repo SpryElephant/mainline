@@ -37,8 +37,8 @@ flowchart LR
   Discovery --> Requirement
   Requirement -- "/ready-for-dev" --> Design
   Design --> Build
-  Build --> Gate
-  Gate -- "/ready-for-review" --> Review
+  Build --> Verify
+  Verify -- "/ready-for-review" --> Review
   Review -- "/ready-for-qa" --> QA
   QA -- "/ready-for-release" --> Release
   Release --> Done

@@ -28,8 +28,8 @@ flowchart LR
 
   Requirement -- "/ready-for-dev<br/>Product → Dev" --> Design
   Design --> Build
-  Build --> Gate
-  Gate -- "/ready-for-review<br/>Dev → Reviewer" --> Review
+  Build --> Verify
+  Verify -- "/ready-for-review<br/>Dev → Reviewer" --> Review
   Review -- "/ready-for-qa<br/>Reviewer → QA" --> QA
   QA -- "/ready-for-release<br/>QA → Release" --> Release
   Release --> Done
@@ -37,7 +37,7 @@ flowchart LR
   Operate -. "new work · escaped defects" .-> Inbox
 
   classDef handoff stroke-width:3px
-  class Requirement,Gate,Review,QA handoff
+  class Requirement,Verify,Review,QA handoff
 ```
 
 Only four transitions change hands. `/ready-for-dev` Product → Developer. `/ready-for-review`
@@ -63,7 +63,7 @@ Every station has a skill behind it, installed into the project from `skills/`:
 | Design | `/mainline-domain-modeling` | System design. Model the domain in Tonto, derive the design from it, get the module contracts |
 | Build | `/mainline-development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
 | Build | `/mainline-local-stack` | The whole system on one machine with one command |
-| Gate | `/mainline-quality-gate` | Seven dimensions behind one command. Done means green. |
+| Verify | `/mainline-quality-gate` | Run the gate until green. Seven dimensions behind one command. Done means green. |
 | Review | `/mainline-review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
 | Review | `/mainline-security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
 | QA | `/mainline-e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |

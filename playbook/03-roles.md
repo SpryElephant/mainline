@@ -67,7 +67,7 @@ obligations the requirement did not state. Add them.
 
 ## Developer
 
-**You own:** Design, Build, Gate. **You sign:** `/ready-for-review`.
+**You own:** Design, Build, Verify. **You sign:** `/ready-for-review`.
 **Skills:** `/mainline-development-workflow`, `/mainline-domain-modeling`, `/mainline-quality-gate`, `/mainline-local-stack`, `/mainline-file-finding`.
 
 **What the role is.** The Developer turns a signed requirement into working software that passes the
@@ -86,7 +86,7 @@ the screenshots attached. You should not have to ask anyone anything to start.
    contracts.
 2. **Build.** Implement to the scenarios. Run the full stack locally and validate each acceptance
    criterion against a running system. Run the gate continuously — not once at the end.
-3. **Gate.** Green, or not done. Never lower a threshold to pass; if the threshold is wrong, that is
+3. **Verify.** Gate green, or not done. Never lower a threshold to pass; if the threshold is wrong, that is
    a conversation, not an edit.
 
 **When you find something you are not fixing** — a bug, a risk, a missing rule — file it *now*, from
@@ -166,7 +166,7 @@ nothing to assure quality against, and you are just clicking.
 **Skills:** `/mainline-deployment-pipeline`, `/mainline-observability`, `/mainline-local-stack`, `/mainline-security-gate`.
 
 **Your work is tracked like everyone else's.** Line maintenance is `Platform` work: it enters at
-Inbox, gets sized and prioritised, and runs Build → Gate → Review → Release. It is not a station on
+Inbox, gets sized and prioritised, and runs Build → Verify → Review → Release. It is not a station on
 the board and it should not be invisible either — untracked platform work only happens when somebody
 is annoyed enough, which is the failure mode this whole line exists to remove.
 

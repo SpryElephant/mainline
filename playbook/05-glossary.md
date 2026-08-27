@@ -15,7 +15,7 @@ repeated here.
 stations. A project "on Mainline" runs every change along this path. See `00-overview.md`.
 
 **Station.** One named stop on the line, with one owner, one job, and one skill that says how the job
-is done. The stations are Inbox, Discovery, Requirement, Design, Build, Gate, Review, QA, Release and
+is done. The stations are Inbox, Discovery, Requirement, Design, Build, Verify, Review, QA, Release and
 Operate. See `02-stations.md`.
 
 **Handoff.** A place on the line where work changes hands from one role to another. There are exactly
@@ -58,8 +58,9 @@ side by side in `02-stations.md`.
 **Build.** The station where the developer implements to the scenarios, runs the full stack locally,
 validates each acceptance criterion against a running system, and runs the gate continuously.
 
-**Gate.** See "Gate" under Checks and quality below. As a station, it is Build's exit condition:
-the work is not done until the gate is green.
+**Verify.** The station where the developer proves the work is done by running the gate until it
+is green. Not a handoff: it is Build's exit condition and the precondition for `/ready-for-review`.
+The station is called Verify so that "gate" means only the command (see Checks and quality below).
 
 **Review.** The station where a second person, never the author, reads the automated review and
 security findings, fixes or waives each one with a written reason, and signs.

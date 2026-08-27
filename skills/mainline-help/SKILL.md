@@ -61,7 +61,7 @@ For a word, use `playbook/05-glossary.md`. For a role, `playbook/03-roles.md`.
 | Requirement | Product | `/mainline-requirement-workflow` | `/ready-for-dev` |
 | Design | Developer | `/mainline-domain-modeling` | The same developer continues into Build |
 | Build | Developer | `/mainline-development-workflow`, `/mainline-local-stack` | Gate green |
-| Gate | Developer | `/mainline-quality-gate` | `/ready-for-review` |
+| Verify | Developer | `/mainline-quality-gate` (run the gate until green) | `/ready-for-review` |
 | Review | Reviewer | `/mainline-review-station`, `/mainline-security-gate` | `/ready-for-qa` |
 | QA | QA | `/mainline-e2e-suite` | `/ready-for-release` |
 | Release | Release approver | `/mainline-deployment-pipeline` | Deploy; then Done |

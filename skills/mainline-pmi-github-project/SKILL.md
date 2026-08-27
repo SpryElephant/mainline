@@ -60,7 +60,7 @@ PID=$(gh project view "$PN" --owner "$OWNER" --format json --jq .id)
 ```bash
 mk() { gh project field-create "$PN" --owner "$OWNER" --name "$1" --data-type "$2" \
        ${3:+--single-select-options "$3"} >/dev/null && echo "  + $1"; }
-mk Phase       SINGLE_SELECT "Inbox,Requirement,Design,Build,Gate,Review,QA,Release,Done"  # = the line
+mk Phase       SINGLE_SELECT "Inbox,Requirement,Design,Build,Verify,Review,QA,Release,Done"  # = the line
 mk "Work Type" SINGLE_SELECT "Epic,Feature,Risk,Refactor,Spike,Bug,Chore,Platform"  # NOT "Type" — reserved
 mk Area        SINGLE_SELECT "<your modules, comma-separated>"
 mk Size        SINGLE_SELECT "XS,S,M,L,XL"                                # ROM estimate
@@ -203,7 +203,7 @@ JSON
 ## Field & option model (reference)
 | Field | Type | Options | PMI area |
 |---|---|---|---|
-| Phase | select | Inbox, Requirement, Design, Build, Gate, Review, QA, Release, Done | Integration/process |
+| Phase | select | Inbox, Requirement, Design, Build, Verify, Review, QA, Release, Done | Integration/process |
 | Work Type | select | Epic, Feature, Risk, Refactor, Spike, Bug, Chore, Platform | Scope |
 | Area | select | your modules | Scope |
 | Size | select | XS, S, M, L, XL | Schedule (estimate) |

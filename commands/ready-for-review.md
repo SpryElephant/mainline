@@ -1,10 +1,10 @@
 ---
-description: Hand a Feature from Gate to Review — run the `/ready-for-review` checks, move Phase, assign the reviewer, notify and record.
+description: Hand a Feature from Verify to Review — run the `/ready-for-review` checks, move Phase, assign the reviewer, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---
 
-Run the **`/ready-for-review` handoff — Gate → Review (Developer → Reviewer)** for issue $1.
+Run the **`/ready-for-review` handoff — Verify → Review (Developer → Reviewer)** for issue $1.
 
 Read `.github/mainline.json` and `.github/project-fields.json` for the project parameters and the
 field/option IDs. If either is missing, stop and say which.
