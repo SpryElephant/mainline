@@ -98,3 +98,4 @@ something escapes, and `mainline-pmi-github-project` to stand the board up once.
 - **Working a ticket, or not sure what a role covers?** → `03-roles.md`, your role's card.
 - **Need the detail of one station?** → `02-stations.md`.
 - **Something escaped?** → `04-improvement.md`.
+- **Met a word you do not know?** → `05-glossary.md`.

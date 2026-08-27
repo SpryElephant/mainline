@@ -7,10 +7,12 @@
 | [`02-stations.md`](02-stations.md) | Every station in detail, and the four handoff checks. |
 | [`03-roles.md`](03-roles.md) | What each role is, then one card per role: Product, Developer, Reviewer, QA, Platform, Lead. |
 | [`04-improvement.md`](04-improvement.md) | What to do when something escapes a check. The escape ledger. |
+| [`05-glossary.md`](05-glossary.md) | Plain definitions of every term the playbook uses: gate, slice, handoff, escape, and the rest. |
 
 **Onboarding a project?** → `01-onboarding.md`.
 **Working a ticket?** → your card in `03-roles.md`.
 **Something escaped?** → `04-improvement.md`.
+**Met a word you do not know?** → `05-glossary.md`.
 
 Each station's how-to is a skill in `skills/`, and each handoff is a command in `commands/`, both
 installed into the project. This playbook says who runs them, how work moves between people, and

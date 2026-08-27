@@ -5,7 +5,8 @@ project gets onboarded onto it.
 
 Mainline is three things:
 
-- **`playbook/`** — the process. Stations, handoffs, roles, and an eight-step onboarding checklist.
+- **`playbook/`** — the process. Stations, handoffs, roles, a glossary, and an eight-step onboarding
+  checklist.
 - **`skills/`** — the tooling. Agent skills copied into a project and calibrated to its stack, one per
   station.
 - **`commands/`** — the four handoff commands, which move work between people and refuse to move it
@@ -49,7 +50,7 @@ signature, an assignment, and a notification.
 
 | Path | What it is |
 |---|---|
-| `playbook/` | The process. Five documents. |
+| `playbook/` | The process. Six documents. |
 | `skills/` | The skill library. Copy into a project's `.claude/skills/`. |
 | `commands/` | The four handoff commands. Copy into a project's `.claude/commands/`. |
 
