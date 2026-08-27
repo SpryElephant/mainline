@@ -1,6 +1,6 @@
 ---
 name: mainline-review-station
-description: The Review station — run the automated review and the security pass on a pull request, apply human judgment to the findings, fix or waive each one with a written reason, record the named sign-off, and pass the H3 handoff into QA. Use when a pull request arrives for review, and whenever a waiver is being decided.
+description: The Review station — run the automated review and the security pass on a pull request, apply human judgment to the findings, fix or waive each one with a written reason, record the named sign-off, and pass the `/ready-for-qa` handoff into QA. Use when a pull request arrives for review, and whenever a waiver is being decided.
 ---
 
 # Review station
@@ -41,7 +41,7 @@ inline with a reason and never globally.
 - Does it belong in this module, per its contract?
 - Will it be obvious in six months? Is there a simpler shape?
 
-## 5. Pass H3
+## 5. Pass `/ready-for-qa`
 
 - [ ] Automated review run; findings resolved or waived with a written reason.
 - [ ] Security pass clean.
@@ -62,7 +62,7 @@ inline with a reason and never globally.
 ## Relationships
 
 - **`/mainline-security-gate`** — step 2; the dimensions, tools and triage policy.
-- **`/mainline-development-workflow`** — hands off at H2. Send incomplete handoffs back.
-- **`/mainline-e2e-suite`** — receives at H3.
+- **`/mainline-development-workflow`** — hands off at `/ready-for-review`. Send incomplete handoffs back.
+- **`/mainline-e2e-suite`** — receives at `/ready-for-qa`.
 - **`/mainline-file-finding`** — how a finding you are not fixing becomes a tracked item.
 - **`/mainline-improvement-loop`** — where repeated waivers and escaped defects go.

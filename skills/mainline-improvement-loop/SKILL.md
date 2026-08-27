@@ -15,7 +15,7 @@ nothing about the line changed.
 
 1. **Name the escape.** What was wrong, and where it surfaced. One sentence.
 2. **Find the earliest handoff that could have caught it.** Not the closest — the earliest. A missing
-   requirement discovered in QA escaped H1, not H3. Amending H3 to catch missing requirements is how
+   requirement discovered in QA escaped `/ready-for-dev`, not `/ready-for-qa`. Amending `/ready-for-qa` to catch missing requirements is how
    checklists become long and useless.
 3. **Amend that check**, in this order of preference:
    - **A tool** that fails automatically. Always this if it is possible.
@@ -52,8 +52,8 @@ account.
 
 | Source | Entry looks like |
 |---|---|
-| A defect QA found that Review should have caught | Escape at H3 or earlier |
-| A requirement gap found in Build | Escape at H1 |
+| A defect QA found that Review should have caught | Escape at `/ready-for-qa` or earlier |
+| A requirement gap found in Build | Escape at `/ready-for-dev` |
 | An incident (`/mainline-observability`) | The missing signal, plus the earliest check that could have caught the defect |
 | A repeated waiver (`/mainline-review-station`) | A miscalibrated rule, not a fourth waiver |
 | A growing E2E quarantine list (`/mainline-e2e-suite`) | The suite is dying; that is a station problem |

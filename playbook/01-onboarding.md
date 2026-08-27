@@ -112,14 +112,15 @@ limit — verify with `field-list` and retry. Pushing `.github/workflows/*` need
 line instead of a set of habits.**
 **Who:** lead + one engineer.
 
-`/h1` … `/h4` ship in `commands/`. Each runs its station's checks, blocks and names the failure,
+The four `/ready-for-…` commands ship in `commands/`. Each runs its station's checks, blocks and names the failure,
 moves `Phase`, assigns the next owner, notifies them with everything attached, and records the result
 on the ticket. The contract is in `commands/README.md`; what is project-specific is only the config.
 
-- [ ] Write `.github/mainline.json` — owner, repo, project number and ID, the `notify` command, and
-      the default assignee per station. See `commands/README.md`.
-- [ ] Cache the board's field and option IDs to `.github/project-fields.json`.
-- [ ] Walk `/h1` through `/h4` once each on a real card.
+- [ ] **Run `/wire-handoffs`.** It finds the board, caches the field and option IDs to
+      `.github/project-fields.json`, looks at who works in the repository, proposes a default owner
+      per station and a `notify` command, asks once, and writes `.github/mainline.json`. Run it with
+      `--check` any time a handoff command complains about the configuration.
+- [ ] Walk each of the four `/ready-for-…` commands once on a real card.
 - [ ] Nobody copy-pastes between tools. If a step requires a human to move text from one window to
       another, it is not done.
 

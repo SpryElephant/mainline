@@ -9,13 +9,15 @@ Mainline is three things:
   checklist.
 - **`skills/`** — the tooling. Agent skills copied into a project and calibrated to its stack, one per
   station.
-- **`commands/`** — the four handoff commands, which move work between people and refuse to move it
-  past a failing check.
+- **`commands/`** — the four handoff commands (`/ready-for-dev`, `/ready-for-review`, `/ready-for-qa`,
+  `/ready-for-release`), which move work between people and refuse to move it past a failing check,
+  plus `/wire-handoffs`, which configures them.
 
 ## Start here
 
 | | |
 |---|---|
+| `/mainline-help` | On a project that is on Mainline: where your work is, what to do next, which command runs it. |
 | [`playbook/00-overview.md`](playbook/00-overview.md) | The idea, in one page. |
 | [`playbook/01-onboarding.md`](playbook/01-onboarding.md) | Eight steps to get a project onto Mainline. |
 | [`skills/README.md`](skills/README.md) | The skill library, indexed by station. |
@@ -33,12 +35,12 @@ flowchart LR
   Inbox --> Requirement
   Inbox -. "nobody can write<br/>the spec yet" .-> Discovery
   Discovery --> Requirement
-  Requirement -- "H1" --> Design
+  Requirement -- "/ready-for-dev" --> Design
   Design --> Build
   Build --> Gate
-  Gate -- "H2" --> Review
-  Review -- "H3" --> QA
-  QA -- "H4" --> Release
+  Gate -- "/ready-for-review" --> Review
+  Review -- "/ready-for-qa" --> QA
+  QA -- "/ready-for-release" --> Release
   Release --> Done
   Done --> Operate
   Operate -. "new work · escaped defects" .-> Inbox
@@ -53,7 +55,7 @@ signature, an assignment, and a notification.
 |---|---|
 | `playbook/` | The process. Six documents. |
 | `skills/` | The skill library. Copy into a project's `.claude/skills/`. |
-| `commands/` | The four handoff commands. Copy into a project's `.claude/commands/`. |
+| `commands/` | The four handoff commands and `/wire-handoffs`. Copy into a project's `.claude/commands/`. |
 
 Nothing in this repo names a client or an individual, and it should stay that way. When a story from
 a real engagement is worth telling, tell it without the account — the lesson survives, the exposure

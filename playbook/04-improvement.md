@@ -1,7 +1,7 @@
 # The improvement loop
 
 Something reached a station it should never have reached. A defect surfaced in QA that Review should
-have caught. A requirement gap surfaced in Build that H1 should have caught. Something reached
+have caught. A requirement gap surfaced in Build that `/ready-for-dev` should have caught. Something reached
 production that nobody caught at all.
 
 **That is a defect in the process, not only in the code.** Fixing the code and moving on guarantees
@@ -18,7 +18,7 @@ amendment as a `Platform` item with an owner and a date, and record a row in the
 
 | Date | What escaped | Surfaced at | Should have been caught at | Change made |
 |---|---|---|---|---|
-| *2026-08* | A feature shipped without enterprise SSO. Enterprise tenancy was assumed by everyone and written down by no one, so nothing downstream could check it — downstream can only check what upstream wrote. | Production | **H1** | Added the NFR line to H1: auth and SSO, **tenancy**, performance, compliance, retention — each stated or explicitly marked N/A. |
+| *2026-08* | A feature shipped without enterprise SSO. Enterprise tenancy was assumed by everyone and written down by no one, so nothing downstream could check it — downstream can only check what upstream wrote. | Production | **`/ready-for-dev`** | Added the NFR line to `/ready-for-dev`: auth and SSO, **tenancy**, performance, compliance, retention — each stated or explicitly marked N/A. |
 
 The row above is a worked example, kept because it is the clearest one we have. A project starts its
 own ledger empty.

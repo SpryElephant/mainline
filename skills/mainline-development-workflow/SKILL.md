@@ -1,11 +1,11 @@
 ---
 name: mainline-development-workflow
-description: The developer side of the delivery loop — receive a requirement at H1, design it with /mainline-domain-modeling, implement against the scenarios while validating on a locally running stack, and pass H2 into review with /mainline-quality-gate green. Use whenever picking up a Slice, a bug, or a platform change for implementation.
+description: The developer side of the delivery loop — receive a requirement at `/ready-for-dev`, design it with /mainline-domain-modeling, implement against the scenarios while validating on a locally running stack, and pass `/ready-for-review` into review with /mainline-quality-gate green. Use whenever picking up a Slice, a bug, or a platform change for implementation.
 ---
 
 # Development workflow
 
-The developer's half of the loop. It starts at **H1**, where the work arrives, and ends at **H2**,
+The developer's half of the loop. It starts at **`/ready-for-dev`**, where the work arrives, and ends at **`/ready-for-review`**,
 where it goes to review.
 
 ## 0. Check what arrived
@@ -61,7 +61,7 @@ When you do design:
   assigned, notified ticket from inside your session, before you move on. You spent effort to learn
   it; harvest it. A finding carried in your head to the end of the task is a finding you threw away.
 
-## 4. Pass H2
+## 4. Pass `/ready-for-review`
 
 - [ ] `/mainline-quality-gate` green in CI on the branch — all applicable dimensions.
 - [ ] Every acceptance scenario passing, with validation evidence on the ticket.
@@ -76,16 +76,16 @@ item — not an edit on your branch.
 
 ## Dependency order
 
-H1 → (design, if the shape changes → entailed scenarios back to Product) → implement → `/mainline-quality-gate`
-until green → H2
+`/ready-for-dev` → (design, if the shape changes → entailed scenarios back to Product) → implement → `/mainline-quality-gate`
+until green → `/ready-for-review`
 
 ## Relationships
 
-- **`/mainline-requirement-workflow`** — hands off at H1; receives entailed scenarios back.
+- **`/mainline-requirement-workflow`** — hands off at `/ready-for-dev`; receives entailed scenarios back.
 - **`/mainline-domain-modeling`** — step 1.
 - **`/mainline-quality-gate`** — the binding gate; the exit condition for this whole workflow.
 - **`/mainline-local-stack`** — what you validate against in step 2.
 - **`/mainline-refactoring` / `/mainline-refactor-smells`** — orthogonal, separate commits.
 - **`/mainline-e2e-suite`** — you are gated on not breaking it. QA grows it.
-- **`/mainline-review-station`** — receives at H2.
+- **`/mainline-review-station`** — receives at `/ready-for-review`.
 - **`/mainline-file-finding`** — how a finding becomes a tracked item without leaving the session.

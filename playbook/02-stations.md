@@ -4,7 +4,7 @@ Each station: what it is for, who owns it, what it produces, and — where work 
 handoff check that must pass before it moves.
 
 Every handoff check ends the same way: **signed, assigned, notified.** A check that passes but leaves
-nobody holding the work has not finished. Each one is a command — `/h1` … `/h4` — that runs the
+nobody holding the work has not finished. Each one is a `/ready-for-…` command that runs the
 checks, refuses to move the card if one fails, and records the result on the ticket.
 
 ---
@@ -81,7 +81,7 @@ participant's own words from the glossary.
 Expect to come back here after Design: the domain model entails scenarios the requirement did not
 state.
 
-### H1 — Requirement → Design *(Product → Developer)* — `/h1`
+### `/ready-for-dev` — Requirement → Design *(Product → Developer)*
 
 - [ ] A `.feature` file exists. Every scenario is Given/When/Then and is testable.
 - [ ] **Every scenario traces to something observed or to a stated business rule.** No invented
@@ -108,7 +108,7 @@ state.
 **This station is system design.** It decides how the software is structured: the domain model, the
 module boundaries and their contracts, the data model, and the architecture rules the gate will
 enforce. It is not UI/UX design. What the screens look like and how the flow feels is decided by
-Product before H1, through `/mainline-ui-exploration` inside Discovery, and arrives here attached to
+Product before `/ready-for-dev`, through `/mainline-ui-exploration` inside Discovery, and arrives here attached to
 the Slice as a prototype or screenshots. The developer builds to that design. If it cannot be built
 as drawn, that is a conversation with Product, not a redesign in Build.
 
@@ -116,7 +116,7 @@ as drawn, that is a conversation with Product, not a redesign in Build.
 |---|---|---|
 | Question it answers | What does the person see and do, and how does it feel? | How is the software structured so the scenarios hold? |
 | Owner | Product | The developer who will build it |
-| When | Before H1, during Discovery | After H1, at this station |
+| When | Before `/ready-for-dev`, during Discovery | After `/ready-for-dev`, at this station |
 | Skill | `/mainline-ui-exploration` | `/mainline-domain-modeling` |
 | Output | A chosen direction, a prototype or screenshots, the design decisions | A validated `.tonto` model, module contracts, architecture rules |
 | Where it lives | Attached to the Slice | `domain/` in the repo |
@@ -189,7 +189,7 @@ protection requires it. **Local equals CI.**
 **Done means green.** Never weaken a spec or lower a threshold to pass. The gate is the proof; it is
 not a report someone interprets.
 
-Not a handoff — this is Build's exit condition, and H2's precondition.
+Not a handoff — this is Build's exit condition, and the precondition for `/ready-for-review`.
 
 ---
 
@@ -208,14 +208,14 @@ we have tools.
    to the diff line by line.
 4. Findings are fixed, or waived **with a written reason**. "Looks fine" is not a reason.
 
-### H2 — Gate → Review *(Developer → Reviewer)* — `/h2`
+### `/ready-for-review` — Gate → Review *(Developer → Reviewer)*
 
 - [ ] Gate green in CI on the branch.
 - [ ] Every acceptance scenario passing, with validation evidence on the ticket.
 - [ ] No unrelated changes. Behavior-preserving refactors are separate commits, and separate PRs.
 - [ ] **Signed** by the developer · **assigned** to a reviewer · **notified**.
 
-### H3 — Review → QA *(Reviewer → QA)* — `/h3`
+### `/ready-for-qa` — Review → QA *(Reviewer → QA)*
 
 - [ ] Automated review run; findings resolved or waived with a reason.
 - [ ] Security pass clean.
@@ -247,7 +247,7 @@ written spec there is no such thing as QA, only people clicking around hoping to
 **Cadence:** a scheduled run at a fixed time, plus an expedite path when someone asks. Both are
 commands; neither is a person remembering.
 
-### H4 — QA → Release — `/h4`
+### `/ready-for-release` — QA → Release
 
 - [ ] Suite green on staging.
 - [ ] New coverage merged into the permanent suite, shipping *with* the release rather than after.

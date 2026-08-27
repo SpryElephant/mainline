@@ -23,18 +23,25 @@ carries a substitution table. Keep the dimension; swap the tool.
 | Release | `/mainline-deployment-pipeline` | Platform |
 | Operate | `/mainline-observability` | Platform |
 | Any | `/mainline-refactoring`, `/mainline-refactor-smells` | Developer |
+| Any | `/mainline-help` | Everyone |
 | Any | `/mainline-file-finding` | Everyone |
 | Any | `/mainline-improvement-loop` | Lead |
 | Setup | `/mainline-pmi-github-project` | Lead |
 
 ## The skills
 
+**Orientation**
+
+- `/mainline-help` — the front desk. Where your work is, what to do next, which command or skill does
+  it, and answers to "how do I" questions from the playbook. Run it first on any project you have
+  not worked on before.
+
 **Delivery**
 
 - `/mainline-requirement-workflow` — Product's half of the loop. Triage (can anyone write the Gherkin?), the
-  `.feature` file, the non-functional requirements, the H1 handoff.
-- `/mainline-development-workflow` — the developer's half. Receive at H1, design, implement against a running
-  stack, gate green, hand off at H2.
+  `.feature` file, the non-functional requirements, the `/ready-for-dev` handoff.
+- `/mainline-development-workflow` — the developer's half. Receive at `/ready-for-dev`, design, implement against a running
+  stack, gate green, hand off at `/ready-for-review`.
 - `/mainline-domain-modeling` — OntoUML/UFO decomposition as a validated Tonto model, derived into DDD tactical
   design plus module contracts and the Gherkin the model entails.
 - `/mainline-product-discovery` — when nobody can write the spec yet. Throwaway quarantined prototype, live
@@ -49,7 +56,7 @@ carries a substitution table. Keep the dimension; swap the tool.
 - `/mainline-e2e-suite` — QA's compounding asset. What deserves an E2E test, how to write one that survives a
   redesign, seed data, flake discipline. Enforced as `/mainline-quality-gate` dimension 6.
 - `/mainline-review-station` — the Review station. Automated review plus the security pass, human judgment on
-  the findings, waivers with written reasons, the recorded sign-off, the H3 handoff.
+  the findings, waivers with written reasons, the recorded sign-off, the `/ready-for-qa` handoff.
 - `/mainline-refactoring` — large mechanical behavior-preserving rewrites via a rewrite engine.
 - `/mainline-refactor-smells` — Fowler smell-driven structural cleanup, ranked by complexity and CRAP.
 
@@ -77,7 +84,7 @@ carries a substitution table. Keep the dimension; swap the tool.
 See `playbook/01-onboarding.md`, steps 2 and 3. In short: copy the folders, calibrate `/mainline-quality-gate`
 and `/mainline-security-gate` behind one command each, point `/mainline-refactoring` at the language's rewrite engine,
 install `tonto-cli`, add the `prototypes/` quarantine, run `/mainline-pmi-github-project`, then write
-`.github/mainline.json` and cache the board's field IDs — used by `/mainline-file-finding` and the `/h1` … `/h4`
+`.github/mainline.json` and cache the board's field IDs — used by `/mainline-file-finding` and the four `/ready-for-…`
 commands in `commands/`.
 
 ## Provenance
@@ -86,7 +93,7 @@ These skills began as [`SpryElephant/spry-forge`](https://github.com/SpryElephan
 maintained here. Changes made for Mainline:
 
 - `feature-workflow` split into `/mainline-requirement-workflow` and `/mainline-development-workflow`. One skill spanning
-  the H1 handoff cannot enforce it, and it made each role read two-thirds irrelevant material.
+  the `/ready-for-dev` handoff cannot enforce it, and it made each role read two-thirds irrelevant material.
 - `/mainline-quality-gate` gained dimension 6 — the end-to-end suite against a running stack. QA authors it,
   developers are gated on not breaking it.
 - New: `/mainline-e2e-suite`, `/mainline-local-stack`, `/mainline-review-station`, `/mainline-security-gate`, `/mainline-deployment-pipeline`,

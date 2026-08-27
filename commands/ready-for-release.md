@@ -1,17 +1,17 @@
 ---
-description: Hand a Slice from QA to Release — run the H4 checks, move Phase, assign the release approver, notify and record.
+description: Hand a Slice from QA to Release — run the `/ready-for-release` checks, move Phase, assign the release approver, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---
 
-Run the **H4 handoff — QA → Release** for issue $1.
+Run the **`/ready-for-release` handoff — QA → Release** for issue $1.
 
 Read `.github/mainline.json` and `.github/project-fields.json` for the project parameters and the
 field/option IDs. If either is missing, stop and say which.
 
 ## 1. Run the checks
 
-The checklist is **`/mainline-e2e-suite`, "Pass H4"**. Read it there and verify each line.
+The checklist is **`/mainline-e2e-suite`, "Pass `/ready-for-release`"**. Read it there and verify each line.
 
 What each line means in practice:
 

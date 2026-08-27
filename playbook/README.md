@@ -9,6 +9,7 @@
 | [`04-improvement.md`](04-improvement.md) | What to do when something escapes a check. The escape ledger. |
 | [`05-glossary.md`](05-glossary.md) | Plain definitions of every term the playbook uses: gate, slice, handoff, escape, and the rest. |
 
+**Not sure what to do next, on a project already on Mainline?** → run `/mainline-help`.
 **Onboarding a project?** → `01-onboarding.md`.
 **Working a ticket?** → your card in `03-roles.md`.
 **Something escaped?** → `04-improvement.md`.

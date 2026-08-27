@@ -29,7 +29,7 @@ config:
 ---
 flowchart TB
   subgraph session["Claude Code session (one person, one card)"]
-    person([Person]) -- "/h2 123" --> cmd["commands/h2.md<br/>allowed-tools: Bash(gh:*), Read, Grep, Glob"]
+    person([Person]) -- "/ready-for-review 123" --> cmd["commands/ready-for-review.md<br/>allowed-tools: Bash(gh:*), Read, Grep, Glob"]
     cmd -- reads the checklist --> skill["skills/mainline-development-workflow/SKILL.md"]
     cmd -- reads --> cfg[".github/mainline.json<br/>.github/project-fields.json"]
     cmd -- "gh pr checks, gh project item-edit,<br/>gh issue comment" --> gh[["gh CLI"]]
@@ -77,7 +77,7 @@ derivation rules for `/mainline-domain-modeling`, the charter template, issue fo
 workflow for `/mainline-pmi-github-project`, the observation-log and discovery-record templates for
 `/mainline-product-discovery`.
 
-### Commands: `commands/h1.md` to `commands/h4.md`
+### Commands: `commands/ready-for-*.md`
 
 A command is a slash command: a Markdown prompt with frontmatter. The frontmatter restricts what the
 agent may do while running it:
@@ -95,6 +95,8 @@ The checks themselves are read from the station's skill at run time. The command
 where the checklist is and what evidence satisfies each line; it does not carry the checklist.
 
 ### Configuration: two JSON files in the project
+
+Both files are written by `/wire-handoffs` and verified by `/wire-handoffs --check`.
 
 - `.github/mainline.json` holds the board parameters (owner, repository, project number and ID),
   the `notify` command, and the default assignee per station. `notify` is a shell command taking
@@ -149,7 +151,7 @@ knowing which kind you are relying on.
 | No production module imports `prototypes/` | An architecture rule in gate dimension 2 | **Hard**, once the rule is written. |
 | A handoff refuses to move work past a failing check | The `/h` command's prompt: check, then block | **Soft.** The agent obeys the prompt; a person can still run `gh project item-edit` directly. |
 | Only handoff commands change `Phase` | Convention | **Soft.** GitHub Projects has no field-level permission. |
-| Reviewer is never the author | `/h2` stops if the only candidate is the author | **Soft** in the command; **hard** at merge, since GitHub does not count the author's own approval. |
+| Reviewer is never the author | `/ready-for-review` stops if the only candidate is the author | **Soft** in the command; **hard** at merge, since GitHub does not count the author's own approval. |
 | Findings are filed before the session ends | `/mainline-file-finding`, called from other skills | **Soft.** |
 | Never lower a threshold to pass | Stated in every skill that touches the gate | **Soft** in the session; a lowered threshold is visible in the PR diff, so Review catches it. |
 | The notify message landed | The `notify` command's exit status; the commands say so when it is unset | **Soft.** The command reports, it does not verify delivery. |
@@ -188,7 +190,7 @@ which. Candidates, in rough order of value:
 
 | Soft rule today | Hook that would make it hard |
 |---|---|
-| Only handoff commands change `Phase` | `PreToolUse` on `Bash`: refuse `gh project item-edit` calls that set the `Phase` field unless invoked from `/h1` to `/h4` |
+| Only handoff commands change `Phase` | `PreToolUse` on `Bash`: refuse `gh project item-edit` calls that set the `Phase` field unless invoked from one of the four `/ready-for-…` commands |
 | Run the gate continuously during Build | `PostToolUse` on `Edit` and `Write`: run the gate command (or its fast subset) and surface the result |
 | Findings are filed before the session ends | `Stop`: scan the transcript for unfiled findings and refuse to stop until they are filed or explicitly dismissed |
 | The agent knows which card it is working | `SessionStart`: read `.github/mainline.json`, find the card assigned to this person in the current `Phase`, and load it |
@@ -211,8 +213,8 @@ sequenceDiagram
   participant GH as GitHub
   participant CI as Actions
 
-  P->>CC: /h1 123
-  CC->>CC: read mainline-requirement-workflow step 4
+  P->>CC: /ready-for-dev 123
+  CC->>CC: read /mainline-requirement-workflow step 4
   CC->>GH: gh issue view, read .feature, check NFR lines
   CC->>GH: gh project item-edit Phase=Design, assign D
   CC->>GH: gh issue comment (signed, assigned, time)
@@ -222,19 +224,19 @@ sequenceDiagram
   CC->>CC: tonto-cli validate, local stack, gate command
   D->>GH: git push, open PR
   GH->>CI: run job "gate", run job "tonto"
-  D->>CC: /h2 123
+  D->>CC: /ready-for-review 123
   CC->>GH: gh pr checks (must be green)
   CC->>GH: Phase=Review, assign R, comment
   CC-->>R: notify command
 
-  R->>CC: /h3 123
+  R->>CC: /ready-for-qa 123
   CC->>GH: findings resolved or waived, security pass clean, sign-off recorded
   CC->>GH: Phase=QA, assign Q, comment
   CC-->>Q: notify command
   Q->>GH: approve; branch protection satisfied (gate + 1 review)
   GH->>GH: squash merge
 
-  Q->>CC: /h4 123
+  Q->>CC: /ready-for-release 123
   CC->>GH: suite green on staging, new coverage merged
   CC->>GH: Phase=Release, assign release approver, comment
 ```
@@ -249,8 +251,10 @@ sequenceDiagram
 | `playbook/` | The process, for people. Six documents. |
 | `skills/<name>/SKILL.md` | One procedure per station, for the agent. Copied to `.claude/skills/`. |
 | `skills/<name>/references/` | Templates, language guides and example workflows a skill points at. |
-| `commands/h1.md` to `h4.md` | The four handoff commands. Copied to `.claude/commands/`. |
+| `commands/ready-for-dev.md`, `ready-for-review.md`, `ready-for-qa.md`, `ready-for-release.md` | The four handoff commands. Copied to `.claude/commands/`. |
+| `commands/wire-handoffs.md` | Onboarding step 4: finds the board, caches field IDs, proposes owners and a notify command, writes the config. |
 | `commands/README.md` | The contract every command follows, and the two config files. |
+| `skills/mainline-help/SKILL.md` | The front desk: where your work is, what to do next, which command runs it. |
 | `.github/mainline.json` *(in the project)* | Board parameters, `notify` command, default assignees. |
 | `.github/project-fields.json` *(in the project)* | Cached field and option IDs. |
 | `.github/workflows/gate.yml` *(in the project)* | The `gate` job branch protection requires. |

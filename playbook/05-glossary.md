@@ -19,11 +19,11 @@ is done. The stations are Inbox, Discovery, Requirement, Design, Build, Gate, Re
 Operate. See `02-stations.md`.
 
 **Handoff.** A place on the line where work changes hands from one role to another. There are exactly
-four: H1 (Product to Developer), H2 (Developer to Reviewer), H3 (Reviewer to QA), H4 (QA to
-Release). Every handoff runs a check, then is signed, assigned and notified. Everything else on the
+four: `/ready-for-dev` (Product to Developer), `/ready-for-review` (Developer to Reviewer),
+`/ready-for-qa` (Reviewer to QA), `/ready-for-release` (QA to Release). Every handoff runs a check, then is signed, assigned and notified. Everything else on the
 line is one person working their own loop.
 
-**H1, H2, H3, H4.** The four handoffs, and the four commands (`/h1` to `/h4`) that run them. Each
+**`/ready-for-dev`, `/ready-for-review`, `/ready-for-qa`, `/ready-for-release`.** The four handoffs, and the four commands that run them. Each
 command runs its station's checks, refuses to move the work if a check fails and names the failing
 check, moves the card, assigns the next owner, notifies them, and records the result on the ticket.
 See `commands/README.md`.
@@ -52,7 +52,7 @@ written discovery record. Owned by Product.
 specification; nothing else counts as a requirement.
 
 **Design.** The station where the developer does the system design: the domain model, the module
-boundaries and their contracts. Not UI/UX design, which is Product's work before H1. See the two
+boundaries and their contracts. Not UI/UX design, which is Product's work before `/ready-for-dev`. See the two
 side by side in `02-stations.md`.
 
 **Build.** The station where the developer implements to the scenarios, runs the full stack locally,
@@ -135,7 +135,7 @@ system, locally, before handoff.
 
 **Non-functional requirement (NFR).** A requirement about how the system behaves rather than what it
 does: authentication and single sign-on, tenancy, performance, compliance, data retention. Each is
-stated or explicitly marked not applicable at H1.
+stated or explicitly marked not applicable at `/ready-for-dev`.
 
 **Glossary (project).** The list of domain terms in the client's own words. Scenarios and the domain
 model use these terms and never invent synonyms. Distinct from this document, which defines the
@@ -255,7 +255,7 @@ See `04-improvement.md` and `/mainline-improvement-loop`.
 
 ## Design
 
-**UI/UX design.** What the screens look like and how the flow feels. Product's work, done before H1
+**UI/UX design.** What the screens look like and how the flow feels. Product's work, done before `/ready-for-dev`
 through `/mainline-ui-exploration` inside Discovery, and attached to the Slice as a prototype or
 screenshots.
 
@@ -281,7 +281,11 @@ implementing, reviewing. Agents run the skills.
 run by an agent. Every station has one. See `skills/README.md`.
 
 **Command.** A slash command installed into the project's `.claude/commands/`. The four handoff
-commands are `/h1` to `/h4`.
+commands are `/ready-for-dev`, `/ready-for-review`, `/ready-for-qa` and `/ready-for-release`;
+`/wire-handoffs` configures them. Skills are invoked the same way, as `/mainline-<name>`.
+
+**`/mainline-help`.** The skill to run when you do not know what to do next. It reads the board,
+says where your work is and which command moves it, and answers questions from the playbook.
 
 **Person.** Decides and signs. Priority, ambiguity, what the client actually meant, and
 accountability for what ships are always a person's.

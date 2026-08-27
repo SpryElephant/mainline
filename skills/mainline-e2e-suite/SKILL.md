@@ -100,7 +100,7 @@ At the QA station, per round:
 4. File defects against the requirement they violate.
 5. The new tests merge with the release, not after it.
 
-## Pass H4
+## Pass `/ready-for-release`
 
 The handoff into release. All of it, or the work does not move:
 
@@ -130,6 +130,6 @@ The handoff into release. All of it, or the work does not move:
 - **`/mainline-local-stack`** — what the suite runs against, locally and in CI.
 - **`/mainline-requirement-workflow`** — the `.feature` files every test traces back to.
 - **`/mainline-file-finding`** — quarantines and defects become tracked items.
-- **`/mainline-review-station`** — hands off at H3. **`/mainline-deployment-pipeline`** — receives at H4.
+- **`/mainline-review-station`** — hands off at `/ready-for-qa`. **`/mainline-deployment-pipeline`** — receives at `/ready-for-release`.
 - **`/mainline-observability`** — a defect that reached production should usually produce both an E2E test and
   an alert. The test stops the recurrence; the alert catches the next thing you did not think of.

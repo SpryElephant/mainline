@@ -1,10 +1,10 @@
 ---
-description: Hand a Slice from Review to QA — run the H3 checks, move Phase, assign QA, notify and record.
+description: Hand a Slice from Review to QA — run the `/ready-for-qa` checks, move Phase, assign QA, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---
 
-Run the **H3 handoff — Review → QA (Reviewer → QA)** for issue $1.
+Run the **`/ready-for-qa` handoff — Review → QA (Reviewer → QA)** for issue $1.
 
 Read `.github/mainline.json` and `.github/project-fields.json` for the project parameters and the
 field/option IDs. If either is missing, stop and say which.

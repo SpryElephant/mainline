@@ -1,11 +1,11 @@
 ---
 name: mainline-requirement-workflow
-description: The Product side of the delivery loop — decide whether the requirement can be written at all, capture it as Gherkin scenarios in a .feature file, and pass the H1 handoff into development. Also covers receiving the scenarios the domain model entails back from the design phase. Use when a work item enters Inbox, when writing or revising a requirement, and before handing work to a developer.
+description: The Product side of the delivery loop — decide whether the requirement can be written at all, capture it as Gherkin scenarios in a .feature file, and pass the `/ready-for-dev` handoff into development. Also covers receiving the scenarios the domain model entails back from the design phase. Use when a work item enters Inbox, when writing or revising a requirement, and before handing work to a developer.
 ---
 
 # Requirement workflow
 
-Product's half of the loop. It ends at **H1**, where the work changes hands.
+Product's half of the loop. It ends at **`/ready-for-dev`**, where the work changes hands.
 
 The requirement is the spine of everything downstream. Without it there is no QA — there is nothing
 to assure quality *against* — and no rewrite is possible, because there is nothing to rewrite *to*.
@@ -66,7 +66,7 @@ defence — the whole job of this step is to mention it.
 
 "N/A" is a real answer and a fast one. An unanswered line is not.
 
-## 4. Pass H1
+## 4. Pass `/ready-for-dev`
 
 The handoff into development. All of it, or the work does not move:
 
@@ -89,9 +89,9 @@ events, non-empty collections.
 
 This is the system working, not a rejection. The model can *prove* a scenario is missing, which is a
 stronger check than any human comparing two documents and feeling satisfied. Add them, and re-pass
-H1 for anything that changes scope.
+`/ready-for-dev` for anything that changes scope.
 
-## Scope changes after H1
+## Scope changes after `/ready-for-dev`
 
 A discovered requirement mid-build comes back here — it does not get absorbed into the branch. New
 scenario, re-signed, re-handed off. Scope that enters through the back door is scope nobody
@@ -101,7 +101,7 @@ estimated, tested, or agreed to.
 
 - **`/mainline-product-discovery`** — run when triage says nobody can write the Gherkin. Returns a discovery
   record whose Gherkin is the first draft of step 2, plus the glossary.
-- **`/mainline-development-workflow`** — receives at H1.
+- **`/mainline-development-workflow`** — receives at `/ready-for-dev`.
 - **`/mainline-domain-modeling`** — consumes the glossary; sends entailed scenarios back at step 5.
 - **`/mainline-ui-exploration`** — when the open question is visual direction rather than what to build.
 - **`/mainline-pmi-github-project`** — the board this work item sits on. One Slice per `.feature` file.

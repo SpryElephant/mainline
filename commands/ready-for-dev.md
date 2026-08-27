@@ -1,10 +1,10 @@
 ---
-description: Hand a Slice from Requirement to Design — run the H1 checks, move Phase, assign the developer, notify and record.
+description: Hand a Slice from Requirement to Design — run the `/ready-for-dev` checks, move Phase, assign the developer, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---
 
-Run the **H1 handoff — Requirement → Design (Product → Developer)** for issue $1.
+Run the **`/ready-for-dev` handoff — Requirement → Design (Product → Developer)** for issue $1.
 
 Read `.github/mainline.json` and `.github/project-fields.json` for the project parameters and the
 field/option IDs. If either is missing, stop and say which.

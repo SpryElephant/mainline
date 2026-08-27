@@ -1,10 +1,10 @@
 ---
-description: Hand a Slice from Gate to Review — run the H2 checks, move Phase, assign the reviewer, notify and record.
+description: Hand a Slice from Gate to Review — run the `/ready-for-review` checks, move Phase, assign the reviewer, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---
 
-Run the **H2 handoff — Gate → Review (Developer → Reviewer)** for issue $1.
+Run the **`/ready-for-review` handoff — Gate → Review (Developer → Reviewer)** for issue $1.
 
 Read `.github/mainline.json` and `.github/project-fields.json` for the project parameters and the
 field/option IDs. If either is missing, stop and say which.

@@ -9,10 +9,14 @@ habits.
 
 | Command | Handoff | From → to |
 |---|---|---|
-| `/h1` | Requirement → Design | Product → Developer |
-| `/h2` | Gate → Review | Developer → Reviewer |
-| `/h3` | Review → QA | Reviewer → QA |
-| `/h4` | QA → Release | QA → Release approver |
+| `/ready-for-dev` | Requirement → Design | Product → Developer |
+| `/ready-for-review` | Gate → Review | Developer → Reviewer |
+| `/ready-for-qa` | Review → QA | Reviewer → QA |
+| `/ready-for-release` | QA → Release | QA → Release approver |
+
+Two more commands live here and are not handoffs: `/wire-handoffs` writes the configuration below
+(onboarding step 4), and `/mainline-help` (a skill, in `skills/`) tells a person where their work is
+and which command to run.
 
 Filing a finding is not a handoff — that is the `/mainline-file-finding` skill, usable from inside any session.
 
@@ -35,7 +39,7 @@ and a `Platform` item — not a reason to pass the handoff anyway.
 
 ## Configuration
 
-Two files in the target repo:
+Two files in the target repo. `/wire-handoffs` writes both; `/wire-handoffs --check` verifies them.
 
 - **`.github/mainline.json`** — the project's own parameters:
 
