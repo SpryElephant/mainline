@@ -86,8 +86,10 @@ agent may do while running it:
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ```
 
-So a handoff command can read the repository and call the `gh` CLI, and nothing else. It cannot edit
-files, cannot run arbitrary shell, and cannot push. Within that envelope it does five things in
+`allowed-tools` pre-approves those tools for the command. Anything outside the list, such as the
+`notify` shell command, is not blocked outright but falls back to the session's normal permission
+prompt, so it interrupts the person on every handoff unless it is listed. Within that envelope the
+command does five things in
 order and stops at the first failure: run the station's checks, block and name the failure, move
 `Phase`, assign the next owner, notify them and record the result as an issue comment.
 
@@ -149,7 +151,7 @@ knowing which kind you are relying on.
 | The gate is one command, same locally and in CI | The Actions job runs the calibrated command | **Hard**, once calibrated. |
 | The domain model still validates | Separate Actions job running `tonto-cli validate` | **Hard.** Fails independently of the gate. |
 | No production module imports `prototypes/` | An architecture rule in gate dimension 2 | **Hard**, once the rule is written. |
-| A handoff refuses to move work past a failing check | The `/h` command's prompt: check, then block | **Soft.** The agent obeys the prompt; a person can still run `gh project item-edit` directly. |
+| A handoff refuses to move work past a failing check | The `/ready-for-…` command's prompt: check, then block | **Soft.** The agent obeys the prompt; a person can still run `gh project item-edit` directly. |
 | Only handoff commands change `Phase` | Convention | **Soft.** GitHub Projects has no field-level permission. |
 | Reviewer is never the author | `/ready-for-review` stops if the only candidate is the author | **Soft** in the command; **hard** at merge, since GitHub does not count the author's own approval. |
 | Findings are filed before the session ends | `/mainline-file-finding`, called from other skills | **Soft.** |
