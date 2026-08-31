@@ -28,7 +28,7 @@ config:
   layout: elk
 ---
 flowchart TB
-  subgraph session["Claude Code session (one person, one card)"]
+  subgraph session["Claude Code session (one person, one card, one station)"]
     person([Person]) -- "/ready-for-review 123" --> cmd["commands/ready-for-review.md<br/>allowed-tools: Bash(gh:*), Read, Grep, Glob"]
     cmd -- reads the checklist --> skill["skills/mainline-development-workflow/SKILL.md"]
     cmd -- reads --> cfg[".github/mainline.json<br/>.github/project-fields.json"]
@@ -153,6 +153,7 @@ knowing which kind you are relying on.
 | No production module imports `prototypes/` | An architecture rule in gate dimension 2 | **Hard**, once the rule is written. |
 | A handoff refuses to move work past a failing check | The `/ready-for-…` command's prompt: check, then block | **Soft.** The agent obeys the prompt; a person can still run `gh project item-edit` directly. |
 | Only handoff commands change `Phase` | Convention | **Soft.** GitHub Projects has no field-level permission. |
+| One station, one sitting | Stated in `00-overview.md`, in each station skill, and as step 4 of each `/ready-for-…` command | **Soft.** Nothing stops a session continuing past a handoff. The recorded comment timestamps make it visible afterwards. |
 | Reviewer is never the author | `/ready-for-review` stops if the only candidate is the author | **Soft** in the command; **hard** at merge, since GitHub does not count the author's own approval. |
 | Findings are filed before the session ends | `/mainline-file-finding`, called from other skills | **Soft.** |
 | Never lower a threshold to pass | Stated in every skill that touches the gate | **Soft** in the session; a lowered threshold is visible in the PR diff, so Review catches it. |
@@ -182,9 +183,15 @@ Mainline does not use them today, for three reasons:
    same way from any project that can run `gh`. Hooks are configured per machine or per project in
    `settings.json`, and they are the first thing that drifts between one developer's setup and
    another's.
-3. **Nothing has been run end to end yet.** The playbook was drafted 2026-08-25 and onboarding
-   step 8 is the first real test. Adding hooks before knowing which soft rules actually get broken
-   would be guessing at the failure mode.
+3. **The failure modes were not known yet.** The playbook was drafted 2026-08-25 and onboarding
+   step 8 was the first real test. Adding hooks before knowing which soft rules actually get broken
+   would have been guessing.
+
+   The first step-8 run has now happened, and it broke one: a single session carried a Feature
+   through every station and never ran a handoff command. The corpus permitted it — there was no
+   session-boundary rule, and `/mainline-pmi-github-project` explicitly excused solo projects from
+   the handoff commands. Both are fixed in the prompts, which makes **one station, one sitting** a
+   soft rule like the rest. It is now the leading hook candidate below.
 
 The playbook's own rule cuts the other way: *if a check can be a tool, it is a tool.* Several soft
 rules above could become hard with a hook, and the improvement loop is the right place to decide
@@ -192,6 +199,7 @@ which. Candidates, in rough order of value:
 
 | Soft rule today | Hook that would make it hard |
 |---|---|
+| One station, one sitting | `Stop`: after a `/ready-for-…` command runs, end the session rather than letting it continue into the next station. This is the one soft rule an observed step-8 run actually broke. |
 | Only handoff commands change `Phase` | `PreToolUse` on `Bash`: refuse `gh project item-edit` calls that set the `Phase` field unless invoked from one of the four `/ready-for-…` commands |
 | Run the gate continuously during Build | `PostToolUse` on `Edit` and `Write`: run the gate command (or its fast subset) and surface the result |
 | Findings are filed before the session ends | `Stop`: scan the transcript for unfiled findings and refuse to stop until they are filed or explicitly dismissed |

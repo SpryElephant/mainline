@@ -21,7 +21,18 @@ Operate. See `02-stations.md`.
 **Handoff.** A place on the line where work changes hands from one role to another. There are exactly
 four: `/ready-for-dev` (Product to Developer), `/ready-for-review` (Developer to Reviewer),
 `/ready-for-qa` (Reviewer to QA), `/ready-for-release` (QA to Release). Every handoff runs a check, then is signed, assigned and notified. Everything else on the
-line is one person working their own loop.
+line is one person working their own loop. A handoff is also where a **sitting** ends.
+
+**Sitting.** One continuous run of work on one card: a person at their desk, or an agent in one
+session. A sitting works one station and ends at the handoff. **One station, one sitting** is the
+fourth rule in `00-overview.md`, and it holds when one person or one agent holds every role — the
+value of a check is that it meets the work from outside, and a check run on work you finished ten
+minutes ago is a memory of doing it, not a check.
+
+**A handoff to yourself.** What a handoff is on a one-person project: the same login on both sides.
+It is still a handoff. The command runs, the checks run, the result is recorded, the sitting ends.
+The one exception is Review, where the reviewer is never the author — GitHub does not count an
+author's approval of their own PR.
 
 **`/ready-for-dev`, `/ready-for-review`, `/ready-for-qa`, `/ready-for-release`.** The four handoffs, and the four commands that run them. Each
 command runs its station's checks, refuses to move the work if a check fails and names the failing

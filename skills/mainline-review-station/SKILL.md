@@ -49,10 +49,16 @@ inline with a reason and never globally.
 - [ ] **Named human sign-off recorded** where an auditor can find it.
 - [ ] **Signed** by you · **assigned** to QA · **notified**.
 
+**Then stop.** `/ready-for-qa` ends the Review sitting. Do not run the suite against staging, and do
+not release. See "One station, one sitting" in `playbook/00-overview.md`.
+
 ## Failure modes
 
 - **Rubber-stamping the tool.** The tools produce findings, not decisions. Ungated approval of a
   findings list is not a review.
+- **Reviewing your own change.** The reviewer is never the author. This is the one boundary GitHub
+  enforces for you — it does not count an author's approval of their own PR — so working around it
+  takes deliberate effort. Do not.
 - **Reading the diff instead of the findings.** Slower, less thorough, and it crowds out step 4 —
   the only part of the job a tool cannot do.
 - **Waivers with no reason.** A waiver with no reason is a shrug, and it teaches the next reviewer

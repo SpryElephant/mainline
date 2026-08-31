@@ -7,6 +7,11 @@ Every handoff check ends the same way: **signed, assigned, notified.** A check t
 nobody holding the work has not finished. Each one is a `/ready-for-…` command that runs the
 checks, refuses to move the card if one fails, and records the result on the ticket.
 
+**A handoff is where a sitting ends.** Run the command and stop; the next station is the next
+sitting, even when you own it too. Two places on the line are deliberately not handoffs and are
+marked as such below — those you work straight through. See "One station, one sitting" in
+`00-overview.md`.
+
 ---
 
 ## Inbox

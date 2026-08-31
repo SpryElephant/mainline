@@ -29,6 +29,11 @@ WBS, a roadmap, a risk register, and progress tracking.
 **The key idea:** the board's `Phase` field *is* your delivery process, so the board visualises and
 enforces the methodology instead of a generic To-Do/Doing/Done.
 
+**What is never tailored away:** the four handoffs and the station boundaries between them. What
+scales down on a small team is PMI's ceremony, not the line's checks. A one-person project runs all
+four `/ready-for-…` commands, and each one ends the sitting — see `playbook/00-overview.md`, "One
+station, one sitting".
+
 ## Prerequisites
 ```bash
 # gh authenticated as the right account, with these scopes:
@@ -155,9 +160,10 @@ is wrong), **Auto-add sub-issues to project**, **Item closed → Status: Done**,
 
 > **On Mainline, `Phase` is not pulled by hand.** Each of the four handoffs is a command that runs
 > that station's checks, refuses to move the card if one fails, sets the next assignee, and notifies
-> them. For a solo project, hand-pulling *is* the kanban signal and this note does not apply. With
-> four people it is where work goes to die: nobody is sure whose turn it is, and the checks are
-> whatever each person remembered.
+> them. **This holds at every team size, including one person.** Hand-pulling `Phase` skips the
+> checks, and skipped checks are what the line exists to prevent. With four people it is also where
+> work goes to die: nobody is sure whose turn it is, and the checks are whatever each person
+> remembered.
 
 ## Step 8 — Versioning & branching (trunk-based, CI-enforced)
 ```bash

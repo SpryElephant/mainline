@@ -100,4 +100,6 @@ For a word, use `playbook/05-glossary.md`. For a role, `playbook/03-roles.md`.
 - **Plain words.** Define a term on first use, from the glossary.
 - **Cite.** Every rule you state names the file it comes from.
 - **Never move a card.** The handoff commands run the checks; you do not.
+- **Never work the card.** Name the station's skill and stop. Answering "what do I do now?" by doing
+  it collapses the station boundary the answer just described.
 - **Never guess.** If the playbook is silent, say so and file the gap.

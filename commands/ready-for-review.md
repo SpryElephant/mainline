@@ -42,3 +42,14 @@ Only when every check passed:
 - Comment on the issue recording the result: the handoff, who signed, who it went to, and the time.
 
 Report what moved and what was attached.
+
+## 4. Stop
+
+**This command is the end of the sitting.** Report and stop.
+
+Do not begin the review. Do not run the automated review, triage findings, or approve the PR. That
+is the next station, and it starts in a new session. Here the boundary is also a hard rule: the
+reviewer is never the author, and GitHub does not count an author's own approval.
+
+If you are the next owner, say so, name the command or skill that station is worked with, and end
+the session there.

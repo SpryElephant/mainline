@@ -22,7 +22,7 @@ Filing a finding is not a handoff — that is the `/mainline-file-finding` skill
 
 ## The contract
 
-Every one of them does the same five things, in this order, **stopping at the first failure**:
+Every one of them does the same six things, in this order, **stopping at the first failure**:
 
 1. **Runs the handoff checks** for that station. The checklist lives in the station's skill; the
    command does not restate it, so there is one place to change a check.
@@ -30,12 +30,30 @@ Every one of them does the same five things, in this order, **stopping at the fi
 3. **Moves `Phase`** on the board.
 4. **Assigns** the next owner.
 5. **Notifies** them with everything attached, and **records the result on the ticket** as a comment.
+6. **Stops.** The command is the end of the sitting. It reports what moved and does not begin the
+   next station's work.
 
 A check that passes but leaves nobody holding the work has not finished. A handoff that moves work
 without recording the result leaves the lead nothing to read.
 
 **Never move a card past a failing check.** If a check is wrong, that is an `/mainline-improvement-loop` entry
 and a `Platform` item — not a reason to pass the handoff anyway.
+
+## One station, one sitting
+
+**A handoff ends the sitting.** The command runs, reports, and stops. The next station starts in a
+new session, even when the same person or the same agent owns it — the rule is in
+`playbook/00-overview.md`.
+
+This is the rule that quietly disappears on a small team, because the handoff then looks like
+paperwork addressed to yourself. It is not. The check is the point, and a check you run on work you
+have not yet started is worth something; a check you run on work you finished ten minutes ago is a
+memory of doing it.
+
+**A handoff to yourself is still a handoff.** Where the next owner resolves to the person running
+the command, the command still runs every check, still moves `Phase`, still records the result, and
+still stops. Skipping it because "I am the developer too" is the failure this section exists to
+name.
 
 ## Configuration
 
@@ -65,4 +83,7 @@ message landed.
 
 `assignees` holds the default owner per station. A command uses it when the next owner is not passed
 explicitly, and refuses to move the card when neither is available — unassigned work is how a station
-silently fills up.
+silently fills up. On a one-person project every entry is the same login, and that is a valid
+configuration: the handoff still runs. The one entry that may not repeat the author is `review` —
+GitHub does not count an author's approval of their own PR, so a review assigned back to the author
+cannot be signed.
