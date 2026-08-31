@@ -10,8 +10,8 @@ learn it; the cost of capturing it is thirty seconds and the cost of losing it i
 again, later, more expensively.
 
 File it **now, from inside the session** — not at the end of the task, not in a note to yourself.
-This is the harvesting rule that `mainline-development-workflow`, `mainline-product-discovery`, `mainline-e2e-suite`,
-`mainline-review-station` and `mainline-observability` all defer to.
+This is the harvesting rule that `/mainline-development-workflow`, `/mainline-product-discovery`, `/mainline-e2e-suite`,
+`/mainline-review-station` and `/mainline-observability` all defer to.
 
 ## 0. Cache the board IDs — once per repo
 
@@ -35,7 +35,7 @@ downstream is automatic.
 |---|---|---|---|
 | Something is broken against a stated requirement | `Bug` | `type:bug` | `bug.yml` |
 | A threat to scope, schedule or quality that has not happened yet | `Risk` | `type:risk` | `risk.yml` |
-| A rule nobody wrote down — the system does something no scenario covers | `Slice` | `type:slice` | `slice.yml` |
+| A rule nobody wrote down — the system does something no scenario covers | `Feature` | `type:feature` | `feature.yml` |
 | A material change to the scope baseline, sequence, or a committed decision | `Change request` | `type:change-request` | `change-request.yml` |
 | A question that must be answered before scope can be committed | `Spike` | `type:spike` | `spike.yml` |
 | Structure worth improving, no behavior change | `Refactor` | `type:refactor` | blank |
@@ -43,7 +43,7 @@ downstream is automatic.
 | Housekeeping with no user-visible effect | `Chore` | `type:chore` | blank |
 
 **A defect that cites no requirement is not a bug.** It is either a missing requirement — file it as
-a Slice and assign it to Product — or a preference, which is not a finding at all.
+a Feature and assign it to Product — or a preference, which is not a finding at all.
 
 **When two fit, file the cheaper one.** A `Spike` that turns out to be a `Change request` costs an
 hour. A `Change request` that was only ever a question costs a governance cycle.
@@ -127,11 +127,11 @@ triage, which is the one decision that is not yours to make from inside a sessio
 
 ## Relationships
 
-- **`mainline-pmi-github-project`** — the board, the fields, the labels and the issue forms this skill writes
+- **`/mainline-pmi-github-project`** — the board, the fields, the labels and the issue forms this skill writes
   into. Stand it up first.
-- **`mainline-development-workflow`** — "file what you find, now" at build time.
-- **`mainline-product-discovery`** — `ASSUM` observations become risks through this skill.
-- **`mainline-e2e-suite`** — a quarantined flaky test files a ticket the same day.
-- **`mainline-review-station`** — a repeated waiver files a `Platform` item against the rule.
-- **`mainline-observability`** — an alert or error group becomes a work item the same way.
-- **`mainline-improvement-loop`** — amendments to a check are `Platform` findings with an owner and a date.
+- **`/mainline-development-workflow`** — "file what you find, now" at build time.
+- **`/mainline-product-discovery`** — `ASSUM` observations become risks through this skill.
+- **`/mainline-e2e-suite`** — a quarantined flaky test files a ticket the same day.
+- **`/mainline-review-station`** — a repeated waiver files a `Platform` item against the rule.
+- **`/mainline-observability`** — an alert or error group becomes a work item the same way.
+- **`/mainline-improvement-loop`** — amendments to a check are `Platform` findings with an owner and a date.

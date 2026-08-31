@@ -1,17 +1,17 @@
 ---
-description: Hand a Slice from Requirement to Design — run the H1 checks, move Phase, assign the developer, notify and record.
+description: Hand a Feature from Requirement to Design — run the `/ready-for-dev` checks, move Phase, assign the developer, notify and record.
 argument-hint: <issue-number> [assignee]
 allowed-tools: Bash(gh:*), Read, Grep, Glob
 ---
 
-Run the **H1 handoff — Requirement → Design (Product → Developer)** for issue $1.
+Run the **`/ready-for-dev` handoff — Requirement → Design (Product → Developer)** for issue $1.
 
 Read `.github/mainline.json` and `.github/project-fields.json` for the project parameters and the
 field/option IDs. If either is missing, stop and say which.
 
 ## 1. Run the checks
 
-The checklist is **`mainline-requirement-workflow` step 4**. Read it there and verify each line against the
+The checklist is **`/mainline-requirement-workflow` step 4**. Read it there and verify each line against the
 issue and the repo — do not work from memory, and do not accept a check you cannot evidence.
 
 What each line means in practice:

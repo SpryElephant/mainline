@@ -38,11 +38,11 @@
 - **Assumption:** <key assumption, validated per item in the design phase>
 
 ## 7. Governance — how work flows
-Every requirement flows **Requirement → Design → Build → Gate → Done**, mirrored by the board's `Phase`:
+Every requirement flows **Requirement → Design → Build → Verify → Done**, mirrored by the board's `Phase`:
 1. **Requirement** — the executable spec (e.g. acceptance tests / scenarios).
 2. **Design** — decompose + define module API; record it as a numbered design doc (ADR).
 3. **Build** — implement, gated continuously by the quality gate.
-4. **Gate** — the binding pass/fail checks (tests, architecture, static analysis, coverage).
+4. **Verify** — run the gate, the binding pass/fail checks (tests, architecture, static analysis, coverage).
 
 The step-by-step for working an item, and the rule that **design docs are the durable record while
 issues are transient trackers that link to them**, lives in the design-doc README.

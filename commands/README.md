@@ -9,12 +9,16 @@ habits.
 
 | Command | Handoff | From → to |
 |---|---|---|
-| `/h1` | Requirement → Design | Product → Developer |
-| `/h2` | Gate → Review | Developer → Reviewer |
-| `/h3` | Review → QA | Reviewer → QA |
-| `/h4` | QA → Release | QA → Release approver |
+| `/ready-for-dev` | Requirement → Design | Product → Developer |
+| `/ready-for-review` | Verify → Review | Developer → Reviewer |
+| `/ready-for-qa` | Review → QA | Reviewer → QA |
+| `/ready-for-release` | QA → Release | QA → Release approver |
 
-Filing a finding is not a handoff — that is the `mainline-file-finding` skill, usable from inside any session.
+Two more commands live here and are not handoffs: `/wire-handoffs` writes the configuration below
+(onboarding step 4), and `/mainline-help` (a skill, in `skills/`) tells a person where their work is
+and which command to run.
+
+Filing a finding is not a handoff — that is the `/mainline-file-finding` skill, usable from inside any session.
 
 ## The contract
 
@@ -30,12 +34,12 @@ Every one of them does the same five things, in this order, **stopping at the fi
 A check that passes but leaves nobody holding the work has not finished. A handoff that moves work
 without recording the result leaves the lead nothing to read.
 
-**Never move a card past a failing check.** If a check is wrong, that is an `mainline-improvement-loop` entry
+**Never move a card past a failing check.** If a check is wrong, that is an `/mainline-improvement-loop` entry
 and a `Platform` item — not a reason to pass the handoff anyway.
 
 ## Configuration
 
-Two files in the target repo:
+Two files in the target repo. `/wire-handoffs` writes both; `/wire-handoffs --check` verifies them.
 
 - **`.github/mainline.json`** — the project's own parameters:
 
@@ -50,7 +54,7 @@ Two files in the target repo:
   }
   ```
 
-- **`.github/project-fields.json`** — the cached field and option IDs, the same cache `mainline-file-finding`
+- **`.github/project-fields.json`** — the cached field and option IDs, the same cache `/mainline-file-finding`
   uses. Refresh it with `gh project field-list "$PN" --owner "$OWNER" --format json` when a field or
   option is added.
 

@@ -15,14 +15,14 @@ nothing about the line changed.
 
 1. **Name the escape.** What was wrong, and where it surfaced. One sentence.
 2. **Find the earliest handoff that could have caught it.** Not the closest — the earliest. A missing
-   requirement discovered in QA escaped H1, not H3. Amending H3 to catch missing requirements is how
+   requirement discovered in QA escaped `/ready-for-dev`, not `/ready-for-qa`. Amending `/ready-for-qa` to catch missing requirements is how
    checklists become long and useless.
 3. **Amend that check**, in this order of preference:
    - **A tool** that fails automatically. Always this if it is possible.
    - **A checklist line** on the handoff, if a tool cannot express it.
    - **Nothing.** Some things are genuinely one-offs. Record the decision not to change anything —
      that stops the same debate recurring.
-4. **File the amendment as a `Platform` work item** (`mainline-file-finding`) — owner and date — unless it is a one-line edit
+4. **File the amendment as a `Platform` work item** (`/mainline-file-finding`) — owner and date — unless it is a one-line edit
    you are making right now. An agreed change with nobody assigned is a change that did not happen,
    and this is the step most often skipped.
 5. **Record it in the ledger.**
@@ -52,12 +52,12 @@ account.
 
 | Source | Entry looks like |
 |---|---|
-| A defect QA found that Review should have caught | Escape at H3 or earlier |
-| A requirement gap found in Build | Escape at H1 |
-| An incident (`mainline-observability`) | The missing signal, plus the earliest check that could have caught the defect |
-| A repeated waiver (`mainline-review-station`) | A miscalibrated rule, not a fourth waiver |
-| A growing E2E quarantine list (`mainline-e2e-suite`) | The suite is dying; that is a station problem |
-| A defect traced to emulator drift (`mainline-local-stack`) | A missing contract test against the real service |
+| A defect QA found that Review should have caught | Escape at `/ready-for-qa` or earlier |
+| A requirement gap found in Build | Escape at `/ready-for-dev` |
+| An incident (`/mainline-observability`) | The missing signal, plus the earliest check that could have caught the defect |
+| A repeated waiver (`/mainline-review-station`) | A miscalibrated rule, not a fourth waiver |
+| A growing E2E quarantine list (`/mainline-e2e-suite`) | The suite is dying; that is a station problem |
+| A defect traced to emulator drift (`/mainline-local-stack`) | A missing contract test against the real service |
 
 ## What to measure
 
@@ -82,8 +82,8 @@ create the impression of measurement.
 
 ## Relationships
 
-- **`mainline-review-station`**, **`mainline-e2e-suite`**, **`mainline-observability`**, **`mainline-local-stack`** — the four commonest
+- **`/mainline-review-station`**, **`/mainline-e2e-suite`**, **`/mainline-observability`**, **`/mainline-local-stack`** — the four commonest
   sources of entries.
-- **`mainline-quality-gate`** / **`mainline-security-gate`** — where a tool-shaped amendment lands.
-- **`mainline-file-finding`** — how an amendment becomes a tracked item.
-- **`mainline-pmi-github-project`** — amendments are `Platform` work items on the board.
+- **`/mainline-quality-gate`** / **`/mainline-security-gate`** — where a tool-shaped amendment lands.
+- **`/mainline-file-finding`** — how an amendment becomes a tracked item.
+- **`/mainline-pmi-github-project`** — amendments are `Platform` work items on the board.

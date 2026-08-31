@@ -1,20 +1,20 @@
-name: "Slice — deliverable increment"
+name: "Feature — deliverable increment"
 description: "A vertical increment of an epic, small enough to land gate-green in one pass."
-title: "Slice: <epic> — <increment>"
-labels: ["type:slice"]
+title: "Feature: <epic> — <increment>"
+labels: ["type:feature"]
 body:
   - type: input
     id: parent
     attributes:
       label: Parent epic
-      description: The epic this slice belongs under (link or #number). Add it as a sub-issue too.
+      description: The epic this feature belongs under (link or #number). Add it as a sub-issue too.
       placeholder: "#N"
     validations:
       required: true
   - type: textarea
     id: scope
     attributes:
-      label: Scope of this slice
+      label: Scope of this feature
     validations:
       required: true
   - type: textarea

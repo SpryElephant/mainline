@@ -26,24 +26,30 @@ flowchart LR
   Inbox -. "nobody can write<br/>the spec yet" .-> Discovery
   Discovery --> Requirement
 
-  Requirement -- "H1<br/>Product → Dev" --> Design
+  Requirement -- "/ready-for-dev<br/>Product → Dev" --> Design
   Design --> Build
-  Build --> Gate
-  Gate -- "H2<br/>Dev → Reviewer" --> Review
-  Review -- "H3<br/>Reviewer → QA" --> QA
-  QA -- "H4<br/>QA → Release" --> Release
+  Build --> Verify
+  Verify -- "/ready-for-review<br/>Dev → Reviewer" --> Review
+  Review -- "/ready-for-qa<br/>Reviewer → QA" --> QA
+  QA -- "/ready-for-release<br/>QA → Release" --> Release
   Release --> Done
   Done --> Operate
   Operate -. "new work · escaped defects" .-> Inbox
 
   classDef handoff stroke-width:3px
-  class Requirement,Gate,Review,QA handoff
+  class Requirement,Verify,Review,QA handoff
 ```
 
-Only four transitions change hands. **H1** Product → Developer. **H2** Developer → Reviewer.
-**H3** Reviewer → QA. **H4** QA → Release. Those four are the handoffs, and they are the only places
+Only four transitions change hands. `/ready-for-dev` Product → Developer. `/ready-for-review`
+Developer → Reviewer. `/ready-for-qa` Reviewer → QA. `/ready-for-release` QA → Release. Those four are the handoffs, and they are the only places
 that need a check, a signature, an assignment, and a notification. Everything else is one person
 working their own loop.
+
+**"Design" on the line means system design.** The Design station is where the developer models the
+domain and derives the module boundaries and contracts. UI/UX design, meaning what the screens look
+like and how the flow feels, is Product's work and happens before `/ready-for-dev`, as part of Discovery. By the
+time a Feature reaches Design, its visual direction is already chosen and attached. The Design station
+in `02-stations.md` shows the two side by side.
 
 ## What runs the stations
 
@@ -51,22 +57,23 @@ Every station has a skill behind it, installed into the project from `skills/`:
 
 | Station | Skill | In one line |
 |---|---|---|
-| Discovery | `mainline-product-discovery` | Throwaway prototype, real sessions, live observation log → Gherkin |
-| Discovery | `mainline-ui-exploration` | Several genuinely different UI directions, compared as working prototypes |
-| Requirement | `mainline-requirement-workflow` | The spec is a `.feature` file. Nothing else counts as a requirement. |
-| Design | `mainline-domain-modeling` | Model the domain in Tonto, derive the design from it, get the module contracts |
-| Build | `mainline-development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
-| Build | `mainline-local-stack` | The whole system on one machine with one command |
-| Gate | `mainline-quality-gate` | Seven dimensions behind one command. Done means green. |
-| Review | `mainline-review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
-| Review | `mainline-security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
-| QA | `mainline-e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |
-| Release | `mainline-deployment-pipeline` | Merge to production, automated and reversible |
-| Operate | `mainline-observability` | Instrument before ship; alert on what users feel |
+| Discovery | `/mainline-product-discovery` | Throwaway prototype, real sessions, live observation log → Gherkin |
+| Discovery | `/mainline-ui-exploration` | UI/UX design. Several genuinely different UI directions, compared as working prototypes |
+| Requirement | `/mainline-requirement-workflow` | The spec is a `.feature` file. Nothing else counts as a requirement. |
+| Design | `/mainline-domain-modeling` | System design. Model the domain in Tonto, derive the design from it, get the module contracts |
+| Build | `/mainline-development-workflow` | Implement to the scenarios, validate on a running stack, gate green |
+| Build | `/mainline-local-stack` | The whole system on one machine with one command |
+| Verify | `/mainline-quality-gate` | Run the gate until green. Seven dimensions behind one command. Done means green. |
+| Review | `/mainline-review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
+| Review | `/mainline-security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
+| QA | `/mainline-e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |
+| Release | `/mainline-deployment-pipeline` | Merge to production, automated and reversible |
+| Operate | `/mainline-observability` | Instrument before ship; alert on what users feel |
 
-Orthogonal to the line: `mainline-file-finding` to harvest what any station turns up, `mainline-refactoring` and
-`mainline-refactor-smells` for behavior-preserving change, `mainline-improvement-loop` for what the line learns when
-something escapes, and `mainline-pmi-github-project` to stand the board up once.
+Orthogonal to the line: `/mainline-help` to find out where you are and what to do next,
+`/mainline-file-finding` to harvest what any station turns up, `/mainline-refactoring` and
+`/mainline-refactor-smells` for behavior-preserving change, `/mainline-improvement-loop` for what the line learns when
+something escapes, and `/mainline-pmi-github-project` to stand the board up once.
 
 ## Three rules that make the rest work
 
@@ -87,8 +94,11 @@ something escapes, and `mainline-pmi-github-project` to stand the board up once.
 
 ## How to use this playbook
 
+- **On a project that is already on Mainline?** → run `/mainline-help`. It tells you where your
+  work is, what to do next, and which command runs it.
 - **Onboarding a project?** → `01-onboarding.md`. Eight steps, each with an acceptance test. When
   step 8 passes, the project is on Mainline.
-- **Working a ticket?** → `03-roles.md`, your role's card.
+- **Working a ticket, or not sure what a role covers?** → `03-roles.md`, your role's card.
 - **Need the detail of one station?** → `02-stations.md`.
 - **Something escaped?** → `04-improvement.md`.
+- **Met a word you do not know?** → `05-glossary.md`.

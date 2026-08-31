@@ -36,7 +36,7 @@ is a step wired into that one command.
 | Cucumber-JVM + JUnit 5 | `behave`, `pytest-bdd` | Reqnroll / SpecFlow | `@cucumber/cucumber`, `jest-cucumber` | `godog` |
 
 ### 2. Architecture — boundaries as tests
-- Encode the boundaries from `mainline-domain-modeling` as **architecture tests**: module dependency rules,
+- Encode the boundaries from `/mainline-domain-modeling` as **architecture tests**: module dependency rules,
   public-vs-internal access, naming, layering.
 - Architecture is enforced by tests, not by review convention. **A boundary that isn't tested isn't a
   boundary.**
@@ -59,7 +59,7 @@ is a step wired into that one command.
 
 ### 4. Test adequacy — complexity, coverage & CRAP
 - **Cyclomatic complexity** per method is bounded; outliers are flagged and refactored (see
-  `mainline-refactor-smells`).
+  `/mainline-refactor-smells`).
 - **Coverage** thresholds are enforced by the gate.
 - **CRAP score** (complexity × coverage — high complexity *must* be well covered or simplified) per
   method must stay under threshold. This is the metric that couples the two: it forbids complex code
@@ -112,12 +112,12 @@ client against the full stack, real navigation, real persistence, no test double
 It is the only dimension that can catch a defect living *between* correctly-implemented modules.
 
 **The developer is gated on regression, not on authorship.** This dimension asserts that the
-existing suite still passes. Growing the suite for new behavior belongs to QA (`mainline-e2e-suite`), at the
+existing suite still passes. Growing the suite for new behavior belongs to QA (`/mainline-e2e-suite`), at the
 QA station. The split is deliberate: gating a developer on tests that QA owns and must author would
 deadlock the merge, and letting developers write throwaway E2E tests to unblock themselves produces
 a suite nobody trusts.
 
-- **Runs against the local full stack** (`mainline-local-stack`), so it behaves identically on a laptop and in
+- **Runs against the local full stack** (`/mainline-local-stack`), so it behaves identically on a laptop and in
   CI. An E2E suite that only runs in CI cannot be debugged.
 - **Flake is failure.** A flaky test is worse than no test — it teaches the team to re-run the gate
   instead of reading it, and one re-run habit kills every dimension's authority. Quarantine a flaky
@@ -168,7 +168,7 @@ threshold to pass.
 
 ## Not a gate dimension: domain-model validation
 
-`tonto-cli validate` belongs to the **design phase** (`mainline-domain-modeling`), not to this gate. The gate
+`tonto-cli validate` belongs to the **design phase** (`/mainline-domain-modeling`), not to this gate. The gate
 binds only on tools whose failure always means the *code* is wrong, and it is the proof — coupling it
 to a 0.4.x single-maintainer tool would put its authority at the mercy of an upstream regression.
 

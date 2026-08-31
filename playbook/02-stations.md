@@ -4,21 +4,21 @@ Each station: what it is for, who owns it, what it produces, and — where work 
 handoff check that must pass before it moves.
 
 Every handoff check ends the same way: **signed, assigned, notified.** A check that passes but leaves
-nobody holding the work has not finished. Each one is a command — `/h1` … `/h4` — that runs the
+nobody holding the work has not finished. Each one is a `/ready-for-…` command that runs the
 checks, refuses to move the card if one fails, and records the result on the ticket.
 
 ---
 
 ## Inbox
 
-**Owner:** lead. **Skill:** `mainline-requirement-workflow` §1
+**Owner:** lead. **Skill:** `/mainline-requirement-workflow` §1
 
 Triage. Set Work Type, Area, Size, Priority, Target. Then one decision:
 
 > **Can somebody write the Gherkin?**
 > Yes → Requirement. No → Discovery (a Spike, timeboxed, off the pipeline).
 
-**Not everything is a Slice.** A bug fix, and `Platform` work on the line itself — the gate command,
+**Not everything is a Feature.** A bug fix, and `Platform` work on the line itself — the gate command,
 the local stack, the handoff commands, CI, alerting — enter here too and go straight to Build,
 skipping Requirement and Design. They are still gated, reviewed and released like anything else.
 Platform work is tracked as work precisely so that maintaining the line does not become invisible
@@ -32,7 +32,7 @@ with full rigor — the most expensive possible way to be wrong.
 
 ## Discovery *(off-pipeline)*
 
-**Owner:** Product. **Skill:** `mainline-product-discovery`. **Work Type:** Spike.
+**Owner:** Product. **Skill:** `/mainline-product-discovery`. **Work Type:** Spike.
 
 Run when nobody can state the acceptance criteria — a client described an outcome, the rules live in
 an operator's head, the value is disputed, or you are replacing a system nobody documented.
@@ -43,7 +43,7 @@ an operator's head, the value is disputed, or you are replacing a system nobody 
 2. **Choose the medium and the participant** for that risk class. Cheapest thing that can falsify the
    assumption wins: fake door, landing page, concierge, Wizard of Oz, paper, clickable, live-data,
    spike. For a legacy system: a read-only spike, with the current system's owner. When the open
-   question is visual direction, the medium is `mainline-ui-exploration` — several worlds compared, not one
+   question is visual direction, the medium is `/mainline-ui-exploration` — several worlds compared, not one
    prototype tested.
 3. **Build it quarantined** — `prototypes/<name>/`, outside the build, invisible to CI and coverage,
    and no production module may import it. Real domain content, never placeholder. The whole flow
@@ -69,9 +69,9 @@ unfinished becomes a risk.
 
 ## Requirement
 
-**Owner:** Product. **Skill:** `mainline-requirement-workflow`.
+**Owner:** Product. **Skill:** `/mainline-requirement-workflow`.
 
-One `.feature` file per Slice, in Gherkin. **This is the spec.** Not the ticket description, not the
+One `.feature` file per Feature, in Gherkin. **This is the spec.** Not the ticket description, not the
 Figma, not the conversation.
 
 Scenarios state what a person achieved, never what the screen did. *"Ana refunds a R$120 cash order
@@ -81,7 +81,7 @@ participant's own words from the glossary.
 Expect to come back here after Design: the domain model entails scenarios the requirement did not
 state.
 
-### H1 — Requirement → Design *(Product → Developer)* — `/h1`
+### `/ready-for-dev` — Requirement → Design *(Product → Developer)*
 
 - [ ] A `.feature` file exists. Every scenario is Given/When/Then and is testable.
 - [ ] **Every scenario traces to something observed or to a stated business rule.** No invented
@@ -103,7 +103,23 @@ state.
 
 ## Design
 
-**Owner:** the developer who will build it. **Skill:** `mainline-domain-modeling`.
+**Owner:** the developer who will build it. **Skill:** `/mainline-domain-modeling`.
+
+**This station is system design.** It decides how the software is structured: the domain model, the
+module boundaries and their contracts, the data model, and the architecture rules the gate will
+enforce. It is not UI/UX design. What the screens look like and how the flow feels is decided by
+Product before `/ready-for-dev`, through `/mainline-ui-exploration` inside Discovery, and arrives here attached to
+the Feature as a prototype or screenshots. The developer builds to that design. If it cannot be built
+as drawn, that is a conversation with Product, not a redesign in Build.
+
+| | UI/UX design | System design |
+|---|---|---|
+| Question it answers | What does the person see and do, and how does it feel? | How is the software structured so the scenarios hold? |
+| Owner | Product | The developer who will build it |
+| When | Before `/ready-for-dev`, during Discovery | After `/ready-for-dev`, at this station |
+| Skill | `/mainline-ui-exploration` | `/mainline-domain-modeling` |
+| Output | A chosen direction, a prototype or screenshots, the design decisions | A validated `.tonto` model, module contracts, architecture rules |
+| Where it lives | Attached to the Feature | `domain/` in the repo |
 
 Not a document — the artifact the design is *derived* from, and it lives in the repo.
 
@@ -139,23 +155,26 @@ coding — still gated, no design pass. Re-enter Design only when the change alt
 
 ## Build
 
-**Owner:** developer. **Skills:** `mainline-development-workflow`, `mainline-local-stack`.
+**Owner:** developer. **Skills:** `/mainline-development-workflow`, `/mainline-local-stack`.
 
 Implement to the scenarios. Respect module public APIs. Run the gate continuously.
 
 - **Full stack, locally.** Start the whole system and validate each acceptance criterion against it
   before handing off. An agent's loop closes on validated criteria — not on "the code looks right."
-- **Full stack, one change.** A Slice is one `.feature`; make it one PR. Front-end and back-end are
+- **Full stack, one change.** A Feature is one `.feature`; make it one PR. Front-end and back-end are
   not two jobs.
-- **File what you find, now** (`mainline-file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
+- **File what you find, now** (`/mainline-file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
   assigned, notified ticket from inside the session. You spent effort to learn it; harvest it. A
   finding you meant to mention tomorrow is a finding you threw away.
 
 ---
 
-## Gate
+## Verify
 
-**Owner:** developer. **Skill:** `mainline-quality-gate`.
+**Owner:** developer. **Skill:** `/mainline-quality-gate`.
+
+The developer proves the work is done by running the gate until it is green. The station is
+called Verify so that "gate" means one thing only: the command.
 
 Seven dimensions, one command, exits non-zero on any failure. CI runs the same command. Branch
 protection requires it. **Local equals CI.**
@@ -173,13 +192,13 @@ protection requires it. **Local equals CI.**
 **Done means green.** Never weaken a spec or lower a threshold to pass. The gate is the proof; it is
 not a report someone interprets.
 
-Not a handoff — this is Build's exit condition, and H2's precondition.
+Not a handoff — this is Build's exit condition, and the precondition for `/ready-for-review`.
 
 ---
 
 ## Review
 
-**Owner:** a reviewer who is not the author. **Skills:** `mainline-review-station`, `mainline-security-gate`.
+**Owner:** a reviewer who is not the author. **Skills:** `/mainline-review-station`, `/mainline-security-gate`.
 
 Every change is reviewed by another **person**. Keep the person — drop the assumption that they must
 read every line. A human reading a large diff carefully is slower and less thorough than a tool, and
@@ -192,14 +211,14 @@ we have tools.
    to the diff line by line.
 4. Findings are fixed, or waived **with a written reason**. "Looks fine" is not a reason.
 
-### H2 — Gate → Review *(Developer → Reviewer)* — `/h2`
+### `/ready-for-review` — Verify → Review *(Developer → Reviewer)*
 
 - [ ] Gate green in CI on the branch.
 - [ ] Every acceptance scenario passing, with validation evidence on the ticket.
 - [ ] No unrelated changes. Behavior-preserving refactors are separate commits, and separate PRs.
 - [ ] **Signed** by the developer · **assigned** to a reviewer · **notified**.
 
-### H3 — Review → QA *(Reviewer → QA)* — `/h3`
+### `/ready-for-qa` — Review → QA *(Reviewer → QA)*
 
 - [ ] Automated review run; findings resolved or waived with a reason.
 - [ ] Security pass clean.
@@ -211,7 +230,7 @@ we have tools.
 
 ## QA
 
-**Owner:** QA. **Skill:** `mainline-e2e-suite`.
+**Owner:** QA. **Skill:** `/mainline-e2e-suite`.
 
 QA assures quality **against the requirements**. That is why the requirement is the spine: without a
 written spec there is no such thing as QA, only people clicking around hoping to notice something.
@@ -220,7 +239,7 @@ written spec there is no such thing as QA, only people clicking around hoping to
 2. **Explore what the suite cannot express.** Judgment, not repetition. If you are executing the same
    manual steps a third time, that is a test case, not a QA activity.
 3. **Add what you find to the permanent suite.** QA's work compounds or it is wasted. The suite is
-   yours: you decide what is in it, and `mainline-quality-gate` dimension 6 makes it binding on every
+   yours: you decide what is in it, and `/mainline-quality-gate` dimension 6 makes it binding on every
    developer. That split is deliberate — a developer writing the E2E test for their own feature
    writes the one that passes, and a suite that does not block a merge is documentation.
 4. **File defects against the requirement they violate.** A defect that cites no requirement is
@@ -231,7 +250,7 @@ written spec there is no such thing as QA, only people clicking around hoping to
 **Cadence:** a scheduled run at a fixed time, plus an expedite path when someone asks. Both are
 commands; neither is a person remembering.
 
-### H4 — QA → Release — `/h4`
+### `/ready-for-release` — QA → Release
 
 - [ ] Suite green on staging.
 - [ ] New coverage merged into the permanent suite, shipping *with* the release rather than after.
@@ -243,7 +262,7 @@ commands; neither is a person remembering.
 
 ## Release
 
-**Owner:** release approver. **Skill:** `mainline-deployment-pipeline`.
+**Owner:** release approver. **Skill:** `/mainline-deployment-pipeline`.
 
 - Deploy is automated and **reversible**. Rollback is a command that has been run for real, not a
   paragraph in a runbook.
@@ -257,7 +276,7 @@ commands; neither is a person remembering.
 
 ## Operate
 
-**Owner:** on call. **Skill:** `mainline-observability`. Standing station — no card sits here.
+**Owner:** on call. **Skill:** `/mainline-observability`. Standing station — no card sits here.
 
 Monitoring, alerting, logs, traces, error tracking. Alerts fire to a channel a person actually reads,
 and turning an alert into a ticket is one command.

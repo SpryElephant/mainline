@@ -1,6 +1,6 @@
 ---
 name: mainline-e2e-suite
-description: Grow and maintain the end-to-end test suite that runs against the running stack — the QA station's compounding asset and dimension 6 of mainline-quality-gate. Covers what deserves an E2E test and what does not, writing tests that trace to requirements rather than to screens, seed data and isolation, and flake discipline. Use at the QA station whenever verifying a change on staging, and whenever a defect is found that should never recur.
+description: Grow and maintain the end-to-end test suite that runs against the running stack — the QA station's compounding asset and dimension 6 of /mainline-quality-gate. Covers what deserves an E2E test and what does not, writing tests that trace to requirements rather than to screens, seed data and isolation, and flake discipline. Use at the QA station whenever verifying a change on staging, and whenever a defect is found that should never recur.
 ---
 
 # End-to-end suite
@@ -11,7 +11,7 @@ into that release's testing.
 Two owners, deliberately split:
 
 - **QA owns the content.** What is in the suite, what it asserts, what gets added after each round.
-- **`mainline-quality-gate` owns the enforcement.** Dimension 6 runs the suite and fails the build. Developers
+- **`/mainline-quality-gate` owns the enforcement.** Dimension 6 runs the suite and fails the build. Developers
   are gated on **not breaking it**, never on authoring it.
 
 That split is what keeps both jobs honest. A developer required to write the E2E test for their own
@@ -34,7 +34,7 @@ works:
 
 ## Writing a test
 
-1. **Start from the requirement, not the screen.** Open the `.feature` file for the Slice. The E2E
+1. **Start from the requirement, not the screen.** Open the `.feature` file for the Feature. The E2E
    test asserts what the scenario says a person achieved. If there is no scenario to trace to, stop —
    you have found a missing requirement, which is worth more than the test. Send it to Product.
 2. **Use the domain's words.** The same glossary the Gherkin uses. A test that reads
@@ -57,7 +57,7 @@ The suite is only as reproducible as its data.
 - Seed data lives in the repo and is applied by a command, not by a person restoring a dump.
 - Every scenario's fixtures are named for the situation they create — `customer-with-two-open-guias`,
   not `test_data_3`.
-- Seeding is fast enough to run per test class. If it is not, that is a `mainline-local-stack` problem worth
+- Seeding is fast enough to run per test class. If it is not, that is a `/mainline-local-stack` problem worth
   fixing — slow seeding silently pushes people toward shared mutable state.
 - **Never seed from a production copy.** Beyond the obvious data-protection problem, it makes the
   suite depend on facts nobody wrote down.
@@ -67,7 +67,7 @@ The suite is only as reproducible as its data.
 **A flaky test is worse than no test.** It teaches the team to re-run the gate instead of reading it,
 and that one habit destroys the authority of every other dimension.
 
-1. A test that flakes is **quarantined out of the gate the same day**, with a ticket (`mainline-file-finding`).
+1. A test that flakes is **quarantined out of the gate the same day**, with a ticket (`/mainline-file-finding`).
    Not next sprint.
 2. Fix the cause, which is almost always a race the test exposed and the application owns. Treat a
    flaky test as a bug report about the system before you treat it as a bug in the test.
@@ -100,7 +100,7 @@ At the QA station, per round:
 4. File defects against the requirement they violate.
 5. The new tests merge with the release, not after it.
 
-## Pass H4
+## Pass `/ready-for-release`
 
 The handoff into release. All of it, or the work does not move:
 
@@ -120,16 +120,16 @@ The handoff into release. All of it, or the work does not move:
 - **Developers writing E2E tests to unblock themselves.** They write the test that passes. Keep
   authorship with QA and gating with the gate.
 - **The suite only runs in CI.** Then it cannot be debugged, and every failure becomes an archaeology
-  project. It must run against `mainline-local-stack`.
+  project. It must run against `/mainline-local-stack`.
 - **Coverage theatre.** Two hundred E2E tests covering form validation, and none covering checkout.
   Spend the expensive tests on the expensive failures.
 
 ## Relationships
 
-- **`mainline-quality-gate`** — dimension 6 runs this suite. QA owns what is in it.
-- **`mainline-local-stack`** — what the suite runs against, locally and in CI.
-- **`mainline-requirement-workflow`** — the `.feature` files every test traces back to.
-- **`mainline-file-finding`** — quarantines and defects become tracked items.
-- **`mainline-review-station`** — hands off at H3. **`mainline-deployment-pipeline`** — receives at H4.
-- **`mainline-observability`** — a defect that reached production should usually produce both an E2E test and
+- **`/mainline-quality-gate`** — dimension 6 runs this suite. QA owns what is in it.
+- **`/mainline-local-stack`** — what the suite runs against, locally and in CI.
+- **`/mainline-requirement-workflow`** — the `.feature` files every test traces back to.
+- **`/mainline-file-finding`** — quarantines and defects become tracked items.
+- **`/mainline-review-station`** — hands off at `/ready-for-qa`. **`/mainline-deployment-pipeline`** — receives at `/ready-for-release`.
+- **`/mainline-observability`** — a defect that reached production should usually produce both an E2E test and
   an alert. The test stops the recurrence; the alert catches the next thing you did not think of.
