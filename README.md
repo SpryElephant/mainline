@@ -68,6 +68,16 @@ maintained here. Forge specified Requirement → Design → Build → Gate for a
 adds the handoffs between people and the four stations after merge. See `skills/README.md` for the
 full list of changes.
 
+## License
+
+MIT (see [`LICENSE`](LICENSE)). Use it, copy it, change it, sell it; keep the copyright notice,
+which is how Spry Elephant's name travels with it.
+
+`skills/mainline-domain-modeling/references/` vendors material from the Tonto project by NEMO/UFES,
+also MIT; its notice and provenance are in
+[`ATTRIBUTION.md`](skills/mainline-domain-modeling/references/ATTRIBUTION.md) and stay with those
+files.
+
 ## Status
 
 Drafted 2026-08-25. Unreviewed by the team, and not yet run end to end on a real project —
