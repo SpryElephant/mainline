@@ -110,6 +110,10 @@ The handoff into release. All of it, or the work does not move:
 - [ ] Nothing newly quarantined without a ticket.
 - [ ] **Signed** by you · **assigned** to the release approver · **notified**.
 
+**Then stop.** `/ready-for-release` ends the QA sitting. Do not deploy, tag, or write the release
+notes — that is Release, in a new session, even when you approve releases too. See "One station, one
+sitting" in `playbook/00-overview.md`.
+
 ## Failure modes
 
 - **The suite tests the UI instead of the system.** Symptom: a redesign breaks fifty tests and none of

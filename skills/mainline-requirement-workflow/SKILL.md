@@ -81,6 +81,11 @@ The handoff into development. All of it, or the work does not move:
 The developer should be able to start without asking you anything. If they have to ask, the handoff
 was incomplete — note what they asked, because that question is the next line on this checklist.
 
+**Then stop.** `/ready-for-dev` ends the Requirement sitting. Do not open the design, model the
+domain, or start implementing — that is `/mainline-development-workflow`, in a new session. This holds
+when you are also the developer: the checks are worth running precisely because the next station
+meets the requirement cold. See "One station, one sitting" in `playbook/00-overview.md`.
+
 ## 5. Receive the entailed scenarios
 
 Expect work to come back. The design phase decomposes the domain ontologically, and the model

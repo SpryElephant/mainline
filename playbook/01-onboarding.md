@@ -123,6 +123,9 @@ on the ticket. The contract is in `commands/README.md`; what is project-specific
 - [ ] Walk each of the four `/ready-for-…` commands once on a real card.
 - [ ] Nobody copy-pastes between tools. If a step requires a human to move text from one window to
       another, it is not done.
+- [ ] **Set `assignees` even when every entry is the same login.** A one-person project still runs
+      all four handoffs; `review` is the one entry that cannot be the author. See
+      `commands/README.md`, "One station, one sitting".
 
 > **Acceptance test:** take a real Feature from Requirement to Design with one command. Then break one
 > check deliberately and confirm the command refuses to move it and names the failing check. The
@@ -216,11 +219,21 @@ QA becomes the place defects are discovered rather than the place quality is ass
 - [ ] Pick a real Feature. Not a toy, not a spike.
 - [ ] Carry it Inbox → Done using only the commands and checklists here. When you have to ask a
       person how something works, write down the question — that is a gap in the playbook.
-- [ ] Every handoff leaves a recorded result on the ticket.
+- [ ] **All four `/ready-for-…` commands actually run.** Not four comments written by hand, and not
+      four commands run back to back at the end. Each one runs at the moment the work reaches that
+      handoff, and its comment on the ticket is what proves it.
+- [ ] **One station, one sitting.** Each station is worked in its own session, and each session ends
+      at the handoff command. The rule is in `00-overview.md`; it holds when one person or one agent
+      owns every role, which on a small team is the normal case.
 - [ ] Hold a retro with `/mainline-improvement-loop` (`04-improvement.md`). It must produce **at least one
       amended check**. If it produces none, the retro was not honest.
 
-> **Acceptance test:** it shipped; every handoff has a recorded result; and one check has been
+**The failure to watch for:** one session walks the Feature from Requirement to Release, then writes
+the handoff comments afterwards. The board looks right and no check was ever run against work it did
+not already know. If that happens, the step failed — start over on a second Feature.
+
+> **Acceptance test:** it shipped; the ticket carries four handoff comments written by the four
+> commands, timestamped in station order and spread across separate sessions; and one check has been
 > changed as a result.
 
 ---

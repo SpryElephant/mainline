@@ -74,10 +74,19 @@ Green is not a report someone interprets. **Done means green**, and never lower 
 weaken a spec to get there. If a threshold is wrong, that is a conversation and a `Platform` work
 item — not an edit on your branch.
 
+**Then stop.** `/ready-for-review` ends this workflow and ends the sitting. Do not review your own
+PR, triage the findings, or carry the card into QA — Review is another person's station, and on a
+one-person project it is another sitting with a reviewer who is not the author. See "One station,
+one sitting" in `playbook/00-overview.md`.
+
 ## Dependency order
 
 `/ready-for-dev` → (design, if the shape changes → entailed scenarios back to Product) → implement → `/mainline-quality-gate`
 until green → `/ready-for-review`
+
+That chain is one sitting, and both ends of it are walls. It **starts** when `/ready-for-dev`
+has already run in an earlier sitting — you do not write the requirement and then pick it up. It
+**ends** at `/ready-for-review`.
 
 ## Relationships
 

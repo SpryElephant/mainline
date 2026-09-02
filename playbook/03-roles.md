@@ -15,8 +15,17 @@ is, what to do next, and which command runs it.
 | **Platform / DevOps** | Builds and maintains the machinery under every station: the gate, the local stack, CI/CD, deploy, observability. | Release, Operate | none |
 | **Lead** | Triages the Inbox, watches the flow, and owns the improvement loop and the line itself. | Inbox triage, improvement loop | none |
 
-One person can hold more than one role. The one rule is that the Reviewer of a change is never the
-Developer who wrote it.
+One person can hold more than one role. Two rules bound that:
+
+1. **The Reviewer of a change is never the Developer who wrote it.**
+2. **Holding two roles does not merge two stations.** You still run the handoff command between
+   them, it still runs the checks, and it still records the result. Wearing the next hat is a
+   separate sitting, not a continuation of the current one. See "One station, one sitting" in
+   `00-overview.md`.
+
+The second rule is the one that breaks under pressure, and it breaks hardest on a small team, where
+the same person holds every role and the handoff looks like paperwork addressed to themselves. It is
+not paperwork. The check is the point; the assignment is only how the check gets a name attached.
 
 Two words in this document are easy to confuse. **UI/UX design** is what the screens look like and
 how the flow feels; it belongs to Product and finishes before `/ready-for-dev`. **System design** is how the

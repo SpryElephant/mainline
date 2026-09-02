@@ -43,7 +43,8 @@ flowchart LR
 Only four transitions change hands. `/ready-for-dev` Product → Developer. `/ready-for-review`
 Developer → Reviewer. `/ready-for-qa` Reviewer → QA. `/ready-for-release` QA → Release. Those four are the handoffs, and they are the only places
 that need a check, a signature, an assignment, and a notification. Everything else is one person
-working their own loop.
+working their own loop. Each of those four is also where a sitting ends — see **One station, one
+sitting** below.
 
 **"Design" on the line means system design.** The Design station is where the developer models the
 domain and derives the module boundaries and contracts. UI/UX design, meaning what the screens look
@@ -75,7 +76,7 @@ Orthogonal to the line: `/mainline-help` to find out where you are and what to d
 `/mainline-refactor-smells` for behavior-preserving change, `/mainline-improvement-loop` for what the line learns when
 something escapes, and `/mainline-pmi-github-project` to stand the board up once.
 
-## Three rules that make the rest work
+## Four rules that make the rest work
 
 1. **The gate is the proof, never inspection.** Nothing is done until the gate is green. Never lower
    a threshold or weaken a test to pass one.
@@ -84,6 +85,29 @@ something escapes, and `/mainline-pmi-github-project` to stand the board up once
 3. **Harvest what you find.** If a session turns up a bug, a risk, or a missing rule, it becomes a
    filed and assigned ticket before the session ends. A finding you did not file is a finding you
    paid for and threw away.
+4. **One station, one sitting.** A sitting works one card at one station and stops at the handoff.
+   It runs the `/ready-for-…` command and ends there — it does not carry on into the next station's
+   work. This holds when the same person, or the same agent, owns both stations.
+
+### One station, one sitting
+
+A **sitting** is one continuous run of work on one card: a person at their desk, or an agent in one
+session. The four handoffs are where a sitting ends, not points a sitting passes through.
+
+The rule exists because a check you run on your own unfinished work is not a check. The station
+boundary is what makes the checklist meet the work cold, from outside, with the evidence already
+written down. Walk Requirement through to Release in one sitting and every check becomes a memory of
+what you just did — which is exactly the state the line was built to replace.
+
+- **Stop after the handoff command.** Running `/ready-for-dev` is the end of the Requirement sitting.
+  Design starts in the next one.
+- **A handoff to yourself is still a handoff.** On a one-person project you are the next owner. Run
+  the command anyway. The checks run, the result is recorded, and you come back to the card at the
+  next station with the evidence in front of you rather than in your head.
+- **Never batch the handoffs.** Four commands run back to back at the end is the same failure with
+  the receipts filled in afterwards.
+- Inside a station, keep going: Design → Build → Verify is one owner and one sitting. `02-stations.md`
+  marks the two places that are deliberately not handoffs.
 
 ## What a project gets
 

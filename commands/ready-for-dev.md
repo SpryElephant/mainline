@@ -44,3 +44,15 @@ Only when every check passed:
 - Comment on the issue recording the result: the handoff, who signed, who it went to, and the time.
 
 Report what moved and what was attached.
+
+## 4. Stop
+
+**This command is the end of the sitting.** Report and stop.
+
+Do not begin the design or the implementation. That is the next station, and it starts in a new
+session — including when the next owner is the person who just ran this command. A handoff to
+yourself is still a handoff: the value is that the next station's checks meet the work from outside,
+not that a different name appears on the card.
+
+If you are the next owner, say so, name the command or skill that station is worked with, and end
+the session there.
