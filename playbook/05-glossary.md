@@ -90,9 +90,9 @@ here goes to Inbox; anything that should have been caught upstream goes to the i
 
 ## Work items
 
-**Work Type.** The board field that says what kind of work a card is: Epic, Feature, Risk, Refactor,
-Spike, Bug, Chore or Platform. (The field is named `Work Type` because `Type` is reserved by
-GitHub.)
+**Work Type.** The board field that says what kind of work a card is: Epic, Feature, Change request,
+Risk, Refactor, Spike, Bug, Chore or Platform. (The field is named `Work Type` because `Type` is
+reserved by GitHub.)
 
 **Epic.** A body of work large enough to break into several Features. Sub-issue progress rolls up to
 it.
@@ -101,6 +101,11 @@ it.
 Feature is one `.feature` file, one PR, and one trip along the line, full stack: front end and back
 end together. Capitalised, it is the `Work Type`; in lower case, "feature" keeps its everyday
 meaning.
+
+**Change request.** A material change to the scope baseline, the milestone sequence, or a committed
+decision. Filed on the `change-request.yml` form with the driver, the impact and a decision of
+Proposed, Accepted, Rejected or Deferred. An accepted one is recorded as a new, higher-numbered
+design doc that supersedes the old one — append, never rewrite. Change control is charter §8.
 
 **Spike.** A timeboxed investigation with a question to answer rather than a feature to ship.
 Discovery is a Spike. A Spike ends on its timebox date, not on a definition of done.

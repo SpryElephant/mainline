@@ -83,12 +83,13 @@ reason a codebase "can't be fixed" — not the code. If so, step 5 is the long p
 - [ ] Run `/mainline-pmi-github-project`: project, custom fields, milestones, labels, WBS seed, risk register,
       charter, issue forms.
 - [ ] Confirm `Phase` carries `Inbox, Requirement, Design, Build, Verify, Review, QA, Release, Done`.
-- [ ] Confirm `Work Type` carries `Epic, Feature, Risk, Refactor, Spike, Bug, Chore, Platform`. An
-      Epic breaks into Features, **one Feature per `.feature` file**. Discovery is a Spike, off the
-      pipeline. **`Platform` is work on the line itself** — the gate command, the local stack, the
-      handoff commands, CI, alerting. It is not a station; it is a work type, and it enters at Inbox
-      like anything else, skipping Requirement and Design the way a bug fix does. Tracking it is what
-      stops line maintenance from being invisible unpaid work.
+- [ ] Confirm `Work Type` carries `Epic, Feature, Change request, Risk, Refactor, Spike, Bug, Chore,
+      Platform`. An Epic breaks into Features, **one Feature per `.feature` file**. Discovery is a
+      Spike, off the pipeline. A **`Change request`** is how the scope baseline changes deliberately;
+      charter §8 is the control. **`Platform` is work on the line itself** — the gate command, the
+      local stack, the handoff commands, CI, alerting. It is not a station; it is a work type, and
+      it enters at Inbox like anything else, skipping Requirement and Design the way a bug fix does.
+      Tracking it is what stops line maintenance from being invisible unpaid work.
 - [ ] Create the saved views (UI only — `gh` cannot): **Flow** (board, grouped by Phase — the daily
       driver), Roadmap, Backlog, Risk register, By milestone.
 - [ ] Trunk-based branching: squash-only, delete on merge, branch protection requiring the `gate`

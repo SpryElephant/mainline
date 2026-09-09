@@ -113,8 +113,8 @@ Both files are written by `/wire-handoffs` and verified by `/wire-handoffs --che
 `/mainline-pmi-github-project` stands this up once with `gh`:
 
 - **Project board** with custom fields. `Phase` is the station the work is at, and only the handoff
-  commands are supposed to change it. `Work Type` is Epic, Feature, Risk, Refactor, Spike, Bug, Chore
-  or Platform.
+  commands are supposed to change it. `Work Type` is Epic, Feature, Change request, Risk, Refactor,
+  Spike, Bug, Chore or Platform.
 - **Issue forms** (`references/issue-templates/*.yml`) that require the fields the board needs. A
   risk cannot be filed without its statement, trigger and response.
 - **Branch protection** on the default branch: squash-only, delete on merge, the `gate` status
