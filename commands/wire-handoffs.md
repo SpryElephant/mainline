@@ -28,8 +28,8 @@ later trip over.
     `/mainline-pmi-github-project`.
 - Confirm the board is a Mainline board: `gh project field-list "$PN" --owner "$OWNER" --format
   json` must contain `Phase` with `Inbox, Requirement, Design, Build, Verify, Review, QA, Release,
-  Done` and `Work Type` with `Epic, Feature, Risk, Refactor, Spike, Bug, Chore, Platform`. If an
-  option is missing, stop and name it; that is step 3 work, not yours.
+  Done` and `Work Type` with `Epic, Feature, Change request, Risk, Refactor, Spike, Bug, Chore,
+  Platform`. If an option is missing, stop and name it; that is step 3 work, not yours.
 - Write the field list to `.github/project-fields.json`. Refresh it even if it exists; a stale ID
   fails with `Could not resolve to a node`.
 
