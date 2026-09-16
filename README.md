@@ -77,8 +77,3 @@ which is how Spry Elephant's name travels with it.
 also MIT; its notice and provenance are in
 [`ATTRIBUTION.md`](skills/mainline-domain-modeling/references/ATTRIBUTION.md) and stay with those
 files.
-
-## Status
-
-Drafted 2026-08-25. Unreviewed by the team, and not yet run end to end on a real project —
-onboarding step 8 is the only thing that actually tests any of this.
