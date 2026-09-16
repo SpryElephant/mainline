@@ -53,8 +53,9 @@ carries a substitution table. Keep the dimension; swap the tool.
 
 - `/mainline-quality-gate` — the binding gate. Seven dimensions behind one command: behavior, architecture,
   static analysis, test adequacy, the end-to-end suite, and — optional — flow/CPG and mutation.
-- `/mainline-e2e-suite` — QA's compounding asset. What deserves an E2E test, how to write one that survives a
-  redesign, seed data, flake discipline. Enforced as `/mainline-quality-gate` dimension 6.
+- `/mainline-e2e-suite` — the team's compounding asset, curated by QA. What deserves an E2E test, who
+  writes it, how to write one that survives a redesign, seed data, flake discipline. Enforced as
+  `/mainline-quality-gate` dimension 6.
 - `/mainline-review-station` — the Review station. Automated review plus the security pass, human judgment on
   the findings, waivers with written reasons, the recorded sign-off, the `/ready-for-qa` handoff.
 - `/mainline-refactoring` — large mechanical behavior-preserving rewrites via a rewrite engine.

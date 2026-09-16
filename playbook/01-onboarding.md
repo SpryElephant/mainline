@@ -196,8 +196,9 @@ QA becomes the place defects are discovered rather than the place quality is ass
       finds is added to the permanent suite. Defects are filed **against the requirement they
       violate**, not as free-floating bug reports.
 - [ ] **E2E suite** (`/mainline-e2e-suite`) — browser tests against a running stack, growing with every Feature.
-      **QA owns the content; `/mainline-quality-gate` dimension 6 enforces it.** Developers are gated on not
-      breaking the suite, never on authoring it. Start with the whole suite on every PR; split into a
+      **Developers and QA both write tests; QA curates the suite; `/mainline-quality-gate` dimension 6
+      enforces it.** A developer covers the journey their Feature creates, in the same PR. Nobody is
+      gated on another role's backlog. Start with the whole suite on every PR; split into a
       smoke set (PR) and full set (release) only when it outgrows the window, and write down which is
       which.
 - [ ] **Release** — deploy is automated and reversible. Migrations are backward-compatible or gated.

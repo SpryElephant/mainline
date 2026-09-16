@@ -1,22 +1,24 @@
 ---
 name: mainline-e2e-suite
-description: Grow and maintain the end-to-end test suite that runs against the running stack — the QA station's compounding asset and dimension 6 of /mainline-quality-gate. Covers what deserves an E2E test and what does not, writing tests that trace to requirements rather than to screens, seed data and isolation, and flake discipline. Use at the QA station whenever verifying a change on staging, and whenever a defect is found that should never recur.
+description: Grow and maintain the end-to-end test suite that runs against the running stack — the team's compounding asset, curated by QA, and dimension 6 of /mainline-quality-gate. Covers what deserves an E2E test and what does not, who writes it, writing tests that trace to requirements rather than to screens, seed data and isolation, and flake discipline. Use at Build when a Feature's journey crosses modules, at the QA station whenever verifying a change on staging, and whenever a defect is found that should never recur.
 ---
 
 # End-to-end suite
 
-The suite is **QA's compounding asset**. Every release either grows it or wastes the work that went
-into that release's testing.
+The suite is **the team's compounding asset**. Every release either grows it or wastes the work that
+went into that release's testing.
 
-Two owners, deliberately split:
+Three jobs, deliberately split:
 
-- **QA owns the content.** What is in the suite, what it asserts, what gets added after each round.
-- **`/mainline-quality-gate` owns the enforcement.** Dimension 6 runs the suite and fails the build. Developers
-  are gated on **not breaking it**, never on authoring it.
+- **Anyone writes the tests.** A developer adds one at Build for the journey their Feature creates.
+  QA adds one at QA for what a round of testing found. Same suite, same standards.
+- **QA curates the suite.** What stays in it, what it must cover, what the gaps are, what gets
+  quarantined. QA may rewrite or reject a test that does not earn its place.
+- **`/mainline-quality-gate` enforces.** Dimension 6 runs the suite and fails the build. A developer is
+  gated on **not breaking it**, never on QA's backlog.
 
-That split is what keeps both jobs honest. A developer required to write the E2E test for their own
-feature writes the one that passes. A QA team whose tests do not block a merge is writing
-documentation.
+That split is what keeps the jobs honest. Nobody waits on another role to get a journey covered, and
+a suite that does not block a merge is documentation.
 
 ## What deserves an E2E test
 
@@ -31,6 +33,26 @@ works:
 | Behavior that only appears when real persistence, real auth, or a real queue is involved | Styling, copy, layout |
 
 **The rule of thumb:** if you can prove it without starting the whole system, you should.
+
+## Who writes it, and when
+
+| You are | You write an E2E test when | It ships |
+|---|---|---|
+| A developer at Build | the Feature's journey crosses modules, services, or the network, and nothing cheaper proves it | in the Feature's PR |
+| A developer fixing a bug | the defect reached staging or production and a unit test cannot catch it | in the fix's PR |
+| QA at the QA station | a round of testing found something repeatable, or exploration found a gap the suite cannot express | with the release |
+
+The test is code. It goes through Review like the rest of the change, and QA curates it afterwards —
+a test that asserts the steps its author just wrote gets rewritten or dropped.
+
+**Do not defer a test to QA to keep a PR small.** A journey covered at Build is a journey QA never
+has to find by hand. Deferring it is how QA becomes where defects are discovered rather than where
+quality is assured.
+
+**Gherkin stays Product's.** A test traces to a scenario; it does not replace one. A developer or QA
+who finds a scenario that should exist drafts it and sends it to Product
+(`/mainline-requirement-workflow` step 5), who accepts it into the `.feature` file. A test with no
+scenario behind it is a requirement nobody agreed to.
 
 ## Writing a test
 
@@ -90,7 +112,7 @@ The suite must stay inside the window a developer will actually wait for.
 
 ## The QA loop
 
-At the QA station, per round:
+The developer's loop is in `/mainline-development-workflow` step 2. At the QA station, per round:
 
 1. Run the suite against staging.
 2. Explore what the suite cannot express — the odd sequence, the real-world combination, the thing
@@ -121,8 +143,12 @@ sitting" in `playbook/00-overview.md`.
 - **Retry-until-green.** The single fastest way to make a gate worthless.
 - **QA writing tests nobody runs.** If the suite does not block a merge, it is documentation. Wire it
   into dimension 6.
-- **Developers writing E2E tests to unblock themselves.** They write the test that passes. Keep
-  authorship with QA and gating with the gate.
+- **A test written only to turn the gate green.** Symptom: it asserts the steps the author just
+  wrote, not the outcome the scenario states. Cure: it is reviewed like any other code, and QA
+  curates it at the QA station. Authorship is open; the standard is not.
+- **Every journey deferred to QA.** Symptom: the suite only ever grows one station before release,
+  and QA finds by hand what Build could have covered. Cure: the developer writes the test with the
+  Feature.
 - **The suite only runs in CI.** Then it cannot be debugged, and every failure becomes an archaeology
   project. It must run against `/mainline-local-stack`.
 - **Coverage theatre.** Two hundred E2E tests covering form validation, and none covering checkout.
@@ -130,7 +156,7 @@ sitting" in `playbook/00-overview.md`.
 
 ## Relationships
 
-- **`/mainline-quality-gate`** — dimension 6 runs this suite. QA owns what is in it.
+- **`/mainline-quality-gate`** — dimension 6 runs this suite. Developers and QA both write tests; QA curates.
 - **`/mainline-local-stack`** — what the suite runs against, locally and in CI.
 - **`/mainline-requirement-workflow`** — the `.feature` files every test traces back to.
 - **`/mainline-file-finding`** — quarantines and defects become tracked items.

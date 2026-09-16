@@ -77,7 +77,8 @@ The station is called Verify so that "gate" means only the command (see Checks a
 security findings, fixes or waives each one with a written reason, and signs.
 
 **QA.** The station where the end-to-end suite runs against staging, a person explores what the
-suite cannot express, and what they find is added to the suite. Defects are filed against the
+suite cannot express, and what they find is added to the suite. The suite also grows at Build, where
+developers cover the journeys their Features create; QA curates it. Defects are filed against the
 requirement they violate.
 
 **Release.** The station where the change is deployed to production. Deploy is automated and
@@ -215,8 +216,9 @@ coverage that is high when complex code is poorly tested. The gate sets a ceilin
 likely bugs and style violations. Findings fail the build; they are never advisory.
 
 **End-to-end (E2E) suite.** Browser (or API) tests that run against the whole system running
-together. QA owns what is in it; gate dimension 6 runs it on every developer's PR. Developers are
-gated on not breaking it, never on writing it.
+together. Developers write them at Build for the journeys their Features create; QA writes them at
+QA for what a round of testing found; QA curates what stays in the suite. Gate dimension 6 runs the
+suite on every developer's PR. Nobody is gated on another role's backlog.
 
 **Mutation testing.** Deliberately altering the code in small ways to check that the tests notice.
 A surviving mutant is a change the tests did not catch. Optional dimension 7.

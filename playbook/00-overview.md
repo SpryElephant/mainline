@@ -67,7 +67,7 @@ Every station has a skill behind it, installed into the project from `skills/`:
 | Verify | `/mainline-quality-gate` | Run the gate until green. Seven dimensions behind one command. Done means green. |
 | Review | `/mainline-review-station` | Tools produce findings; a named person decides, waives with a reason, signs |
 | Review | `/mainline-security-gate` | SAST, dependencies, secrets, IaC, images, runtime posture — binding, not a dashboard |
-| QA | `/mainline-e2e-suite` | QA's compounding asset, enforced as gate dimension 6 |
+| QA | `/mainline-e2e-suite` | The team's compounding asset, curated by QA, enforced as gate dimension 6 |
 | Release | `/mainline-deployment-pipeline` | Merge to production, automated and reversible |
 | Operate | `/mainline-observability` | Instrument before ship; alert on what users feel |
 

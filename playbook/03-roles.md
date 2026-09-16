@@ -9,9 +9,9 @@ is, what to do next, and which command runs it.
 | Role | What the role is | Owns on the line | Signs |
 |---|---|---|---|
 | **Product** | Decides what gets built and why, and speaks for the client inside the team. Owns the requirement, the discovery that precedes it, and the UI/UX design. | Inbox (with Lead), Discovery, Requirement | `/ready-for-dev` |
-| **Developer** | Turns a signed requirement into working software that passes the gate. Owns the system design and the implementation, front end and back end alike. | Design, Build, Gate | `/ready-for-review` |
+| **Developer** | Turns a signed requirement into working software that passes the gate. Owns the system design, the implementation and its tests — unit through end-to-end — front end and back end alike. | Design, Build, Gate | `/ready-for-review` |
 | **Reviewer** | A second person who judges the automated findings on a change and signs for it. Never the author of the change. | Review | `/ready-for-qa` |
-| **QA** | Checks that what reached staging does what the requirements say, and grows the permanent end-to-end suite. | QA | `/ready-for-release` |
+| **QA** | Checks that what reached staging does what the requirements say, and curates the permanent end-to-end suite. | QA | `/ready-for-release` |
 | **Platform / DevOps** | Builds and maintains the machinery under every station: the gate, the local stack, CI/CD, deploy, observability. | Release, Operate | none |
 | **Lead** | Triages the Inbox, watches the flow, and owns the improvement loop and the line itself. | Inbox triage, improvement loop | none |
 
@@ -95,6 +95,8 @@ the screenshots attached. You should not have to ask anyone anything to start.
    contracts.
 2. **Build.** Implement to the scenarios. Run the full stack locally and validate each acceptance
    criterion against a running system. Run the gate continuously — not once at the end.
+   **Write the end-to-end test for the journey your Feature creates**, in the same PR
+   (`/mainline-e2e-suite`). E2E tests are not QA's job alone; QA curates the suite afterwards.
 3. **Verify.** Gate green, or not done. Never lower a threshold to pass; if the threshold is wrong, that is
    a conversation, not an edit.
 
@@ -142,7 +144,8 @@ it a fourth time.
 that check into a permanent, binding end-to-end suite that grows with every Feature. QA tests against
 the requirement, not against the code or the developer's description of it. QA does not write the
 requirement (Product does) and does not write the code (the Developer does). QA is the independent
-check that the two agree.
+check that the two agree. QA is not the only author of the suite — developers add tests at Build —
+but QA curates it.
 
 **Your day.** Changes arrive on staging. The suite runs on the cadence; you can expedite on request.
 
@@ -153,10 +156,12 @@ check that the two agree.
    steps three times, that was a test case you have not written yet. Your work should compound; a QA
    process that starts from zero every release is a treadmill.
 
-   **The suite is yours and it is binding.** You decide what is in it; `/mainline-quality-gate` dimension 6
-   runs it on every developer's PR and fails the build. Developers are gated on not breaking it,
-   never on writing it — so you are not waiting on them, and they are not writing the test that
-   happens to pass.
+   **You curate the suite and it is binding.** Developers write E2E tests too, at Build, for the
+   journeys their Features create. You decide what stays: you may rewrite or drop a test that
+   asserts the steps its author wrote rather than the outcome the scenario states.
+   `/mainline-quality-gate` dimension 6 runs the suite on every developer's PR and fails the build.
+   Nobody is gated on another role's backlog — so you are not waiting on them, and they are not
+   waiting on you.
 4. **File defects against the requirement they violate.** If there is no requirement to cite, you
    have found something more valuable than a bug: a missing requirement. Send it to Product.
 5. **Quarantine a flaky test the day it flakes**, with a ticket. Never retry until green; a growing

@@ -111,11 +111,14 @@ Dimension 1 binds specs to **code**. This one binds to a **running system**: a b
 client against the full stack, real navigation, real persistence, no test doubles at the boundary.
 It is the only dimension that can catch a defect living *between* correctly-implemented modules.
 
-**The developer is gated on regression, not on authorship.** This dimension asserts that the
-existing suite still passes. Growing the suite for new behavior belongs to QA (`/mainline-e2e-suite`), at the
-QA station. The split is deliberate: gating a developer on tests that QA owns and must author would
-deadlock the merge, and letting developers write throwaway E2E tests to unblock themselves produces
-a suite nobody trusts.
+**The developer is gated on regression, not on authorship.** This dimension asserts that the suite
+passes. It never requires a new test to let a change through — that is what keeps a merge from
+deadlocking on another role's backlog.
+
+**Anyone writes the tests** (`/mainline-e2e-suite`). A developer adds one at Build when the Feature's
+journey crosses modules; QA adds one at the QA station for what a round of testing found. QA
+curates the suite. A developer-authored test does land in its own PR, so it gates its author — that
+is their own test failing, not QA's.
 
 - **Runs against the local full stack** (`/mainline-local-stack`), so it behaves identically on a laptop and in
   CI. An E2E suite that only runs in CI cannot be debugged.

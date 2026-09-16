@@ -168,6 +168,8 @@ Implement to the scenarios. Respect module public APIs. Run the gate continuousl
   before handing off. An agent's loop closes on validated criteria — not on "the code looks right."
 - **Full stack, one change.** A Feature is one `.feature`; make it one PR. Front-end and back-end are
   not two jobs.
+- **Cover the journey you created.** A path that crosses modules, services, or the network gets an
+  end-to-end test in the same PR (`/mainline-e2e-suite`). Writing E2E tests is not QA's job alone.
 - **File what you find, now** (`/mainline-file-finding`). A bug, a risk, or a missing rule you are not fixing becomes a filed,
   assigned, notified ticket from inside the session. You spent effort to learn it; harvest it. A
   finding you meant to mention tomorrow is a finding you threw away.
@@ -191,7 +193,7 @@ protection requires it. **Local equals CI.**
 | 3 | Static analysis | report empty. Findings fail the build; they are never advisory |
 | 4 | Test adequacy | complexity, coverage and CRAP within the project's thresholds |
 | 5 | Flow / CPG *(optional)* | data-flow, reachability and taint gates green |
-| 6 | End-to-end | the existing suite passes against a running stack. **QA owns the suite; you are gated on not breaking it** |
+| 6 | End-to-end | the suite passes against a running stack. **You are gated on not breaking it, never on another role's backlog.** You and QA both write tests; QA curates the suite |
 | 7 | Mutation *(optional)* | surviving mutants under the floor, on the scoped set |
 
 **Done means green.** Never weaken a spec or lower a threshold to pass. The gate is the proof; it is
@@ -243,10 +245,11 @@ written spec there is no such thing as QA, only people clicking around hoping to
 1. **Run the suite against staging** — on the cadence, or on an expedite request.
 2. **Explore what the suite cannot express.** Judgment, not repetition. If you are executing the same
    manual steps a third time, that is a test case, not a QA activity.
-3. **Add what you find to the permanent suite.** QA's work compounds or it is wasted. The suite is
-   yours: you decide what is in it, and `/mainline-quality-gate` dimension 6 makes it binding on every
-   developer. That split is deliberate — a developer writing the E2E test for their own feature
-   writes the one that passes, and a suite that does not block a merge is documentation.
+3. **Add what you find to the permanent suite.** QA's work compounds or it is wasted. Developers
+   write tests too, at Build, for the journeys their Features create — you **curate**: what stays
+   in the suite, what it must cover, what gets rewritten or dropped. `/mainline-quality-gate`
+   dimension 6 makes the suite binding on every developer, and a suite that does not block a merge
+   is documentation.
 4. **File defects against the requirement they violate.** A defect that cites no requirement is
    either a missing requirement — send it back to Product — or a preference.
 5. **Quarantine a flaky test out of the gate the day it flakes**, with a ticket. Never retry until

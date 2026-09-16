@@ -96,6 +96,11 @@ This is the system working, not a rejection. The model can *prove* a scenario is
 stronger check than any human comparing two documents and feeling satisfied. Add them, and re-pass
 `/ready-for-dev` for anything that changes scope.
 
+Scenarios also come back from Build and QA, where somebody writing an end-to-end test finds there is
+nothing to trace it to (`/mainline-e2e-suite`). They may draft the Gherkin — that saves you a round
+trip — but you accept it into the `.feature` file. A scenario that entered the spec without Product
+is scope nobody agreed to.
+
 ## Scope changes after `/ready-for-dev`
 
 A discovered requirement mid-build comes back here — it does not get absorbed into the branch. New
