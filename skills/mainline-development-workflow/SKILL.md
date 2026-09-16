@@ -46,6 +46,10 @@ When you do design:
   each acceptance criterion against it. Your loop closes on validated criteria — not on the code
   looking right. If validation cannot happen locally, it gets deferred to QA, and QA becomes where
   defects are discovered rather than where quality is assured.
+- **Cover the journey you created.** If the Feature's path crosses modules, services, or the network,
+  write the end-to-end test now and ship it in this PR (`/mainline-e2e-suite`). Authorship is not QA's
+  alone. A journey you cover here is a journey nobody has to find by hand later. QA curates the
+  suite afterwards and may rewrite what you wrote.
 - **One feature is one change.** A Feature is one `.feature`; make it one PR, front to back. If the
   repo layout makes that impossible, say so — it is a platform problem, not a personal one.
 - **Run `/mainline-quality-gate` continuously**, not once at the end. The gate is a loop you work inside, not
@@ -65,6 +69,8 @@ When you do design:
 
 - [ ] `/mainline-quality-gate` green in CI on the branch — all applicable dimensions.
 - [ ] Every acceptance scenario passing, with validation evidence on the ticket.
+- [ ] Cross-module journeys this change created covered by an end-to-end test in this PR, or a
+      written reason why the existing coverage is enough.
 - [ ] Entailed scenarios from step 1 either implemented or sent back to Product.
 - [ ] No unrelated changes; refactors in their own commits.
 - [ ] Findings filed.
@@ -95,6 +101,6 @@ has already run in an earlier sitting — you do not write the requirement and t
 - **`/mainline-quality-gate`** — the binding gate; the exit condition for this whole workflow.
 - **`/mainline-local-stack`** — what you validate against in step 2.
 - **`/mainline-refactoring` / `/mainline-refactor-smells`** — orthogonal, separate commits.
-- **`/mainline-e2e-suite`** — you are gated on not breaking it. QA grows it.
+- **`/mainline-e2e-suite`** — you are gated on not breaking it. You and QA both grow it; QA curates.
 - **`/mainline-review-station`** — receives at `/ready-for-review`.
 - **`/mainline-file-finding`** — how a finding becomes a tracked item without leaving the session.
