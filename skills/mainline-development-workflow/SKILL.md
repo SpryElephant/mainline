@@ -73,6 +73,13 @@ When you do design:
       written reason why the existing coverage is enough.
 - [ ] Entailed scenarios from step 1 either implemented or sent back to Product.
 - [ ] No unrelated changes; refactors in their own commits.
+- [ ] **A high-effort review of the head commit**, run in a sitting that did not write the change. It
+      marks each defect **BLOCKING** (it loses data, signs or merges the wrong thing, or weakens
+      security) or **OTHER**. Every blocking defect is fixed, with a test that fails without the fix.
+      Every other defect is fixed or filed, and answered on the pull request. A new commit needs a new
+      review: the review is of the head commit, not of the branch as it was.
+- [ ] A pull request that fixes part of an issue says "Part of #N", not "Closes #N", and the issue
+      says what is left.
 - [ ] Findings filed.
 - [ ] **Signed** by you · **assigned** to a reviewer · **notified**.
 

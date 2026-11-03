@@ -109,6 +109,23 @@ what you just did — which is exactly the state the line was built to replace.
 - Inside a station, keep going: Design → Build → Verify is one owner and one sitting. `02-stations.md`
   marks the two places that are deliberately not handoffs.
 
+### Sittings that run without a person
+
+When agents work the stations in unattended sessions, and a script starts one sitting after another,
+the rule above still holds, and four more follow from it:
+
+- **Each sitting prints a verdict line.** The first line of its last message is the result the next
+  step reads: `HANDED OFF` or `BLOCKED` for a handoff, `MERGED` or `BLOCKED` for Review, `RELEASED` or
+  `BLOCKED` for Release, and for a pre-handoff review "No real defect.", "No blocking defect." or the
+  number of blocking defects. The script reads that line, never a guess at the prose.
+- **The script stops at the first station that did not pass.** A refused handoff ends the run. Starting
+  Review after a refused `/ready-for-review` is the same failure as walking past the checklist.
+- **Each run works in its own worktree.** A Review sitting checks out the pull request; two runs that
+  share one checkout check out over each other. The script that starts a run is not edited while
+  the run is going.
+- **Evidence goes on the card in full.** A pre-handoff review or a QA run posts what it found, not a
+  pointer to it. The next station reads the card, not the session that wrote it.
+
 ## What a project gets
 
 - A new developer is productive from a document, not from somebody's memory.
