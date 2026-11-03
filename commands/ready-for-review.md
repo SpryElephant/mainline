@@ -21,6 +21,10 @@ What each line means in practice:
   running stack, not "the code looks right."
 - Entailed scenarios from the design step either implemented or sent back to Product.
 - No unrelated changes; behavior-preserving refactors in their own commits.
+- A high-effort review of the **head commit** ran in a sitting that did not write the change, and its
+  findings are on the pull request: every BLOCKING defect (loses data, signs or merges the wrong
+  thing, weakens security) fixed, every other one fixed or filed and answered. A review of an
+  earlier commit does not count.
 - Findings filed (`/mainline-file-finding`), not carried in someone's head.
 
 ## 2. Block on failure

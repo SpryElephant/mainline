@@ -76,6 +76,10 @@ is a step wired into that one command.
 CRAP is rarely built in — derive it wherever coverage and per-method complexity are both available
 (`CRAP = c²·(1−cov)³ + c`).
 
+**A baseline that only shrinks is checked again after it shrinks.** Taking entries out never proves
+the code is within the ceilings: a function that was moved or renamed is a new function, held to the
+ceilings with no baseline entry. Run the check once more after every shrink, before you commit.
+
 ### 5. Flow-level gates — code-property graph (optional, high-value)
 Architecture and static-analysis tools stop at the **declaration boundary**: who references whom, and
 bad shapes inside one method. They cannot follow a *value* across methods, reason about *reachability*,
